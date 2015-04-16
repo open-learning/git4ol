@@ -9,16 +9,15 @@ It helps to mentaly map learning objects to git objects, so let's start with a s
 ## Learning objects
 
 - The analogy of a "course" is a git repository
-- The analogy of a "lesson" is a git branch
+- The analogy of a "lesson" is a git tag (on an orphaned branch)
 - The analogy of a "step" is a git commit
 - The analogy of a "stimulus" is a git commit message
 
 The idea is to use git refs to locate the variuos learning object.
 
-- Lessons are located using annotated tags of the format `lesson-name@version` where
+- Lessons are located using tags of the format `lesson-name@version` where
   - `lesson-name` is the name of the lesson
   - `version` is a valid semver
-- The corresponding branch for this lesson _should_ be called `lesson-name/version`
 
 - Steps are located using refs of the format `lesson-name@version/step/n` where
   - `lesson-name` is the name of the lesson
