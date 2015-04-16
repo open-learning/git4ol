@@ -26,3 +26,15 @@ Some of these words *are emphasized*.
 
     Use two asterisks for **strong emphasis**.
     Or, if you prefer, __use two underscores instead__.
+
+    *   Candy.
+    *   Gum.
+    *   Booze.
+
+    +   Candy.
+    +   Gum.
+    +   Booze.
+
+    -   Candy.
+    -   Gum.
+    -   Booze.
