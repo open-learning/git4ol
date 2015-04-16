@@ -62,3 +62,9 @@ Some of these words *are emphasized*.
     [The New York Times][NY Times].
 
     [ny times]: http://www.nytimes.com/
+
+    ![alt text](/path/to/img.jpg "Title")
+
+    ![alt text][id]
+
+    [id]: /path/to/img.jpg "Title"
