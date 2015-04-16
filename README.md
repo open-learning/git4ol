@@ -48,3 +48,5 @@ Or, if you prefer, __use two underscores instead__.
     With multiple paragraphs.
 
 *   Another item in the list.
+
+This is an [example link](http://example.com/).
