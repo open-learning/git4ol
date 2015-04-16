@@ -43,3 +43,8 @@ Some of these words *are emphasized*.
     2.  Green
     3.  Blue
 
+    *   A list item.
+
+        With multiple paragraphs.
+
+    *   Another item in the list.
