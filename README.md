@@ -18,6 +18,7 @@ The idea is to use git refs to locate the variuos learning object.
 - Lessons are located using annotated tags of the format `lesson-name@version` where
   - `lesson-name` is the name of the lesson
   - `version` is a valid semver
+- The corresponding branch for this lesson _should_ be called `lesson-name/version`
 
 - Steps are located using refs of the format `lesson-name@version/step/n` where
   - `lesson-name` is the name of the lesson
