@@ -1,5 +1,7 @@
 # GIT-Tutor
 
+[![Join the chat at https://gitter.im/git-tutor/format](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/git-tutor/format?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 GIT-Tutor is a format for packaging and distributing learning material using git.
 
 # Repository layout
