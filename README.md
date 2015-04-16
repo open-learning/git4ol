@@ -34,7 +34,7 @@ When all the unit tests pass the assignment is ready for "review". The review is
 
 ## Certification
 
-A "certificate" is git commit containing a [mozilla open badge assertion](https://github.com/mozilla/openbadges-specification/blob/master/Assertion/latest.md) with evidence pointing to the original assignment.
+A "certificate" is git commit containing a [mozilla open badge assertion](https://github.com/mozilla/openbadges-specification/blob/master/Assertion/latest.md) with evidence pointing to the original "assignment" commit.
 
 # Mock repository
 
