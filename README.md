@@ -155,11 +155,13 @@ To check out the original branch and stop rebasing, run "git rebase --abort".
 Could not apply ae23fe00f8e0645eda0c42f015d026b98b25b047... Unordered  Lists
 ```
 
-Since the changes we've done to `README.md` collide with later changes we'll have to solve this using `git mergetool`.
+Since the changes we've done to `README.md` collide with later changes we'll have to solve the conflict.
 
 ```shell
 author@shell:~/mock$ git mergetool
 ```
+
+> [`git mergetool`](http://www.git-scm.com/docs/git-mergetool) is not the only way conflicts can be solved, but it is usually the easiest one (if you have a `mergetool` configured)
 
 Solve the conflict, apply the needed changes (indentation) then continue the rebase using `git rebase --continue`:
 
@@ -177,7 +179,7 @@ Could not apply c09b157b990773d898e77d9f79b5ff84bd06cc43... Ordered  Lists
 
 > Keep resolving conflicts and applying changes until the end of the rebase is reached.
 
-Once the rebase is completed your new lesson is done! From here it's the same as authoring a new version, basically add refs for `refs/tags/markdown@0.1.0`, `refs/markdown@0.1.0/step/*` and `push`
+Once the rebase is completed your new lesson is done! From here it's the same as authoring a new version, basically add refs for `refs/tags/markdown@0.1.0`, `refs/markdown@0.1.0/step/*`, `git rm` WIP branch and `git push` to publish the new lesson.
 
 > Note that the new version is `0.1.0` since we published a *modified* lesson.
 
