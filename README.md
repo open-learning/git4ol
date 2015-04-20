@@ -202,7 +202,7 @@ Once the rebase is completed your new lesson is done! From here it's the same as
 
 ## Assignments
 
-The "challenge" part of an assignment is a git commit containing stimulus and potential artifacts needed to validate an assignment (like unit tests).
+Assignment submissions are managed using git pull-requests. The "challenge" part of an assignment is a git commit containing stimulus and potential artifacts needed to validate an assignment (like unit tests). The "response" part of an assignment is a pull request containing all the changes to be reviewed.
 
 Assignments are located using refs of the format `refs/lesson-name@version/assignment/n` where
   - `lesson-name` is the name of the lesson
@@ -211,7 +211,7 @@ Assignments are located using refs of the format `refs/lesson-name@version/assig
 
 ### Assignment review
 
-Assignment submissions are managed using git pull-requests, but before an submission can be made a reviewer has to advertise that he's available to review a speciffic assignment. This is done by publishing branches that pull-requests can be sent against.
+Before an submission can be made a reviewer has to advertise that he's available to review a speciffic assignment. This is done by publishing branches that pull-requests can be sent against.
 
 For example, if we wanted to advertise that we're able to review `refs/markdown@0.3.0/assignment/1` we create `refs/heads/markdown@0.3.0/assignment/1` as a pointer to `refs/markdown@0.3.0/assignment/1`:
 
@@ -232,9 +232,9 @@ To https://github.com/git-tutor/mock.git
 
 ### Assignment submission
 
-A user starts an assignment by branching from the "challenge" commit and then start making changes to the code.
+A user starts a submission by branching from the "challenge" commit and then making changes.
 
-When all the unit tests pass the assignment is ready for "review". The review is initiated by senting a pull-request to whoever should review the code.
+When all provided unit tests pass the assignment is ready for "review". The review is initiated by senting a pull-request to whoever should review the code.
 
 ## Certification
 
