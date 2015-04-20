@@ -2,12 +2,23 @@
 
 GIT-Tutor is a format for packaging and distributing learning material using git.
 
+## Roles
+
+- Author
+- Student
+- Reviewer
+- Certifier
+
 ## Learning objects
 
 - The analogy of a "course" is a git repository
 - The analogy of a "lesson" is a git tag
 - The analogy of a "step" is a git commit
 - The analogy of a "stimulus" is a git commit message
+
+> **note**
+> - Steps can be of (multiple) arbitary types (ex: `assigmnet`).
+> - The format of stimulus is not covered in this spec (but the [`mock`](https://github.com/git-tutor/mock) repository uses markdown)
 
 Locating learning objects is done with git refs:
 
@@ -191,9 +202,37 @@ Once the rebase is completed your new lesson is done! From here it's the same as
 
 ## Assignments
 
-Assignments are managed using git pull-requests.
+The "challenge" part of an assignment is a git commit containing stimulus and potential artifacts needed to validate an assignment (like unit tests).
 
-The "challenge" part of an assignment is a git commit containing stimulus and potential artifacts needed to validate an assignment (like unit tests). A user starts an assignment by branching from the "challenge" commit and then start making changes to the code.
+Assignments are located using refs of the format `refs/lesson-name@version/assignment/n` where
+  - `lesson-name` is the name of the lesson
+  - `version` is a valid semver
+  - `n` is a positive number indicating the assignment number
+
+### Assignment review
+
+Assignment submissions are managed using git pull-requests, but before an submission can be made a reviewer has to advertise that he's available to review a speciffic assignment. This is done by publishing branches that pull-requests can be sent against.
+
+For example, if we wanted to advertise that we're able to review `refs/markdown@0.3.0/assignment/1` we create `refs/heads/markdown@0.3.0/assignment/1` as a pointer to `refs/markdown@0.3.0/assignment/1`:
+
+```shell
+author@shell:~/mock$ git update-ref refs/heads/markdown@0.3.0/assignment/1 refs/markdown@0.3.0/assignment/1
+```
+
+After this we must publish our change to make it available to students:
+
+```shell
+author@shell:~/mock$ git push origin refs/heads/markdown@0.3.0/assignment/*
+Total 0 (delta 0), reused 0 (delta 0)
+To https://github.com/git-tutor/mock.git
+ * [new branch]      markdown@0.3.0/assignment/1 -> markdown@0.3.0/assignment/1
+```
+
+> **note**: The above command will push all the `heads` created for `markdown@0.3.0`
+
+### Assignment submission
+
+A user starts an assignment by branching from the "challenge" commit and then start making changes to the code.
 
 When all the unit tests pass the assignment is ready for "review". The review is initiated by senting a pull-request to whoever should review the code.
 
