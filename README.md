@@ -354,12 +354,17 @@ Date:   Mon Apr 20 11:08:29 2015 +0800
     Add three headings from level one to three, pick whatever heading contents as you want.
 ```
 
-Let's follow the instructions and add three lines of heading to `assignment/1.md` and then using `cat` to confirm our changes:
+Let's follow the instructions and add three lines of heading to `assignment/1.md`:
 
 ```shell
 student@shell:~/mock$ echo "#1
 ##2
 ###3" > assignment/1.md 
+```
+
+To make sure our change was ok let's use `cat` to confirm our changes
+
+```shell
 student@shell:~/mock$ cat assignment/1.md 
 #1
 ##2
@@ -370,7 +375,7 @@ student@shell:~/mock$ cat assignment/1.md
 
 Assignments can either be localy or remotely assesed.
 
-In the case of local assesment the tests needed to validate an assignment (like unit tests) should be provided in the commit in order for the assesment to be done localy.
+In the case of local assesment the tests needed to validate an assignment (like unit tests) should be provided in the commit. Local assesment can then be done by simply running the tests in a test runner.
 
 In the case of remote assesed assignments we think of the assignment in two parts:
 
