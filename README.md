@@ -130,6 +130,10 @@ Switched to a new branch 'markdown'
 
 In this ammendment we're going to fix some formatting error(s) in `refs/markdown@0.0.0/step/2` and in the steps onwards so we'll start an interactive `rebase` from that `ref`:
 
+```shell
+author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
+```
+
 > **note**
 >
 > This will only work if the `refs` for `markdown@0.0.0/*` are fetched first. You can do this using `git fetch`:
@@ -137,10 +141,6 @@ In this ammendment we're going to fix some formatting error(s) in `refs/markdown
 > ```shell
 > author@shell:~/mock$ git fetch origin refs/markdown@0.0.0/*:refs/markdown@0.0.0/*
 >```
-
-```shell
-author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
-```
 
 Which let's us interactively choose what commits we need to edit via a text ui. Change the `pick` to `edit` on the commits that need editing and save:
 
