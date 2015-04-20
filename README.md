@@ -39,9 +39,9 @@ Locating learning objects is done with git refs:
 
 ## Authoring
 
-> ***role***
+> **role**
 >
-> This part of the spec assumes the actor is an *author*
+> This part of the spec assumes the actor is an ***author***
 
 Creating lessons is as basic as adding commits to a branch. It's mostly when we need to modify a lesson it gets a little bit more complicated.
 
@@ -70,7 +70,7 @@ When all of the steps are added we need to create a tag containing the lesson na
 ```shell
 author@shell:~/mock$ git tag markdown@0.0.0
 ```
-> *note*
+> **note**
 >
 > We use `0.0.0` as our initial version. After this the rule of thumb is:
 >
@@ -229,7 +229,7 @@ Once the rebase is completed your new lesson is ready to be publieshed! From her
 
 > **role**
 >
-> This part of the spec assumes the actor is a *student*
+> This part of the spec assumes the actor is a ***student***
 
 Depending on the lesson studying can be done either entierly by the student alone (in the case of self assesed or machine assesed assigments) or with a teacher in the case of a teacher assesed assignments. The basic difference is the need to push your work to a remote repository for review.
 
@@ -391,7 +391,7 @@ In the case of machine and teacher assesed assignments we think of the assignmen
 
 > **role**
 >
-> This part of the spec assumes the actor is a *teacher*
+> This part of the spec assumes the actor is a ***teacher***
 
 Before an assignment assesment can be made someone has to advertise that they are available to review a speciffic assignment. This is done by publishing branches that pull-requests can be submitted against.
 
@@ -418,7 +418,7 @@ To https://github.com/open-learning/mock.git
 
 > **role**
 >
-> This part of the spec assumes the actor is a *student*
+> This part of the spec assumes the actor is a ***student***
 
 Before we submit this assignment we have to create a more permanent home fore it using `git checkout`:
 
