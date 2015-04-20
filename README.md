@@ -72,9 +72,9 @@ When all of the steps are added we need to create a tag containing the lesson na
 >
 >> Given a version number MAJOR.MINOR.PATCH, increment the:
 >>
->> 1 MAJOR version when you make incompatible API changes,
->> 1 MINOR version when you add functionality in a backwards-compatible manner, and
->> 1 PATCH version when you make backwards-compatible bug fixes.
+>> 1. MAJOR version when you make incompatible API changes,
+>> 1. MINOR version when you add functionality in a backwards-compatible manner, and
+>> 1. PATCH version when you make backwards-compatible bug fixes.
 
 ```shell
 author@shell:~/mock$ git tag markdown@0.0.0
