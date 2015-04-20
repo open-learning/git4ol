@@ -12,7 +12,7 @@ The `open-learning` specification specifies conventions for manipulating git obj
 
 > **note**
 >
-> - Steps can be of (multiple) arbitary type(s) ex: `assigmnet`.
+> - Steps can be of (multiple) arbitary type(s) ex: `assigmnet`
 > - The format of instructions is not covered in this spec (but the [`mock`](https://github.com/open-learning/mock) repository uses markdown)
 
 - "course" => git repository
@@ -72,9 +72,9 @@ When all of the steps are added we need to create a tag containing the lesson na
 >
 >> Given a version number MAJOR.MINOR.PATCH, increment the:
 >>
->> - MAJOR version when you make incompatible API changes
->> - MINOR version when you add functionality in a backwards-compatible manner, and
->> - PATCH version when you make backwards-compatible bug fixes.
+>> 1 MAJOR version when you make incompatible API changes,
+>> 1 MINOR version when you add functionality in a backwards-compatible manner, and
+>> 1 PATCH version when you make backwards-compatible bug fixes.
 
 ```shell
 author@shell:~/mock$ git tag markdown@0.0.0
@@ -128,7 +128,7 @@ author@shell:~/mock$ git checkout -b markdown markdown@0.0.0
 Switched to a new branch 'markdown'
 ```
 
-In this ammendment we're going to fix some formatting error(s) in `refs/markdown@0.0.0/step/2` and in the steps onwards so we'll start an interactive `rebase` from that `ref`.
+In this ammendment we're going to fix some formatting error(s) in `refs/markdown@0.0.0/step/2` and in the steps onwards so we'll start an interactive `rebase` from that `ref`:
 
 > **note**
 >
@@ -142,7 +142,7 @@ In this ammendment we're going to fix some formatting error(s) in `refs/markdown
 author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
 ```
 
-Which let's us interactively choose what commits we need to edit via a text ui. Change the `pick` to `edit` on the commits that need editing and save.
+Which let's us interactively choose what commits we need to edit via a text ui. Change the `pick` to `edit` on the commits that need editing and save:
 
 ```
 edit cf92883 Phrase Emphasis
@@ -190,11 +190,11 @@ To check out the original branch and stop rebasing, run "git rebase --abort".
 Could not apply ae23fe00f8e0645eda0c42f015d026b98b25b047... Unordered  Lists
 ```
 
-Since the changes we've done to `README.md` collide with later changes we'll have to solve the conflict.
+Since the changes we've done to `README.md` collide with later changes we'll have to solve the conflict. We're going to use [`git mergetool`](http://www.git-scm.com/docs/git-mergetool):
 
 > **note**
 >
-> [`git mergetool`](http://www.git-scm.com/docs/git-mergetool) is not the only way conflicts can be solved, but it is usually the easiest one (if you have a `mergetool` configured)
+> [`git mergetool`](http://www.git-scm.com/docs/git-mergetool) is not the only way conflicts can be solved, but it is usually the easiest one to use (if you have a `mergetool` configured)
 
 ```shell
 author@shell:~/mock$ git mergetool
@@ -220,7 +220,7 @@ Once the rebase is completed your new lesson is ready to be publieshed! From her
 
 > **note**
 >
-> Note that the new version is `0.0.1` since we are publishing a *fix* version of `0.0.0`.
+> Note that the new version is `0.0.1` since we are publishing a *fix* version of `0.0.0`
 
 - `git tag markdown@0.0.1`
 - `git checkout master` and `git branch -D markdown`
@@ -237,7 +237,7 @@ Depending on the lesson studying can be done either entierly by the student alon
 
 ### Initialization
 
-Before we can study we have to set up and initialize some infrastructure. Let's start by cloning the [`mock`](https://github.com/open-learning/mock/) repository.
+Before we can study we have to set up and initialize some infrastructure. Let's start by cloning the [`mock`](https://github.com/open-learning/mock/) repository using `git clone`:
 
 ```shell
 student@shell:~/$ git clone https://github.com/open-learning/mock.git
@@ -364,7 +364,7 @@ student@shell:~/mock$ echo "#1
 ###3" > assignment/1.md 
 ```
 
-To make sure our change was ok let's use `cat` to confirm our changes
+To make sure our change was ok let's use `cat` to confirm our changes:
 
 ```shell
 student@shell:~/mock$ cat assignment/1.md 
