@@ -107,6 +107,12 @@ In this ammendment we're going to fix some formatting error(s) in `refs/markdown
 author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
 ```
 
+> This will only work if the refs for `markdown@0.0.0/*` are fetched first. You can do this using `git fetch`:
+>
+> ```shell
+> author@shell:~/mock$ git fetch origin refs/markdown@0.0.0/*:refs/markdown@0.0.0/*
+>```
+
 Which let's us interactively choose what commits we need to edit via a text ui. Change the `pick` to `edit` on the faulty commits and save.
 
 ```
