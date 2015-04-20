@@ -71,11 +71,13 @@ author@shell:~/mock$ git tag markdown@0.0.0
 ```
 > **note**
 >
-> We use `0.0.0` as our initial version. After this the rule of thumb is:
+> We use `0.0.0` as our initial version. After this we follow [semver 2.0.0](http://semver.org/spec/v2.0.0.html):
 >
-> - addition of steps increments `patch` number
-> - modification of steps increments `minor` number
-> - at the moment we reserve updates to `major` number
+>> Given a version number MAJOR.MINOR.PATCH, increment the:
+>>
+>> - MAJOR version when you make incompatible API changes
+>> - MINOR version when you add functionality in a backwards-compatible manner, and
+>> - PATCH version when you make backwards-compatible bug fixes.
 
 After this it's safe to (force) remove our WIP branch (after switching another branch, in this case the `master` branch):
 
@@ -215,14 +217,14 @@ Keep resolving conflicts and applying changes until the end of the rebase is rea
 
 Once the rebase is completed your new lesson is ready to be publieshed! From here it's the same as when authoring a new lesson, basically:
 
-- `git tag markdown@0.1.0`
+- `git tag markdown@0.0.1`
 - `git checkout master` and `git branch -D markdown`
-- `git update-ref refs/markdown@0.1.0/step/{step} {commit}`
-- `git push origin refs/tags/markdown@0.1.0 refs/markdown@0.1.0/*`
+- `git update-ref refs/markdown@0.0.1/step/{step} {commit}`
+- `git push origin refs/tags/markdown@0.0.1 refs/markdown@0.0.1/*`
 
 > **note**
 >
-> Note that the new version is `0.1.0` since we are publishing a *modified* version of `0.0.0`.
+> Note that the new version is `0.0.1` since we are publishing a *fix* version of `0.0.0`.
 
 ## Studying
 
@@ -254,35 +256,35 @@ After this we can list the available lessons by using `git tag`:
 ```shell
 student@shell:~/mock$ git tag
 markdown@0.0.0
+markdown@0.0.1
 markdown@0.1.0
 markdown@0.2.0
-markdown@0.3.0
 ```
 
 We want to learn some markdown, so we need to update our meta-information about this lesson using `git fetch`:
 
 ```shell
-student@shell:~/mock$ git fetch origin refs/markdown@0.3.0/*:refs/markdown@0.3.0/*
+student@shell:~/mock$ git fetch origin refs/markdown@0.2.0/*:refs/markdown@0.2.0/*
 From https://github.com/open-learning/mock
- * [new ref]         refs/markdown@0.3.0/assignment/1 -> refs/markdown@0.3.0/assignment/1
- * [new ref]         refs/markdown@0.3.0/assignment/2 -> refs/markdown@0.3.0/assignment/2
- * [new ref]         refs/markdown@0.3.0/assignment/3 -> refs/markdown@0.3.0/assignment/3
- * [new ref]         refs/markdown@0.3.0/step/1 -> refs/markdown@0.3.0/step/1
- * [new ref]         refs/markdown@0.3.0/step/10 -> refs/markdown@0.3.0/step/10
- * [new ref]         refs/markdown@0.3.0/step/11 -> refs/markdown@0.3.0/step/11
- * [new ref]         refs/markdown@0.3.0/step/12 -> refs/markdown@0.3.0/step/12
- * [new ref]         refs/markdown@0.3.0/step/13 -> refs/markdown@0.3.0/step/13
- * [new ref]         refs/markdown@0.3.0/step/14 -> refs/markdown@0.3.0/step/14
- * [new ref]         refs/markdown@0.3.0/step/15 -> refs/markdown@0.3.0/step/15
- * [new ref]         refs/markdown@0.3.0/step/16 -> refs/markdown@0.3.0/step/16
- * [new ref]         refs/markdown@0.3.0/step/2 -> refs/markdown@0.3.0/step/2
- * [new ref]         refs/markdown@0.3.0/step/3 -> refs/markdown@0.3.0/step/3
- * [new ref]         refs/markdown@0.3.0/step/4 -> refs/markdown@0.3.0/step/4
- * [new ref]         refs/markdown@0.3.0/step/5 -> refs/markdown@0.3.0/step/5
- * [new ref]         refs/markdown@0.3.0/step/6 -> refs/markdown@0.3.0/step/6
- * [new ref]         refs/markdown@0.3.0/step/7 -> refs/markdown@0.3.0/step/7
- * [new ref]         refs/markdown@0.3.0/step/8 -> refs/markdown@0.3.0/step/8
- * [new ref]         refs/markdown@0.3.0/step/9 -> refs/markdown@0.3.0/step/9
+ * [new ref]         refs/markdown@0.2.0/assignment/1 -> refs/markdown@0.2.0/assignment/1
+ * [new ref]         refs/markdown@0.2.0/assignment/2 -> refs/markdown@0.2.0/assignment/2
+ * [new ref]         refs/markdown@0.2.0/assignment/3 -> refs/markdown@0.2.0/assignment/3
+ * [new ref]         refs/markdown@0.2.0/step/1 -> refs/markdown@0.2.0/step/1
+ * [new ref]         refs/markdown@0.2.0/step/10 -> refs/markdown@0.2.0/step/10
+ * [new ref]         refs/markdown@0.2.0/step/11 -> refs/markdown@0.2.0/step/11
+ * [new ref]         refs/markdown@0.2.0/step/12 -> refs/markdown@0.2.0/step/12
+ * [new ref]         refs/markdown@0.2.0/step/13 -> refs/markdown@0.2.0/step/13
+ * [new ref]         refs/markdown@0.2.0/step/14 -> refs/markdown@0.2.0/step/14
+ * [new ref]         refs/markdown@0.2.0/step/15 -> refs/markdown@0.2.0/step/15
+ * [new ref]         refs/markdown@0.2.0/step/16 -> refs/markdown@0.2.0/step/16
+ * [new ref]         refs/markdown@0.2.0/step/2 -> refs/markdown@0.2.0/step/2
+ * [new ref]         refs/markdown@0.2.0/step/3 -> refs/markdown@0.2.0/step/3
+ * [new ref]         refs/markdown@0.2.0/step/4 -> refs/markdown@0.2.0/step/4
+ * [new ref]         refs/markdown@0.2.0/step/5 -> refs/markdown@0.2.0/step/5
+ * [new ref]         refs/markdown@0.2.0/step/6 -> refs/markdown@0.2.0/step/6
+ * [new ref]         refs/markdown@0.2.0/step/7 -> refs/markdown@0.2.0/step/7
+ * [new ref]         refs/markdown@0.2.0/step/8 -> refs/markdown@0.2.0/step/8
+ * [new ref]         refs/markdown@0.2.0/step/9 -> refs/markdown@0.2.0/step/9
  ```
 
 ### Stepping
@@ -290,8 +292,8 @@ From https://github.com/open-learning/mock
 We study by steping through each lesson step by step:
 
 ```shell
-student@shell:~/mock$ git checkout --force --detach markdown@0.3.0/step/1
-Note: checking out 'markdown@0.3.0/step/1'.
+student@shell:~/mock$ git checkout --force --detach markdown@0.2.0/step/1
+Note: checking out 'markdown@0.2.0/step/1'.
 
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
@@ -324,7 +326,7 @@ Date:   Thu Apr 16 18:46:21 2015 +0800
 >
 > For the purpose of this spec we'll just go ahead and ignore the actual contents of this lesson
 
-Keep checking out each `markdown@0.3.0/step/{n}` to step through the lesson.
+Keep checking out each `markdown@0.2.0/step/{n}` to step through the lesson.
 
 ## Assignments
 
@@ -333,7 +335,7 @@ Assignments are just commits that contain assignment material and instructions.
 We start an assignment by checking out the assignment ref to a detached `HEAD`:
 
 ```shell
-student@shell:~/mock$ git checkout --detach markdown@0.3.0/assignment/1
+student@shell:~/mock$ git checkout --detach markdown@0.2.0/assignment/1
 Previous HEAD position was e19c2e6... Our first markdown file
 HEAD is now at 5947ce8... Your first assignment
 ```
@@ -389,24 +391,24 @@ In the case of remote assesed assignments we think of the assignment in two part
 
 Before an assignment assesment can be made someone has to advertise that they are available to review a speciffic assignment. This is done by publishing branches that pull-requests can be submitted against.
 
-For example, if we wanted to advertise that we're able to review `refs/markdown@0.3.0/assignment/1` we create `refs/heads/markdown@0.3.0/assignment/1` from `refs/markdown@0.3.0/assignment/1`:
+For example, if we wanted to advertise that we're able to review `refs/markdown@0.2.0/assignment/1` we create `refs/heads/markdown@0.2.0/assignment/1` from `refs/markdown@0.2.0/assignment/1`:
 
 ```shell
-teacher@shell:~/mock$ git update-ref refs/heads/markdown@0.3.0/assignment/1 refs/markdown@0.3.0/assignment/1
+teacher@shell:~/mock$ git update-ref refs/heads/markdown@0.2.0/assignment/1 refs/markdown@0.2.0/assignment/1
 ```
 
 After this we must publish our change to make it available to students using `git push`:
 
 ```shell
-teacher@shell:~/mock$ git push origin refs/heads/markdown@0.3.0/assignment/*
+teacher@shell:~/mock$ git push origin refs/heads/markdown@0.2.0/assignment/*
 Total 0 (delta 0), reused 0 (delta 0)
 To https://github.com/open-learning/mock.git
- * [new branch]      markdown@0.3.0/assignment/1 -> markdown@0.3.0/assignment/1
+ * [new branch]      markdown@0.2.0/assignment/1 -> markdown@0.2.0/assignment/1
 ```
 
 > **note**
 >
-> The above command will push all the `heads` created for `markdown@0.3.0`
+> The above command will push all the `heads` created for `markdown@0.2.0`
 
 ### Submission
 
@@ -417,9 +419,9 @@ To https://github.com/open-learning/mock.git
 Before we submit this assignment we have to create a more permanent home fore it using `git checkout`:
 
 ```shell
-git checkout -b markdown@0.3.0/assignment/1#first-attempt
+git checkout -b markdown@0.2.0/assignment/1#first-attempt
 M	assignment/1.md
-Switched to a new branch 'markdown@0.3.0/assignment/1#first-attempt'
+Switched to a new branch 'markdown@0.2.0/assignment/1#first-attempt'
 ```
 
 > **note**
