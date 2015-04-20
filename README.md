@@ -1,4 +1,4 @@
-# Open Learning Specification
+# Open Learning specification
 
 The `open-learning` specification specifies conventions for manipulating git objects for the purpose of open learning.
 
@@ -223,7 +223,7 @@ Once the rebase is completed your new lesson is ready to be publieshed! From her
 
 ## Studying
 
-Studying can be done complete self-study, async teacher lead study or sync tearcher lead stydy.
+Depending on the lesson studying can be done either entierly by the student alone (in the case of self assesed or machine assesed assigments) or with a teacher in the case of a teacher assesed assignments. The basic difference is the need to push your work to a remote repository for review.
 
 ### Initialization
 
@@ -366,18 +366,22 @@ student@shell:~/mock$ git assignment/1.md
 
 ## Assesment
 
-Assignments can be either self assesed or teacher assesed.
+Assignments can be either self assesed, machine assesed or teacher assesed.
 
-In the case of self assesed tests the needed tests to validate an assignment (like unit tests) should be provided in the commit.
+### Local assesment
 
-In the case of teacher assesed assignments we think of the assignment in two parts:
+In the case of self assesed tests the needed tests to validate an assignment (like unit tests) should be provided in the commit and assesment can be done localy on the client.
+
+### Remote assesment
+
+In the case of machine and teacher assesed assignments we think of the assignment in two parts:
 
 - The "challenge" part of an assignment is a git commit containing instructions and learning materials
 - The "response" part of an assignment is a pull request containing all the commits to be reviewed
 
 ### Advertisement
 
-Before an assignment assesment can be made a teacher has to advertise that he's available to review a speciffic assignment. This is done by publishing branches that pull-requests can be submitted against.
+Before an assignment assesment can be made someone has to advertise that they are available to review a speciffic assignment. This is done by publishing branches that pull-requests can be submitted against.
 
 For example, if we wanted to advertise that we're able to review `refs/markdown@0.3.0/assignment/1` we create `refs/heads/markdown@0.3.0/assignment/1` from `refs/markdown@0.3.0/assignment/1`:
 
@@ -385,7 +389,7 @@ For example, if we wanted to advertise that we're able to review `refs/markdown@
 teacher@shell:~/mock$ git update-ref refs/heads/markdown@0.3.0/assignment/1 refs/markdown@0.3.0/assignment/1
 ```
 
-After this we must publish our change to make it available to students:
+After this we must publish our change to make it available to students using `git push`:
 
 ```shell
 teacher@shell:~/mock$ git push origin refs/heads/markdown@0.3.0/assignment/*
