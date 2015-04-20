@@ -14,12 +14,12 @@ The `open-learning` specification specifies conventions for manipulating git obj
 - "course" => git repository
 - "lesson" => git tag
 - "step" => git commit
-- "stimulus" => git commit message
+- "instructions" => git commit message
 
 > **note**
 >
 > - Steps can be of (multiple) arbitary type(s) ex: `assigmnet`.
-> - The format of stimulus is not covered in this spec (but the [`mock`](https://github.com/open-learning/mock) repository uses markdown)
+> - The format of instructions is not covered in this spec (but the [`mock`](https://github.com/open-learning/mock) repository uses markdown)
 
 Locating learning objects is done with git refs:
 
@@ -53,10 +53,10 @@ Now it's time to add steps to our lesson. Incrementally add commits to this bran
 ```
 Step title as a one line
 
-Stimulus as multiple paragraphs
+Instructions as multiple paragraphs
 ```
 
-When all of the steps are added we need to create a tag containing the lesson name and version linked to the `HEAD` of the branch:
+When all of the steps are added we need to create a tag containing the lesson name and version from the `HEAD` of the branch:
 
 ```shell
 author@shell:~/mock$ git tag markdown@0.0.0
@@ -149,7 +149,7 @@ edit 2a4396c Block Code
 # Rebase 9da9f3c..2a4396c onto 9da9f3c (11 command(s))
 ```
 
-This will drop us to the command line:
+This will drop us to back to the shell:
 
 ```shell
 author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/3
@@ -216,29 +216,197 @@ Once the rebase is completed your new lesson is ready to be publieshed! From her
 >
 > Note that the new version is `0.1.0` since we are publishing a *modified* version of `0.0.0`.
 
+## Studying
+
+Studying can be done complete self-study, async teacher lead study or sync tearcher lead stydy.
+
+### Initialization
+
+Before we can study we have to set up and initialize some infrastructure. Let's start by cloning the [`mock`](https://github.com/open-learning/mock/) repository.
+
+```shell
+student@shell:~/$ git clone https://github.com/open-learning/mock.git
+Cloning into 'mock'...
+remote: Counting objects: 132, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 132 (delta 0), reused 0 (delta 0), pack-reused 129
+Receiving objects: 100% (132/132), 14.31 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (48/48), done.
+Checking connectivity... done
+student@shell:~/$ cd mock/
+student@shell:~/mock$ 
+```
+
+After this we can list the available lessons by using `git tag`:
+
+```shell
+student@shell:~/mock$ git tag
+markdown@0.0.0
+markdown@0.1.0
+markdown@0.2.0
+markdown@0.3.0
+```
+
+We want to learn some markdown, so we need to update our meta-information about this lesson using `git fetch`:
+
+```shell
+student@shell:~/mock$ git fetch origin refs/markdown@0.3.0/*:refs/markdown@0.3.0/*
+From https://github.com/open-learning/mock
+ * [new ref]         refs/markdown@0.3.0/assignment/1 -> refs/markdown@0.3.0/assignment/1
+ * [new ref]         refs/markdown@0.3.0/assignment/2 -> refs/markdown@0.3.0/assignment/2
+ * [new ref]         refs/markdown@0.3.0/assignment/3 -> refs/markdown@0.3.0/assignment/3
+ * [new ref]         refs/markdown@0.3.0/step/1 -> refs/markdown@0.3.0/step/1
+ * [new ref]         refs/markdown@0.3.0/step/10 -> refs/markdown@0.3.0/step/10
+ * [new ref]         refs/markdown@0.3.0/step/11 -> refs/markdown@0.3.0/step/11
+ * [new ref]         refs/markdown@0.3.0/step/12 -> refs/markdown@0.3.0/step/12
+ * [new ref]         refs/markdown@0.3.0/step/13 -> refs/markdown@0.3.0/step/13
+ * [new ref]         refs/markdown@0.3.0/step/14 -> refs/markdown@0.3.0/step/14
+ * [new ref]         refs/markdown@0.3.0/step/15 -> refs/markdown@0.3.0/step/15
+ * [new ref]         refs/markdown@0.3.0/step/16 -> refs/markdown@0.3.0/step/16
+ * [new ref]         refs/markdown@0.3.0/step/2 -> refs/markdown@0.3.0/step/2
+ * [new ref]         refs/markdown@0.3.0/step/3 -> refs/markdown@0.3.0/step/3
+ * [new ref]         refs/markdown@0.3.0/step/4 -> refs/markdown@0.3.0/step/4
+ * [new ref]         refs/markdown@0.3.0/step/5 -> refs/markdown@0.3.0/step/5
+ * [new ref]         refs/markdown@0.3.0/step/6 -> refs/markdown@0.3.0/step/6
+ * [new ref]         refs/markdown@0.3.0/step/7 -> refs/markdown@0.3.0/step/7
+ * [new ref]         refs/markdown@0.3.0/step/8 -> refs/markdown@0.3.0/step/8
+ * [new ref]         refs/markdown@0.3.0/step/9 -> refs/markdown@0.3.0/step/9
+ ```
+
+### Stepping
+
+We study by steping through each lesson step by step:
+
+```shell
+student@shell:~/mock$ git checkout --force --detach markdown@0.3.0/step/1
+Note: checking out 'markdown@0.3.0/step/1'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b new_branch_name
+
+HEAD is now at e19c2e6... Our first markdown file
+```
+
+To display the instructions for this step we use `git log`:
+
+```shell
+student@shell:~/mock$ git log -1
+commit e19c2e60b471dc271c0092a1ab750a3daadb0585
+Author: Mikael Karon <mikael@karon.se>
+Date:   Thu Apr 16 18:46:21 2015 +0800
+
+    Our first markdown file
+    
+    [Markdown](http://daringfireball.net/projects/markdown/) is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text form
+    
+    Let's start by adding a `README.md` file with some mock content.
+```
+
+> **note**
+>
+> For the purpose of this spec we'll just go ahead and ignore the actual contents of this lesson
+
+Keep checking out each `markdown@0.3.0/step/{n}` to step through the lesson.
+
 ## Assignments
 
-Assignment submissions are managed using git pull-requests. The "challenge" part of an assignment is a git commit containing stimulus and potential artifacts needed to validate an assignment (like unit tests). The "response" part of an assignment is a pull request containing all the changes to be reviewed.
+Assignments are just commits that contain assignment material and instructions.
 
-Assignments are located using refs of the format `refs/lesson-name@version/assignment/n` where
+- Assignments are located using refs of the format `refs/lesson-name@version/assignment/n` where
   - `lesson-name` is the name of the lesson
   - `version` is a valid semver
   - `n` is a positive number indicating the assignment number
 
+### Starting
+
+Assignments are started by checking out the assignment ref to a detached `HEAD`:
+
+```shell
+student@shell:~/mock$ git checkout markdown@0.3.0/assignment/1
+Previous HEAD position was e19c2e6... Our first markdown file
+HEAD is now at 5947ce8... Your first assignment
+```
+
+Let's look at the instuctions for this assignment using `git log`:
+
+```shell
+student@shell:~/mock$ git log -1
+commit 5947ce87b20c0af4a6e3f4cb6611e8a15bda2ae3
+Author: Mikael Karon <mikael@karon.se>
+Date:   Mon Apr 20 11:08:29 2015 +0800
+
+    Your first assignment
+    
+    Let's see what we've learned so far. We've created a file called `1.md` in the `assignment` folder that you should use to submit your answer.
+    
+    Add three headings from level one to three, pick whatever heading contents as you want.
+```
+
+Let's follow the instructions and add three lines of heading to `assignment/1.md` and then using `cat` to confirm our changes:
+
+```shell
+student@shell:~/mock$ echo "#1
+##2
+###3" > assignment/1.md 
+student@shell:~/mock$ cat assignment/1.md 
+#1
+##2
+###3
+```
+
+We want this commit to be part of our submission so let's add it to our commit using `git add`:
+
+```shell
+student@shell:~/mock$ git assignment/1.md 
+```
+
+## Assesment
+
+Assignments can be either self assesed or teacher assesed.
+
+### Self assesment
+
+In the case of self assesed tests the needed tests to validate an assignment (like unit tests) should be provided in the commit.
+
+### Teacher assesment
+
+In the case of teacher assesed assignments we think of the assignment in two parts:
+
+- The "challenge" part of an assignment is a git commit containing instructions and learning materials
+- The "response" part of an assignment is a pull request containing all the commits to be reviewed
+
+Before we submit this assignment we have to create a more permanent home fore it using `git checkout`:
+
+```shell
+git checkout -b markdown@0.3.0/assignment/1#first-attempt
+M	assignment/1.md
+Switched to a new branch 'markdown@0.3.0/assignment/1#first-attempt'
+```
+
+> **note**
+>
+> Here `first-attempt` is the name of our attempt (since it's our first attempt)
+
 ### Advertisement
 
-Before an assignment submission can be made a teacher has to advertise that he's available to review a speciffic assignment. This is done by publishing branches that pull-requests can be submitted against.
+Before an assignment assesment can be made a teacher has to advertise that he's available to review a speciffic assignment. This is done by publishing branches that pull-requests can be submitted against.
 
 For example, if we wanted to advertise that we're able to review `refs/markdown@0.3.0/assignment/1` we create `refs/heads/markdown@0.3.0/assignment/1` from `refs/markdown@0.3.0/assignment/1`:
 
 ```shell
-author@shell:~/mock$ git update-ref refs/heads/markdown@0.3.0/assignment/1 refs/markdown@0.3.0/assignment/1
+teacher@shell:~/mock$ git update-ref refs/heads/markdown@0.3.0/assignment/1 refs/markdown@0.3.0/assignment/1
 ```
 
 After this we must publish our change to make it available to students:
 
 ```shell
-author@shell:~/mock$ git push origin refs/heads/markdown@0.3.0/assignment/*
+teacher@shell:~/mock$ git push origin refs/heads/markdown@0.3.0/assignment/*
 Total 0 (delta 0), reused 0 (delta 0)
 To https://github.com/open-learning/mock.git
  * [new branch]      markdown@0.3.0/assignment/1 -> markdown@0.3.0/assignment/1
@@ -252,7 +420,7 @@ To https://github.com/open-learning/mock.git
 
 A student starts a submission by branching from the "challenge" commit and then comitting changes.
 
-When all provided unit tests pass the assignment is ready for "review". The review is initiated by senting a pull-request to whoever should review the code.
+When all automated tests pass the assignment is ready for "review". The review is initiated by senting a pull-request to whoever should review the code.
 
 ## Certification
 
