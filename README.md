@@ -39,9 +39,9 @@ Locating learning objects is done with git refs:
 
 ## Authoring
 
-> *role*
+> ***role***
 >
-> This part of the spec assumes the actor is an **author**
+> This part of the spec assumes the actor is an *author*
 
 Creating lessons is as basic as adding commits to a branch. It's mostly when we need to modify a lesson it gets a little bit more complicated.
 
@@ -53,7 +53,7 @@ To create the initial version of a lesson we need to first create an orphaned WI
 author@shell:~/mock$ git checkout --orphan markdown
 ```
 
-> *note*
+> **note**
 >
 > In this example `markdown` is the name of our WIP branch
 
@@ -194,7 +194,7 @@ Since the changes we've done to `README.md` collide with later changes we'll hav
 author@shell:~/mock$ git mergetool
 ```
 
-> *note*
+> **note**
 >
 > [`git mergetool`](http://www.git-scm.com/docs/git-mergetool) is not the only way conflicts can be solved, but it is usually the easiest one (if you have a `mergetool` configured)
 
@@ -221,15 +221,15 @@ Once the rebase is completed your new lesson is ready to be publieshed! From her
 - `git update-ref refs/markdown@0.1.0/step/{step} {commit}`
 - `git push origin refs/tags/markdown@0.1.0 refs/markdown@0.1.0/*`
 
-> *note*
+> **note**
 >
 > Note that the new version is `0.1.0` since we are publishing a *modified* version of `0.0.0`.
 
 ## Studying
 
-> *role*
+> **role**
 >
-> This part of the spec assumes the actor is a **student**
+> This part of the spec assumes the actor is a *student*
 
 Depending on the lesson studying can be done either entierly by the student alone (in the case of self assesed or machine assesed assigments) or with a teacher in the case of a teacher assesed assignments. The basic difference is the need to push your work to a remote repository for review.
 
@@ -321,7 +321,7 @@ Date:   Thu Apr 16 18:46:21 2015 +0800
     Let's start by adding a `README.md` file with some mock content.
 ```
 
-> *note*
+> **note**
 >
 > For the purpose of this spec we'll just go ahead and ignore the actual contents of this lesson
 
@@ -389,9 +389,9 @@ In the case of machine and teacher assesed assignments we think of the assignmen
 
 ### Advertisement
 
-> *role*
+> **role**
 >
-> This part of the spec assumes the actor is a **teacher**
+> This part of the spec assumes the actor is a *teacher*
 
 Before an assignment assesment can be made someone has to advertise that they are available to review a speciffic assignment. This is done by publishing branches that pull-requests can be submitted against.
 
@@ -410,15 +410,15 @@ To https://github.com/open-learning/mock.git
  * [new branch]      markdown@0.3.0/assignment/1 -> markdown@0.3.0/assignment/1
 ```
 
-> *note*
+> **note**
 >
 > The above command will push all the `heads` created for `markdown@0.3.0`
 
 ### Submission
 
-> *role*
+> **role**
 >
-> This part of the spec assumes the actor is a **student**
+> This part of the spec assumes the actor is a *student*
 
 Before we submit this assignment we have to create a more permanent home fore it using `git checkout`:
 
@@ -428,7 +428,7 @@ M	assignment/1.md
 Switched to a new branch 'markdown@0.3.0/assignment/1#first-attempt'
 ```
 
-> *note*
+> **note**
 >
 > Here `first-attempt` is the name of our attempt (since it's our first attempt)
 
