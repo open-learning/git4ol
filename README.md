@@ -70,6 +70,15 @@ author@shell:~/mock$ git update-ref refs/lesson@0.0.0/step/2 9da9f3c
 author@shell:~/mock$ git update-ref refs/lesson@0.0.0/step/3 cf92883
 ```
 
+After all the step refs are added you can confirm that it's all good using `git log` again:
+
+```shell
+author@shell:~/mock$ git log --oneline --reverse --decorate=full lesson@0.0.0
+e19c2e6 (refs/lesson@0.0.0/step/1) Our first markdown file
+9da9f3c (refs/lesson@0.0.0/step/2) Paragraphs, Headers, Blockquotes
+cf92883 (tag: refs/tags/lesson@0.0.0, refs/lesson@0.0.0/step/3) Phrase Emphasis
+```
+
 The last thing to do is to make all of this available to the world:
 
 ```shell
