@@ -368,15 +368,11 @@ student@shell:~/mock$ cat assignment/1.md
 
 ## Assesment
 
-Assignments can be either self assesed, machine assesed or teacher assesed.
+Assignments can either be localy or remotely assesed.
 
-### Local assesment
+In the case of local assesment the tests needed to validate an assignment (like unit tests) should be provided in the commit in order for the assesment to be done localy.
 
-In the case of self assesed tests the needed tests to validate an assignment (like unit tests) should be provided in the commit and assesment can be done localy on the client.
-
-### Remote assesment
-
-In the case of machine and teacher assesed assignments we think of the assignment in two parts:
+In the case of remote assesed assignments we think of the assignment in two parts:
 
 - The "challenge" part of an assignment is a git commit containing instructions and learning materials
 - The "response" part of an assignment is a pull request containing all the commits to be reviewed
