@@ -5,8 +5,8 @@ The `open-learning` specification specifies conventions for manipulating git obj
 ## Roles
 
 - Author
-- Teacher
 - Student
+- Teacher
 - Certifier
 
 ## Learning objects
@@ -31,6 +31,11 @@ Locating learning objects is done with git refs:
   - `lesson-name` is the name of the lesson
   - `version` is a valid semver
   - `n` is a positive number indicating the step number
+
+- Assignments are located using refs of the format `refs/lesson-name@version/assignment/n` where
+  - `lesson-name` is the name of the lesson
+  - `version` is a valid semver
+  - `n` is a positive number indicating the assignment number
 
 ## Authoring
 
@@ -318,17 +323,10 @@ Keep checking out each `markdown@0.3.0/step/{n}` to step through the lesson.
 
 Assignments are just commits that contain assignment material and instructions.
 
-- Assignments are located using refs of the format `refs/lesson-name@version/assignment/n` where
-  - `lesson-name` is the name of the lesson
-  - `version` is a valid semver
-  - `n` is a positive number indicating the assignment number
-
-### Starting
-
-Assignments are started by checking out the assignment ref to a detached `HEAD`:
+We start an assignment by checking out the assignment ref to a detached `HEAD`:
 
 ```shell
-student@shell:~/mock$ git checkout markdown@0.3.0/assignment/1
+student@shell:~/mock$ git checkout --detach markdown@0.3.0/assignment/1
 Previous HEAD position was e19c2e6... Our first markdown file
 HEAD is now at 5947ce8... Your first assignment
 ```
@@ -360,7 +358,7 @@ student@shell:~/mock$ cat assignment/1.md
 ###3
 ```
 
-We want this commit to be part of our submission so let's add it to our commit using `git add`:
+We want this commit to be part of our assesment so let's add it to our commit using `git add`:
 
 ```shell
 student@shell:~/mock$ git assignment/1.md 
@@ -370,28 +368,12 @@ student@shell:~/mock$ git assignment/1.md
 
 Assignments can be either self assesed or teacher assesed.
 
-### Self assesment
-
 In the case of self assesed tests the needed tests to validate an assignment (like unit tests) should be provided in the commit.
-
-### Teacher assesment
 
 In the case of teacher assesed assignments we think of the assignment in two parts:
 
 - The "challenge" part of an assignment is a git commit containing instructions and learning materials
 - The "response" part of an assignment is a pull request containing all the commits to be reviewed
-
-Before we submit this assignment we have to create a more permanent home fore it using `git checkout`:
-
-```shell
-git checkout -b markdown@0.3.0/assignment/1#first-attempt
-M	assignment/1.md
-Switched to a new branch 'markdown@0.3.0/assignment/1#first-attempt'
-```
-
-> **note**
->
-> Here `first-attempt` is the name of our attempt (since it's our first attempt)
 
 ### Advertisement
 
@@ -418,7 +400,17 @@ To https://github.com/open-learning/mock.git
 
 ### Submission
 
-A student starts a submission by branching from the "challenge" commit and then comitting changes.
+Before we submit this assignment we have to create a more permanent home fore it using `git checkout`:
+
+```shell
+git checkout -b markdown@0.3.0/assignment/1#first-attempt
+M	assignment/1.md
+Switched to a new branch 'markdown@0.3.0/assignment/1#first-attempt'
+```
+
+> **note**
+>
+> Here `first-attempt` is the name of our attempt (since it's our first attempt)
 
 When all automated tests pass the assignment is ready for "review". The review is initiated by senting a pull-request to whoever should review the code.
 
