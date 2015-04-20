@@ -1,6 +1,6 @@
-# GIT-Tutor
+# Open Learning Specification
 
-GIT-Tutor is a format for packaging and distributing learning material using git.
+open-learning is a format for managing learning using git.
 
 ## Roles
 
@@ -19,7 +19,7 @@ GIT-Tutor is a format for packaging and distributing learning material using git
 > **note**
 >
 > - Steps can be of (multiple) arbitary type(s) ex: `assigmnet`.
-> - The format of stimulus is not covered in this spec (but the [`mock`](https://github.com/git-tutor/mock) repository uses markdown)
+> - The format of stimulus is not covered in this spec (but the [`mock`](https://github.com/open-learning/mock) repository uses markdown)
 
 Locating learning objects is done with git refs:
 
@@ -240,7 +240,7 @@ After this we must publish our change to make it available to students:
 ```shell
 author@shell:~/mock$ git push origin refs/heads/markdown@0.3.0/assignment/*
 Total 0 (delta 0), reused 0 (delta 0)
-To https://github.com/git-tutor/mock.git
+To https://github.com/open-learning/mock.git
  * [new branch]      markdown@0.3.0/assignment/1 -> markdown@0.3.0/assignment/1
 ```
 
