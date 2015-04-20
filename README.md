@@ -22,9 +22,9 @@ Locating learning objects is done with git refs:
 
 ## Authoring
 
-When authoring lessons there are two flows to follow, first version or amend.
+When authoring lessons we are either authoring the first version or an amended version.
 
-### Authoring a first version
+### Authoring the first version of a lesson
 
 To create a first version of a lesson we need to first create an orphaned branch:
 
@@ -91,6 +91,95 @@ The last thing to do is to make all of this available to the world:
 ```shell
 author@shell:~/mock$ git push origin refs/tags/markdown@0.0.0 refs/markdown@0.0.0/*
 ```
+
+### Authoring an amended version of a lesson
+
+When authoring an amended version of a lesson we start by checking out the version of the lesson we're about to amend into a WIP branch:
+
+```shell
+author@shell:~/mock$ git checkout -b markdown markdown@0.0.0 
+Switched to a new branch 'markdown'
+```
+
+In this ammendment we're going to fix some formatting error(s) in `refs/markdown@0.0.0/step/2` and onwards so we'll start an interactive rebase from there.
+
+```shell
+author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
+```
+
+Which let's us interactively choose what commits we need to edit via a text ui. Change the `pick` to `edit` on the faulty commits and save.
+
+```
+edit cf92883 Phrase Emphasis
+edit ae23fe0 Unordered  Lists
+edit c09b157 Ordered  Lists
+edit 764dfbc Complex lists
+edit ffa19d5 Inline Links
+edit ea8ac14 Inline Links with a Title
+edit b330a00 Reference Links
+edit 09b686c Reference Links with options
+edit 79c24c8 Images
+edit 2f264bc Inline Code
+edit 2a4396c Block Code
+
+# Rebase 9da9f3c..2a4396c onto 9da9f3c (11 command(s))
+```
+
+This will drop us to the command line with this message:
+
+```shell
+author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/3
+Stopped at cf92883cb505c35b0760956bf5bffc1f8879af60... Phrase Emphasis
+You can amend the commit now, with
+
+        git commit --amend 
+
+Once you are satisfied with your changes, run
+
+        git rebase --continue
+```
+
+We're going to update `README.md` and fix the indentation error in the end of the file, save it, `git add` the changes and then `git rebase --continue`
+
+```shell
+author@shell:~/mock$ git add -A
+author@shell:~/mock$ git rebase --continue 
+[detached HEAD a962c8a] Phrase Emphasis
+ Date: Thu Apr 16 18:50:48 2015 +0800
+ 1 file changed, 6 insertions(+)
+error: could not apply ae23fe0... Unordered  Lists
+
+When you have resolved this problem, run "git rebase --continue".
+If you prefer to skip this patch, run "git rebase --skip" instead.
+To check out the original branch and stop rebasing, run "git rebase --abort".
+Could not apply ae23fe00f8e0645eda0c42f015d026b98b25b047... Unordered  Lists
+```
+
+Since the changes we've done to `README.md` collide with later changes we'll have to solve this using `git mergetool`.
+
+```shell
+author@shell:~/mock$ git mergetool
+```
+
+Solve the conflict, apply the needed changes (indentation) then continue the rebase using `git rebase --continue`:
+
+```shell
+author@shell:~/mock$ git rebase --continue 
+[detached HEAD 44298db] Unordered  Lists
+ 1 file changed, 12 insertions(+)
+error: could not apply c09b157... Ordered  Lists
+
+When you have resolved this problem, run "git rebase --continue".
+If you prefer to skip this patch, run "git rebase --skip" instead.
+To check out the original branch and stop rebasing, run "git rebase --abort".
+Could not apply c09b157b990773d898e77d9f79b5ff84bd06cc43... Ordered  Lists
+```
+
+> Keep resolving conflicts and applying changes until the end of the rebase is reached.
+
+Once the rebase is completed your new lesson is done! From here it's the same as authoring a new version, basically add refs for `refs/tags/markdown@0.1.0`, `refs/markdown@0.1.0/step/*` and `push`
+
+> Note that the new version is `0.1.0` since we published a *modified* lesson.
 
 ## Assignments
 
