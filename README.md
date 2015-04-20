@@ -10,15 +10,15 @@ The `open-learning` specification specifies conventions for manipulating git obj
 
 ## Learning objects
 
-- "course" => git repository
-- "lesson" => git tag
-- "step" => git commit
-- "instructions" => git commit message
-
 > **note**
 >
 > - Steps can be of (multiple) arbitary type(s) ex: `assigmnet`.
 > - The format of instructions is not covered in this spec (but the [`mock`](https://github.com/open-learning/mock) repository uses markdown)
+
+- "course" => git repository
+- "lesson" => git tag
+- "step" => git commit
+- "instructions" => git commit message
 
 Locating learning objects is done with git refs:
 
@@ -48,13 +48,13 @@ Creating lessons is as basic as adding commits to a branch. It's mostly when we 
 
 To create the initial version of a lesson we need to first create an orphaned WIP branch:
 
-```shell
-author@shell:~/mock$ git checkout --orphan markdown
-```
-
 > **note**
 >
 > In this example `markdown` is the name of our WIP branch
+
+```shell
+author@shell:~/mock$ git checkout --orphan markdown
+```
 
 Now it's time to add steps to our lesson. Incrementally add commits to this branch with the commit message following this format:
 
@@ -66,9 +66,6 @@ Instructions as multiple paragraphs
 
 When all of the steps are added we need to create a tag containing the lesson name and version from the `HEAD` of the branch:
 
-```shell
-author@shell:~/mock$ git tag markdown@0.0.0
-```
 > **note**
 >
 > We use `0.0.0` as our initial version. After this we follow [semver 2.0.0](http://semver.org/spec/v2.0.0.html):
@@ -78,6 +75,10 @@ author@shell:~/mock$ git tag markdown@0.0.0
 >> - MAJOR version when you make incompatible API changes
 >> - MINOR version when you add functionality in a backwards-compatible manner, and
 >> - PATCH version when you make backwards-compatible bug fixes.
+
+```shell
+author@shell:~/mock$ git tag markdown@0.0.0
+```
 
 After this it's safe to (force) remove our WIP branch (after switching another branch, in this case the `master` branch):
 
@@ -129,10 +130,6 @@ Switched to a new branch 'markdown'
 
 In this ammendment we're going to fix some formatting error(s) in `refs/markdown@0.0.0/step/2` and in the steps onwards so we'll start an interactive `rebase` from that `ref`.
 
-```shell
-author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
-```
-
 > **note**
 >
 > This will only work if the `refs` for `markdown@0.0.0/*` are fetched first. You can do this using `git fetch`:
@@ -140,6 +137,10 @@ author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
 > ```shell
 > author@shell:~/mock$ git fetch origin refs/markdown@0.0.0/*:refs/markdown@0.0.0/*
 >```
+
+```shell
+author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
+```
 
 Which let's us interactively choose what commits we need to edit via a text ui. Change the `pick` to `edit` on the commits that need editing and save.
 
@@ -191,13 +192,13 @@ Could not apply ae23fe00f8e0645eda0c42f015d026b98b25b047... Unordered  Lists
 
 Since the changes we've done to `README.md` collide with later changes we'll have to solve the conflict.
 
-```shell
-author@shell:~/mock$ git mergetool
-```
-
 > **note**
 >
 > [`git mergetool`](http://www.git-scm.com/docs/git-mergetool) is not the only way conflicts can be solved, but it is usually the easiest one (if you have a `mergetool` configured)
+
+```shell
+author@shell:~/mock$ git mergetool
+```
 
 Solve the conflict, apply the needed changes (indentation) then continue the rebase using `git rebase --continue`:
 
@@ -215,16 +216,16 @@ Could not apply c09b157b990773d898e77d9f79b5ff84bd06cc43... Ordered  Lists
 
 Keep resolving conflicts and applying changes until the end of the rebase is reached.
 
-Once the rebase is completed your new lesson is ready to be publieshed! From here it's the same as when authoring a new lesson, basically:
+Once the rebase is completed your new lesson is ready to be publieshed! From here it's the same as when authoring a new lesson:
+
+> **note**
+>
+> Note that the new version is `0.0.1` since we are publishing a *fix* version of `0.0.0`.
 
 - `git tag markdown@0.0.1`
 - `git checkout master` and `git branch -D markdown`
 - `git update-ref refs/markdown@0.0.1/step/{step} {commit}`
 - `git push origin refs/tags/markdown@0.0.1 refs/markdown@0.0.1/*`
-
-> **note**
->
-> Note that the new version is `0.0.1` since we are publishing a *fix* version of `0.0.0`.
 
 ## Studying
 
@@ -309,6 +310,10 @@ HEAD is now at e19c2e6... Our first markdown file
 
 To display the instructions for this step we use `git log`:
 
+> **note**
+>
+> For the purpose of this spec we'll just go ahead and ignore the actual contents of this lesson
+
 ```shell
 student@shell:~/mock$ git log -1
 commit e19c2e60b471dc271c0092a1ab750a3daadb0585
@@ -321,10 +326,6 @@ Date:   Thu Apr 16 18:46:21 2015 +0800
     
     Let's start by adding a `README.md` file with some mock content.
 ```
-
-> **note**
->
-> For the purpose of this spec we'll just go ahead and ignore the actual contents of this lesson
 
 Keep checking out each `markdown@0.2.0/step/{n}` to step through the lesson.
 
@@ -399,16 +400,16 @@ teacher@shell:~/mock$ git update-ref refs/heads/markdown@0.2.0/assignment/1 refs
 
 After this we must publish our change to make it available to students using `git push`:
 
+> **note**
+>
+> The above command will push all the `heads` created for `markdown@0.2.0`
+
 ```shell
 teacher@shell:~/mock$ git push origin refs/heads/markdown@0.2.0/assignment/*
 Total 0 (delta 0), reused 0 (delta 0)
 To https://github.com/open-learning/mock.git
  * [new branch]      markdown@0.2.0/assignment/1 -> markdown@0.2.0/assignment/1
 ```
-
-> **note**
->
-> The above command will push all the `heads` created for `markdown@0.2.0`
 
 ### Submission
 
@@ -418,15 +419,15 @@ To https://github.com/open-learning/mock.git
 
 Before we submit this assignment we have to create a more permanent home fore it using `git checkout`:
 
+> **note**
+>
+> Here `first-attempt` is the name of our attempt (since it's our first attempt)
+
 ```shell
 git checkout -b markdown@0.2.0/assignment/1#first-attempt
 M	assignment/1.md
 Switched to a new branch 'markdown@0.2.0/assignment/1#first-attempt'
 ```
-
-> **note**
->
-> Here `first-attempt` is the name of our attempt (since it's our first attempt)
 
 We want the last changes to be part of our assesment so let's add it to our commit using `git add`:
 
