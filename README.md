@@ -1,6 +1,6 @@
 # Open Learning Specification
 
-open-learning is a format for managing learning using git.
+The `open-learning` specification is a format for managing learning using git.
 
 ## Roles
 
