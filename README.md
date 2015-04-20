@@ -43,6 +43,7 @@ To create the initial version of a lesson we need to first create an orphaned WI
 author@shell:~/mock$ git checkout --orphan markdown
 ```
 
+> **note**
 > In this example `markdown` is the name of our WIP branch
 
 Now it's time to add steps to our lesson. Incrementally add commits to this branch with the commit message following this format:
@@ -58,6 +59,7 @@ When all of the steps are added we need to create a tag containing the lesson na
 ```shell
 author@shell:~/mock$ git tag markdown@0.0.0
 ```
+> **note**
 > We use `0.0.0` as our initial version. After this the rule of thumb is:
 >
 > - addition of steps increments `patch` number
@@ -118,6 +120,7 @@ In this ammendment we're going to fix some formatting error(s) in `refs/markdown
 author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
 ```
 
+> **note**
 > This will only work if the `refs` for `markdown@0.0.0/*` are fetched first. You can do this using `git fetch`:
 >
 > ```shell
@@ -178,6 +181,7 @@ Since the changes we've done to `README.md` collide with later changes we'll hav
 author@shell:~/mock$ git mergetool
 ```
 
+> **note**
 > [`git mergetool`](http://www.git-scm.com/docs/git-mergetool) is not the only way conflicts can be solved, but it is usually the easiest one (if you have a `mergetool` configured)
 
 Solve the conflict, apply the needed changes (indentation) then continue the rebase using `git rebase --continue`:
@@ -194,7 +198,7 @@ To check out the original branch and stop rebasing, run "git rebase --abort".
 Could not apply c09b157b990773d898e77d9f79b5ff84bd06cc43... Ordered  Lists
 ```
 
-> Keep resolving conflicts and applying changes until the end of the rebase is reached.
+Keep resolving conflicts and applying changes until the end of the rebase is reached.
 
 Once the rebase is completed your new lesson is ready to be publieshed! From here it's the same as when authoring a new lesson, basically:
 - `git tag markdown@0.1.0`
@@ -232,7 +236,8 @@ To https://github.com/git-tutor/mock.git
  * [new branch]      markdown@0.3.0/assignment/1 -> markdown@0.3.0/assignment/1
 ```
 
-> **note**: The above command will push all the `heads` created for `markdown@0.3.0`
+> **note**
+> The above command will push all the `heads` created for `markdown@0.3.0`
 
 ### Assignment submission
 
