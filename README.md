@@ -366,12 +366,6 @@ student@shell:~/mock$ cat assignment/1.md
 ###3
 ```
 
-We want this commit to be part of our assesment so let's add it to our commit using `git add`:
-
-```shell
-student@shell:~/mock$ git assignment/1.md 
-```
-
 ## Assesment
 
 Assignments can be either self assesed, machine assesed or teacher assesed.
@@ -432,7 +426,13 @@ Switched to a new branch 'markdown@0.3.0/assignment/1#first-attempt'
 >
 > Here `first-attempt` is the name of our attempt (since it's our first attempt)
 
-When all automated tests pass the assignment is ready for "review". The review is initiated by senting a pull-request to whoever should review the code.
+We want the last changes to be part of our assesment so let's add it to our commit using `git add`:
+
+```shell
+student@shell:~/mock$ git add assignment/1.md 
+```
+
+The assignment is now ready for "review". The review is initiated by senting a pull-request to whoever should review the assignment.
 
 ## Certification
 
