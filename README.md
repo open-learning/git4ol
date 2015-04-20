@@ -7,7 +7,6 @@ The `open-learning` specification specifies conventions for manipulating git obj
 - Author
 - Student
 - Teacher
-- Certifier
 
 ## Learning objects
 
