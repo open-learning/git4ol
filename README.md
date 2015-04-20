@@ -225,9 +225,9 @@ Assignments are located using refs of the format `refs/lesson-name@version/assig
   - `version` is a valid semver
   - `n` is a positive number indicating the assignment number
 
-### Assignment review
+### Review advertisement
 
-Before an submission can be made a reviewer has to advertise that he's available to review a speciffic assignment. This is done by publishing branches that pull-requests can be sent against.
+Before an assignment submission can be made a reviewer has to advertise that he's available to review a speciffic assignment. This is done by publishing branches that pull-requests can be submitted against.
 
 For example, if we wanted to advertise that we're able to review `refs/markdown@0.3.0/assignment/1` we create `refs/heads/markdown@0.3.0/assignment/1` as a pointer to `refs/markdown@0.3.0/assignment/1`:
 
@@ -248,9 +248,9 @@ To https://github.com/git-tutor/mock.git
 >
 > The above command will push all the `heads` created for `markdown@0.3.0`
 
-### Assignment submission
+### Submission
 
-A user starts a submission by branching from the "challenge" commit and then making changes.
+A user starts a submission by branching from the "challenge" commit and then comitting changes.
 
 When all provided unit tests pass the assignment is ready for "review". The review is initiated by senting a pull-request to whoever should review the code.
 
