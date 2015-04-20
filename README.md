@@ -39,7 +39,7 @@ Locating learning objects is done with git refs:
 
 ## Authoring
 
-> **role**
+> **role: author**
 >
 > This part of the spec assumes the actor is an ***author***
 
@@ -227,7 +227,7 @@ Once the rebase is completed your new lesson is ready to be publieshed! From her
 
 ## Studying
 
-> **role**
+> **role: student**
 >
 > This part of the spec assumes the actor is a ***student***
 
@@ -383,7 +383,7 @@ In the case of machine and teacher assesed assignments we think of the assignmen
 
 ### Advertisement
 
-> **role**
+> **role: teacher**
 >
 > This part of the spec assumes the actor is a ***teacher***
 
@@ -410,7 +410,7 @@ To https://github.com/open-learning/mock.git
 
 ### Submission
 
-> **role**
+> **role: student**
 >
 > This part of the spec assumes the actor is a ***student***
 
