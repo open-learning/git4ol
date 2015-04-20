@@ -20,7 +20,7 @@ The `open-learning` specification specifies conventions for manipulating git obj
 - "step" => git commit
 - "instructions" => git commit message
 
-Locating learning objects is done with git refs:
+Learning objects are managed with git refs:
 
 - Lessons are located using refs of the format `refs/tags/lesson-name@version` where
   - `lesson-name` is the name of the lesson
