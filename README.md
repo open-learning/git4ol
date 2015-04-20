@@ -17,6 +17,7 @@ GIT-Tutor is a format for packaging and distributing learning material using git
 - "stimulus" => git commit message
 
 > **note**
+>
 > - Steps can be of (multiple) arbitary type(s) ex: `assigmnet`.
 > - The format of stimulus is not covered in this spec (but the [`mock`](https://github.com/git-tutor/mock) repository uses markdown)
 
@@ -44,6 +45,7 @@ author@shell:~/mock$ git checkout --orphan markdown
 ```
 
 > **note**
+>
 > In this example `markdown` is the name of our WIP branch
 
 Now it's time to add steps to our lesson. Incrementally add commits to this branch with the commit message following this format:
@@ -60,6 +62,7 @@ When all of the steps are added we need to create a tag containing the lesson na
 author@shell:~/mock$ git tag markdown@0.0.0
 ```
 > **note**
+>
 > We use `0.0.0` as our initial version. After this the rule of thumb is:
 >
 > - addition of steps increments `patch` number
@@ -121,6 +124,7 @@ author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
 ```
 
 > **note**
+>
 > This will only work if the `refs` for `markdown@0.0.0/*` are fetched first. You can do this using `git fetch`:
 >
 > ```shell
@@ -182,6 +186,7 @@ author@shell:~/mock$ git mergetool
 ```
 
 > **note**
+>
 > [`git mergetool`](http://www.git-scm.com/docs/git-mergetool) is not the only way conflicts can be solved, but it is usually the easiest one (if you have a `mergetool` configured)
 
 Solve the conflict, apply the needed changes (indentation) then continue the rebase using `git rebase --continue`:
@@ -201,11 +206,14 @@ Could not apply c09b157b990773d898e77d9f79b5ff84bd06cc43... Ordered  Lists
 Keep resolving conflicts and applying changes until the end of the rebase is reached.
 
 Once the rebase is completed your new lesson is ready to be publieshed! From here it's the same as when authoring a new lesson, basically:
+
 - `git tag markdown@0.1.0`
 - `git checkout master` and `git branch -D markdown`
 - `git update-ref refs/markdown@0.1.0/step/{step} {commit}`
 - `git push origin refs/tags/markdown@0.1.0 refs/markdown@0.1.0/*`
 
+> **note**
+>
 > Note that the new version is `0.1.0` since we are publishing a *modified* version of `0.0.0`.
 
 ## Assignments
@@ -237,6 +245,7 @@ To https://github.com/git-tutor/mock.git
 ```
 
 > **note**
+>
 > The above command will push all the `heads` created for `markdown@0.3.0`
 
 ### Assignment submission
