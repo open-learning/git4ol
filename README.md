@@ -11,13 +11,13 @@ GIT-Tutor is a format for packaging and distributing learning material using git
 
 ## Learning objects
 
-- The analogy of a "course" is a git repository
-- The analogy of a "lesson" is a git tag
-- The analogy of a "step" is a git commit
-- The analogy of a "stimulus" is a git commit message
+- "course" => git repository
+- "lesson" => git tag
+- "step" => git commit
+- "stimulus" => git commit message
 
 > **note**
-> - Steps can be of (multiple) arbitary types (ex: `assigmnet`).
+> - Steps can be of (multiple) arbitary type(s) ex: `assigmnet`.
 > - The format of stimulus is not covered in this spec (but the [`mock`](https://github.com/git-tutor/mock) repository uses markdown)
 
 Locating learning objects is done with git refs:
@@ -33,17 +33,17 @@ Locating learning objects is done with git refs:
 
 ## Authoring
 
-When authoring lessons we are either authoring the first version or an amended version.
+Creating lessons is as basic as adding commits to a branch. It's mostly when we need to modify a lesson it gets a little bit more complicated.
 
-### Authoring the first version of a lesson
+### Creating a lesson
 
-To create a first version of a lesson we need to first create an orphaned branch:
+To create the initial version of a lesson we need to first create an orphaned WIP branch:
 
 ```shell
 author@shell:~/mock$ git checkout --orphan markdown
 ```
 
-> In this example `markdown` is the name of our lesson
+> In this example `markdown` is the name of our WIP branch
 
 Now it's time to add steps to our lesson. Incrementally add commits to this branch with the commit message following this format:
 
@@ -53,7 +53,7 @@ Step title as a one line
 Stimulus as multiple paragraphs
 ```
 
-When all of the steps are added we need to create a tag containing the lesson name and version linked to the last commit in the lesson:
+When all of the steps are added we need to create a tag containing the lesson name and version linked to the `HEAD` of the branch:
 
 ```shell
 author@shell:~/mock$ git tag markdown@0.0.0
@@ -64,7 +64,7 @@ author@shell:~/mock$ git tag markdown@0.0.0
 > - modification of steps increments `minor` number
 > - at the moment we reserve updates to `major` number
 
-After this it's safe to (force) remove our WIP branch (after switching to the master branch):
+After this it's safe to (force) remove our WIP branch (after switching another branch, in this case the `master` branch):
 
 ```shell
 author@shell:~/mock$ git checkout master
@@ -103,28 +103,28 @@ The last thing to do is to make all of this available to the world:
 author@shell:~/mock$ git push origin refs/tags/markdown@0.0.0 refs/markdown@0.0.0/*
 ```
 
-### Authoring an amended version of a lesson
+### Modifying a lesson
 
-When authoring an amended version of a lesson we start by checking out the version of the lesson we're about to amend into a WIP branch:
+When modifying a lesson we start by checking out the `tag` of the lesson we're about to amend into a WIP branch:
 
 ```shell
 author@shell:~/mock$ git checkout -b markdown markdown@0.0.0 
 Switched to a new branch 'markdown'
 ```
 
-In this ammendment we're going to fix some formatting error(s) in `refs/markdown@0.0.0/step/2` and onwards so we'll start an interactive rebase from there.
+In this ammendment we're going to fix some formatting error(s) in `refs/markdown@0.0.0/step/2` and in the steps onwards so we'll start an interactive `rebase` from that `ref`.
 
 ```shell
 author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
 ```
 
-> This will only work if the refs for `markdown@0.0.0/*` are fetched first. You can do this using `git fetch`:
+> This will only work if the `refs` for `markdown@0.0.0/*` are fetched first. You can do this using `git fetch`:
 >
 > ```shell
 > author@shell:~/mock$ git fetch origin refs/markdown@0.0.0/*:refs/markdown@0.0.0/*
 >```
 
-Which let's us interactively choose what commits we need to edit via a text ui. Change the `pick` to `edit` on the faulty commits and save.
+Which let's us interactively choose what commits we need to edit via a text ui. Change the `pick` to `edit` on the commits that need editing and save.
 
 ```
 edit cf92883 Phrase Emphasis
@@ -142,7 +142,7 @@ edit 2a4396c Block Code
 # Rebase 9da9f3c..2a4396c onto 9da9f3c (11 command(s))
 ```
 
-This will drop us to the command line with this message:
+This will drop us to the command line:
 
 ```shell
 author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/3
@@ -156,7 +156,7 @@ Once you are satisfied with your changes, run
         git rebase --continue
 ```
 
-We're going to update `README.md` and fix the indentation error in the end of the file, save it, `git add` the changes and then `git rebase --continue`
+We're going to update `README.md` and fix the indentation error in the end of the file, save it, `git add` the changes and then `git rebase --continue`:
 
 ```shell
 author@shell:~/mock$ git add -A
@@ -196,9 +196,13 @@ Could not apply c09b157b990773d898e77d9f79b5ff84bd06cc43... Ordered  Lists
 
 > Keep resolving conflicts and applying changes until the end of the rebase is reached.
 
-Once the rebase is completed your new lesson is done! From here it's the same as authoring a new version, basically add refs for `refs/tags/markdown@0.1.0`, `refs/markdown@0.1.0/step/*`, `git rm` WIP branch and `git push` to publish the new lesson.
+Once the rebase is completed your new lesson is ready to be publieshed! From here it's the same as when authoring a new lesson, basically:
+- `git tag markdown@0.1.0`
+- `git checkout master` and `git branch -D markdown`
+- `git update-ref refs/markdown@0.1.0/step/{step} {commit}`
+- `git push origin refs/tags/markdown@0.1.0 refs/markdown@0.1.0/*`
 
-> Note that the new version is `0.1.0` since we published a *modified* lesson.
+> Note that the new version is `0.1.0` since we are publishing a *modified* version of `0.0.0`.
 
 ## Assignments
 
