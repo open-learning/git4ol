@@ -194,7 +194,7 @@ Since the changes we've done to `README.md` collide with later changes we'll hav
 
 > **note**
 >
-> [`git mergetool`](http://www.git-scm.com/docs/git-mergetool) is not the only way conflicts can be solved, but it is usually the easiest one to use (if you have a `mergetool` configured)
+> [`git mergetool`](http://www.git-scm.com/docs/git-mergetool) is not the only way conflicts can be solved, but it is usually the easiest one to use
 
 ```shell
 author@shell:~/mock$ git mergetool
