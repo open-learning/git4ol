@@ -29,34 +29,41 @@ When authoring lessons there are two flows to follow, first version or amend.
 To create a first version of a lesson we need to first create an orphaned branch:
 
 ```shell
-author@shell:~/mock$ git checkout --orphan lesson
+author@shell:~/mock$ git checkout --orphan markdown
 ```
+
+> In this example `markdown` is the name of our lesson
 
 Now it's time to add steps to our lesson. Incrementally add commits to this branch with the commit message following this format:
 
 ```
-Step title as a one-line string
+Step title as a one line
 
-Stimulus as blocks of markdown
+Stimulus as multiple paragraphs
 ```
 
 When all of the steps are added we need to create a tag containing the lesson name and version linked to the last commit in the lesson:
 
 ```shell
-author@shell:~/mock$ git tag lesson@0.0.0
+author@shell:~/mock$ git tag markdown@0.0.0
 ```
+> We use `0.0.0` as our initial version. After this the rule of thumb is:
+>
+> - addition of steps increments `patch` number
+> - modification of steps increments `minor` number
+> - at the moment we reserve updates to `major` number
 
 After this it's safe to (force) remove our WIP branch (after switching to the master branch):
 
 ```shell
 author@shell:~/mock$ git checkout master
-author@shell:~/mock$ git branch -D lesson
+author@shell:~/mock$ git branch -D markdown
 ```
 
 Now it's time to add step refs. Let's list the (imaginary) commits we just added using `git log`:
 
 ```shell
-author@shell:~/mock$ git log --oneline --reverse lesson@0.0.0
+author@shell:~/mock$ git log --oneline --reverse markdown@0.0.0
 e19c2e6 Our first markdown file
 9da9f3c Paragraphs, Headers, Blockquotes
 cf92883 Phrase Emphasis
@@ -65,24 +72,24 @@ cf92883 Phrase Emphasis
 To add corresponding step refs we use `git update-ref`:
 
 ```shell
-author@shell:~/mock$ git update-ref refs/lesson@0.0.0/step/1 e19c2e6
-author@shell:~/mock$ git update-ref refs/lesson@0.0.0/step/2 9da9f3c
-author@shell:~/mock$ git update-ref refs/lesson@0.0.0/step/3 cf92883
+author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/1 e19c2e6
+author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/2 9da9f3c
+author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/3 cf92883
 ```
 
 After all the step refs are added you can confirm that it's all good using `git log` again:
 
 ```shell
-author@shell:~/mock$ git log --oneline --reverse --decorate=full lesson@0.0.0
-e19c2e6 (refs/lesson@0.0.0/step/1) Our first markdown file
-9da9f3c (refs/lesson@0.0.0/step/2) Paragraphs, Headers, Blockquotes
-cf92883 (tag: refs/tags/lesson@0.0.0, refs/lesson@0.0.0/step/3) Phrase Emphasis
+author@shell:~/mock$ git log --oneline --reverse --decorate=full markdown@0.0.0
+e19c2e6 (refs/markdown@0.0.0/step/1) Our first markdown file
+9da9f3c (refs/markdown@0.0.0/step/2) Paragraphs, Headers, Blockquotes
+cf92883 (tag: refs/tags/markdown@0.0.0, refs/markdown@0.0.0/step/3) Phrase Emphasis
 ```
 
 The last thing to do is to make all of this available to the world:
 
 ```shell
-author@shell:~/mock$ git push origin refs/tags/lesson@0.0.0 refs/lesson@0.0.0/*
+author@shell:~/mock$ git push origin refs/tags/markdown@0.0.0 refs/markdown@0.0.0/*
 ```
 
 ## Assignments
