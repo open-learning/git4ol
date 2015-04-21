@@ -22,17 +22,17 @@ The `open-learning` specification specifies conventions for manipulating git obj
 
 Learning objects are managed with git refs:
 
-- Lessons are located using refs of the format `refs/tags/lesson-name@version` where
-  - `lesson-name` is the name of the lesson
+- Lessons are located using refs of the format `refs/tags/{lesson}@{version}` where
+  - `lesson` is the name of the lesson
   - `version` is a valid semver
 
-- Steps are located using refs of the format `refs/lesson-name@version/step/n` where
-  - `lesson-name` is the name of the lesson
+- Steps are located using refs of the format `refs/{lesson}@{version}/step/{n}` where
+  - `lesson` is the name of the lesson
   - `version` is a valid semver
   - `n` is a positive number indicating the step number
 
-- Assignments are located using refs of the format `refs/lesson-name@version/assignment/n` where
-  - `lesson-name` is the name of the lesson
+- Assignments are located using refs of the format `refs/{lesson}@{version}/assignment/{n}` where
+  - `lesson` is the name of the lesson
   - `version` is a valid semver
   - `n` is a positive number indicating the assignment number
 
@@ -233,7 +233,7 @@ Once the rebase is completed your new lesson is ready to be publieshed! From her
 >
 > This part of the spec assumes the actor is a ***student***
 
-Depending on the lesson studying can be done either entierly by the student alone (in the case of self assesed or machine assesed assigments) or with a teacher in the case of a teacher assesed assignments. The basic difference is the need to push your work to a remote repository for review.
+Depending on the lesson studying can be done either entierly by the student alone (in the case of self assesed or machine assesed assigments) or together with someone as in the case of teacher or peer assesed assignments.
 
 ### Initialization
 
@@ -262,7 +262,7 @@ markdown@0.1.0
 markdown@0.2.0
 ```
 
-We want to learn some markdown, so we need to update our meta-information about this lesson using `git fetch`:
+We want to learn some markdown and the latest version of the markdown lesson is `0.2.0` so we need to update our meta-information about the this lesson using `git fetch`:
 
 ```shell
 student@shell:~/mock$ git fetch origin refs/markdown@0.2.0/*:refs/markdown@0.2.0/*
@@ -331,9 +331,9 @@ Keep checking out each `markdown@0.2.0/step/{n}` to step through the lesson.
 
 ## Assignments
 
-Assignments are just commits that contain assignment material and instructions.
+Assignments are just commits that contain assignment material. The student can reach an assignment either by enumerating `refs/lesson@version/step/{n}` or by dirrectly checking out `refs/lesson@version/assignment/{n}`.
 
-We start an assignment by checking out the assignment ref to a detached `HEAD`:
+In this example we'll start an assignment by checking out the assignment `ref` to a detached `HEAD`:
 
 ```shell
 student@shell:~/mock$ git checkout --detach markdown@0.2.0/assignment/1
