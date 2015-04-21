@@ -259,33 +259,31 @@ student@shell:~/mock$ git tag
 markdown@0.0.0
 markdown@0.0.1
 markdown@0.1.0
-markdown@0.2.0
 ```
 
-We want to learn some markdown and the latest version of the markdown lesson is `0.2.0` so we need to update our meta-information about the this lesson using `git fetch`:
+We want to learn some markdown and the latest version of the markdown lesson is `0.1.0` so we need to update our meta-information about the this lesson using `git fetch`:
 
 ```shell
-student@shell:~/mock$ git fetch origin refs/markdown@0.2.0/*:refs/markdown@0.2.0/*
+student@shell:~/mock$ git fetch origin refs/markdown@0.1.0/*:refs/markdown@0.1.0/*
 From https://github.com/open-learning/mock
- * [new ref]         refs/markdown@0.2.0/assignment/1 -> refs/markdown@0.2.0/assignment/1
- * [new ref]         refs/markdown@0.2.0/assignment/2 -> refs/markdown@0.2.0/assignment/2
- * [new ref]         refs/markdown@0.2.0/assignment/3 -> refs/markdown@0.2.0/assignment/3
- * [new ref]         refs/markdown@0.2.0/step/1 -> refs/markdown@0.2.0/step/1
- * [new ref]         refs/markdown@0.2.0/step/10 -> refs/markdown@0.2.0/step/10
- * [new ref]         refs/markdown@0.2.0/step/11 -> refs/markdown@0.2.0/step/11
- * [new ref]         refs/markdown@0.2.0/step/12 -> refs/markdown@0.2.0/step/12
- * [new ref]         refs/markdown@0.2.0/step/13 -> refs/markdown@0.2.0/step/13
- * [new ref]         refs/markdown@0.2.0/step/14 -> refs/markdown@0.2.0/step/14
- * [new ref]         refs/markdown@0.2.0/step/15 -> refs/markdown@0.2.0/step/15
- * [new ref]         refs/markdown@0.2.0/step/16 -> refs/markdown@0.2.0/step/16
- * [new ref]         refs/markdown@0.2.0/step/2 -> refs/markdown@0.2.0/step/2
- * [new ref]         refs/markdown@0.2.0/step/3 -> refs/markdown@0.2.0/step/3
- * [new ref]         refs/markdown@0.2.0/step/4 -> refs/markdown@0.2.0/step/4
- * [new ref]         refs/markdown@0.2.0/step/5 -> refs/markdown@0.2.0/step/5
- * [new ref]         refs/markdown@0.2.0/step/6 -> refs/markdown@0.2.0/step/6
- * [new ref]         refs/markdown@0.2.0/step/7 -> refs/markdown@0.2.0/step/7
- * [new ref]         refs/markdown@0.2.0/step/8 -> refs/markdown@0.2.0/step/8
- * [new ref]         refs/markdown@0.2.0/step/9 -> refs/markdown@0.2.0/step/9
+ * [new ref]         refs/markdown@0.1.0/assignment/1 -> refs/markdown@0.1.0/assignment/1
+ * [new ref]         refs/markdown@0.1.0/assignment/2 -> refs/markdown@0.1.0/assignment/2
+ * [new ref]         refs/markdown@0.1.0/step/1 -> refs/markdown@0.1.0/step/1
+ * [new ref]         refs/markdown@0.1.0/step/10 -> refs/markdown@0.1.0/step/10
+ * [new ref]         refs/markdown@0.1.0/step/11 -> refs/markdown@0.1.0/step/11
+ * [new ref]         refs/markdown@0.1.0/step/12 -> refs/markdown@0.1.0/step/12
+ * [new ref]         refs/markdown@0.1.0/step/13 -> refs/markdown@0.1.0/step/13
+ * [new ref]         refs/markdown@0.1.0/step/14 -> refs/markdown@0.1.0/step/14
+ * [new ref]         refs/markdown@0.1.0/step/15 -> refs/markdown@0.1.0/step/15
+ * [new ref]         refs/markdown@0.1.0/step/16 -> refs/markdown@0.1.0/step/16
+ * [new ref]         refs/markdown@0.1.0/step/2 -> refs/markdown@0.1.0/step/2
+ * [new ref]         refs/markdown@0.1.0/step/3 -> refs/markdown@0.1.0/step/3
+ * [new ref]         refs/markdown@0.1.0/step/4 -> refs/markdown@0.1.0/step/4
+ * [new ref]         refs/markdown@0.1.0/step/5 -> refs/markdown@0.1.0/step/5
+ * [new ref]         refs/markdown@0.1.0/step/6 -> refs/markdown@0.1.0/step/6
+ * [new ref]         refs/markdown@0.1.0/step/7 -> refs/markdown@0.1.0/step/7
+ * [new ref]         refs/markdown@0.1.0/step/8 -> refs/markdown@0.1.0/step/8
+ * [new ref]         refs/markdown@0.1.0/step/9 -> refs/markdown@0.1.0/step/9
  ```
 
 ### Stepping
@@ -293,8 +291,8 @@ From https://github.com/open-learning/mock
 We study by steping through each lesson step by step:
 
 ```shell
-student@shell:~/mock$ git checkout --force --detach markdown@0.2.0/step/1
-Note: checking out 'markdown@0.2.0/step/1'.
+student@shell:~/mock$ git checkout --force --detach markdown@0.1.0/step/1
+Note: checking out 'markdown@0.1.0/step/1'.
 
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
@@ -327,7 +325,7 @@ Date:   Thu Apr 16 18:46:21 2015 +0800
     Let's start by adding a `README.md` file with some mock content.
 ```
 
-Keep checking out each `markdown@0.2.0/step/{n}` to step through the lesson.
+Keep checking out each `markdown@0.1.0/step/{n}` to step through the lesson.
 
 ## Assignments
 
@@ -336,7 +334,7 @@ Assignments are just commits that contain assignment material. The student can r
 In this example we'll start an assignment by checking out the assignment `ref` to a detached `HEAD`:
 
 ```shell
-student@shell:~/mock$ git checkout --detach markdown@0.2.0/assignment/1
+student@shell:~/mock$ git checkout --detach markdown@0.1.0/assignment/1
 Previous HEAD position was e19c2e6... Our first markdown file
 HEAD is now at 5947ce8... Your first assignment
 ```
@@ -393,9 +391,9 @@ Before we submit this assignment we have to create a more permanent home fore it
 > Here `first-attempt` is the name of our attempt (since it's our first attempt)
 
 ```shell
-git checkout -b markdown@0.2.0/assignment/1#first-attempt
+git checkout -b markdown@0.1.0/assignment/1#first-attempt
 M	assignment/1.md
-Switched to a new branch 'markdown@0.2.0/assignment/1#first-attempt'
+Switched to a new branch 'markdown@0.1.0/assignment/1#first-attempt'
 ```
 
 We want the last changes to be part of our assesment so let's add it to our commit using `git add`:
@@ -414,23 +412,23 @@ The assignment is now ready for "review". The review is initiated by senting a p
 
 Before an assignment assesment can be made someone has to advertise that they are available to review a speciffic assignment. This is done by publishing branches that pull-requests can be submitted against.
 
-For example, if we wanted to advertise that we're able to review `refs/markdown@0.2.0/assignment/1` we create `refs/heads/markdown@0.2.0/assignment/1` from `refs/markdown@0.2.0/assignment/1`:
+For example, if we wanted to advertise that we're able to review `refs/markdown@0.1.0/assignment/1` we create `refs/heads/markdown@0.1.0/assignment/1` from `refs/markdown@0.1.0/assignment/1`:
 
 ```shell
-teacher@shell:~/mock$ git update-ref refs/heads/markdown@0.2.0/assignment/1 refs/markdown@0.2.0/assignment/1
+teacher@shell:~/mock$ git update-ref refs/heads/markdown@0.1.0/assignment/1 refs/markdown@0.1.0/assignment/1
 ```
 
 After this we must publish our change to make it available to students using `git push`:
 
 > **note**
 >
-> The above command will push all the `heads` created for `markdown@0.2.0`
+> The above command will push all the `heads` created for `markdown@0.1.0`
 
 ```shell
-teacher@shell:~/mock$ git push origin refs/heads/markdown@0.2.0/assignment/*
+teacher@shell:~/mock$ git push origin refs/heads/markdown@0.1.0/assignment/*
 Total 0 (delta 0), reused 0 (delta 0)
 To https://github.com/open-learning/mock.git
- * [new branch]      markdown@0.2.0/assignment/1 -> markdown@0.2.0/assignment/1
+ * [new branch]      markdown@0.1.0/assignment/1 -> markdown@0.1.0/assignment/1
 ```
 
 ### Review
