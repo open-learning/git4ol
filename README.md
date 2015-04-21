@@ -121,11 +121,22 @@ author@shell:~/mock$ git push origin refs/tags/markdown@0.0.0 refs/markdown@0.0.
 
 ### Fixing a lesson
 
-When modifying a lesson we start by checking out the `tag` of the lesson we're about to amend into a WIP branch:
+When modifying a lesson we start by checking out the `tag` of the lesson we're about to fix to a detached `HEAD`:
 
 ```shell
-author@shell:~/mock$ git checkout -b markdown markdown@0.0.0 
-Switched to a new branch 'markdown'
+author@shell:~/mock$ git checkout --detach markdown@0.0.0 
+Note: checking out 'markdown@0.0.0'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b new_branch_name
+
+HEAD is now at 2a4396c... Block Code
 ```
 
 In this ammendment we're going to fix some formatting error(s) in `refs/markdown@0.0.0/step/2` and in the steps onwards so we'll start an interactive `rebase` from that `ref`:
@@ -142,7 +153,7 @@ author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
 > author@shell:~/mock$ git fetch origin refs/markdown@0.0.0/*:refs/markdown@0.0.0/*
 >```
 
-Which let's us interactively choose what commits we need to edit via a text ui. Change the `pick` to `edit` on the commits that need editing and save:
+Which let's us interactively choose what commits we need to edit. Change the word `pick` to `edit` on the commits that need editing and save:
 
 ```
 edit cf92883 Phrase Emphasis
@@ -158,6 +169,22 @@ edit 2f264bc Inline Code
 edit 2a4396c Block Code
 
 # Rebase 9da9f3c..2a4396c onto 9da9f3c (11 command(s))
+#
+# Commands:
+# p, pick = use commit
+# r, reword = use commit, but edit the commit message
+# e, edit = use commit, but stop for amending
+# s, squash = use commit, but meld into previous commit
+# f, fixup = like "squash", but discard this commit's log message
+# x, exec = run command (the rest of the line) using shell
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+# Note that empty commits are commented out
 ```
 
 This will drop us to back to the shell:
@@ -174,10 +201,10 @@ Once you are satisfied with your changes, run
         git rebase --continue
 ```
 
-We're going to update `README.md` and fix the indentation error in the end of the file, save it, `git add` the changes and then `git rebase --continue`:
+We're going to update `README.md` and fix the indentation error in the end of the file, save it, `git add` the changes and then `git rebase --continue` and save:
 
 ```shell
-author@shell:~/mock$ git add -A
+author@shell:~/mock$ git add README.md
 author@shell:~/mock$ git rebase --continue 
 [detached HEAD a962c8a] Phrase Emphasis
  Date: Thu Apr 16 18:50:48 2015 +0800
@@ -216,6 +243,13 @@ Could not apply c09b157b990773d898e77d9f79b5ff84bd06cc43... Ordered  Lists
 
 Keep resolving conflicts and applying changes until the end of the rebase is reached.
 
+```shell
+author@shell:~/mock$ git rebase --continue 
+[detached HEAD 41df2e7] Block Code
+ 1 file changed, 7 insertions(+)
+Successfully rebased and updated detached HEAD.
+```
+
 Once the rebase is completed your new lesson is ready to be publieshed! From here it's the same as when authoring a new lesson:
 
 > **note**
@@ -223,7 +257,6 @@ Once the rebase is completed your new lesson is ready to be publieshed! From her
 > Note that the new version is `0.0.1` since we are publishing a *fix* version of `0.0.0`
 
 - `git tag markdown@0.0.1`
-- `git checkout master` and `git branch -D markdown`
 - `git update-ref refs/markdown@0.0.1/step/{step} {commit}`
 - `git push origin refs/tags/markdown@0.0.1 refs/markdown@0.0.1/*`
 
