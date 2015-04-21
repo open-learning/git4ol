@@ -384,6 +384,28 @@ In the case of remote assesed assignments we think of the assignment in two part
 - The "challenge" part of an assignment is a git commit containing instructions and learning materials
 - The "response" part of an assignment is a pull request containing all the commits to be reviewed
 
+### Submission
+
+Before we submit this assignment we have to create a more permanent home fore it using `git checkout`:
+
+> **note**
+>
+> Here `first-attempt` is the name of our attempt (since it's our first attempt)
+
+```shell
+git checkout -b markdown@0.2.0/assignment/1#first-attempt
+M	assignment/1.md
+Switched to a new branch 'markdown@0.2.0/assignment/1#first-attempt'
+```
+
+We want the last changes to be part of our assesment so let's add it to our commit using `git add`:
+
+```shell
+student@shell:~/mock$ git add assignment/1.md 
+```
+
+The assignment is now ready for "review". The review is initiated by senting a pull-request to whoever should review the assignment.
+
 ### Advertisement
 
 > **role: teacher**
@@ -411,31 +433,7 @@ To https://github.com/open-learning/mock.git
  * [new branch]      markdown@0.2.0/assignment/1 -> markdown@0.2.0/assignment/1
 ```
 
-### Submission
-
-> **role: student**
->
-> This part of the spec assumes the actor is a ***student***
-
-Before we submit this assignment we have to create a more permanent home fore it using `git checkout`:
-
-> **note**
->
-> Here `first-attempt` is the name of our attempt (since it's our first attempt)
-
-```shell
-git checkout -b markdown@0.2.0/assignment/1#first-attempt
-M	assignment/1.md
-Switched to a new branch 'markdown@0.2.0/assignment/1#first-attempt'
-```
-
-We want the last changes to be part of our assesment so let's add it to our commit using `git add`:
-
-```shell
-student@shell:~/mock$ git add assignment/1.md 
-```
-
-The assignment is now ready for "review". The review is initiated by senting a pull-request to whoever should review the assignment.
+### Review
 
 ## Certification
 
