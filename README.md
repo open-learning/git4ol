@@ -119,7 +119,7 @@ The last thing to do is to make all of this available to the world:
 author@shell:~/mock$ git push origin refs/tags/markdown@0.0.0 refs/markdown@0.0.0/*
 ```
 
-### Modifying a lesson
+### Fixing a lesson
 
 When modifying a lesson we start by checking out the `tag` of the lesson we're about to amend into a WIP branch:
 
