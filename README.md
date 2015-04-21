@@ -46,7 +46,16 @@ Creating lessons is as basic as adding commits to a branch. It's mostly when we 
 
 ### Creating a lesson
 
-To create the initial version of a lesson we need to first create an orphaned WIP branch:
+To create the initial version of a lesson we need to first create a new directory and initalize an empty respository:
+
+```shell
+author@shell:~/$ mkdir mock
+author@shell:~/$ cd mock
+author@shell:~/mock$ git init
+Initialized empty Git repository in /home/author/mock/.git/
+```
+
+Second step is to create an orphaned WIP branch:
 
 > **note**
 >
