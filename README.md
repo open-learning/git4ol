@@ -347,7 +347,7 @@ Once you are satisfied with your changes, run
 Let's add our assignment files and `git add`:
 
 ```shell
-author@shell:~/mock$ touch assignment/1.md`
+author@shell:~/mock$ touch assignment/1.md
 author@shell:~/mock$ git add assignment/1.md
 ```
 
