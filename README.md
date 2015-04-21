@@ -121,7 +121,7 @@ author@shell:~/mock$ git push origin refs/tags/markdown@0.0.0 refs/markdown@0.0.
 
 ### Fixing a lesson
 
-When modifying a lesson we start by checking out the `tag` of the lesson we're about to fix to a detached `HEAD`:
+When fixing a lesson we start by checking out the `tag` of the lesson we're about to fix into a detached `HEAD`:
 
 ```shell
 author@shell:~/mock$ git checkout --detach markdown@0.0.0 
@@ -139,7 +139,7 @@ do so (now or later) by using -b with the checkout command again. Example:
 HEAD is now at 2a4396c... Block Code
 ```
 
-In this ammendment we're going to fix some formatting error(s) in `refs/markdown@0.0.0/step/2` and in the steps onwards so we'll start an interactive `rebase` from that `ref`:
+In the following commits we're going to fix some formatting error(s) in `refs/markdown@0.0.0/step/2` and in the steps onwards, so let's start an interactive `git rebase` from `refs/markdown@0.0.0/step/2`:
 
 ```shell
 author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
@@ -153,7 +153,7 @@ author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
 > author@shell:~/mock$ git fetch origin refs/markdown@0.0.0/*:refs/markdown@0.0.0/*
 >```
 
-Which let's us interactively choose what commits we need to edit. Change the word `pick` to `edit` on the commits that need editing and save:
+This let's us interactively choose what commits we need to edit. Change the word `pick` to `edit` on the commits that need editing and save:
 
 ```
 edit cf92883 Phrase Emphasis
@@ -190,7 +190,7 @@ edit 2a4396c Block Code
 This will drop us to back to the shell:
 
 ```shell
-author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/3
+author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
 Stopped at cf92883cb505c35b0760956bf5bffc1f8879af60... Phrase Emphasis
 You can amend the commit now, with
 
@@ -257,8 +257,161 @@ Once the rebase is completed your new lesson is ready to be publieshed! From her
 > Note that the new version is `0.0.1` since we are publishing a *fix* version of `0.0.0`
 
 - `git tag markdown@0.0.1`
-- `git update-ref refs/markdown@0.0.1/step/{step} {commit}`
+- `git update-ref refs/markdown@0.0.1/step/{n} {commit}`
 - `git push origin refs/tags/markdown@0.0.1 refs/markdown@0.0.1/*`
+
+### Updating a lesson
+
+When updating a lesson we start by checking out the `tag` of the lesson we're about to update into a detached `HEAD`:
+
+```shell
+author@shell:~/mock$ git checkout --detach markdown@0.0.1 
+Note: checking out 'markdown@0.0.1'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b new_branch_name
+
+HEAD is now at d6c00f1... Block Code
+```
+
+In the following commits we're going to add some assignment steps to the beginning of the lesson, so let's start an interactive `git rebase` from `refs/markdown@0.0.1/step/1`:
+
+```shell
+author@shell:~/mock$ git rebase --interactive markdown@0.0.1/step/1
+```
+
+This let's us interactively choose what commits we need to edit. We're going to add assignments as step 2 and 4, so let's edit the first two steps. Change the word `pick` to `edit` on the commits that need editing and save:
+
+```
+edit 9da9f3c Paragraphs, Headers, Blockquotes
+edit 103eaea Phrase Emphasis
+pick 144a756 Unordered  Lists
+pick 5727a51 Ordered  Lists
+pick b37244c Complex lists
+pick 4e3bf8e Inline Links
+pick 5d5faf3 Inline Links with a Title
+pick 9772872 Reference Links
+pick 9bdab96 Reference Links with options
+pick 5249e88 Images
+pick e57dec6 Inline Code
+pick d6c00f1 Block Code
+
+# Rebase e19c2e6..d6c00f1 onto e19c2e6 (12 command(s))
+#
+# Commands:
+# p, pick = use commit
+# r, reword = use commit, but edit the commit message
+# e, edit = use commit, but stop for amending
+# s, squash = use commit, but meld into previous commit
+# f, fixup = like "squash", but discard this commit's log message
+# x, exec = run command (the rest of the line) using shell
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+# Note that empty commits are commented out
+```
+
+This will drop us to back to the shell:
+
+```shell
+author@shell:~/mock$ git rebase --interactive markdown@0.0.1/step/1
+Stopped at 9da9f3c15a7dc0413a74308e44823d5ce6772b18... Paragraphs, Headers, Blockquotes
+You can amend the commit now, with
+
+        git commit --amend 
+
+Once you are satisfied with your changes, run
+
+        git rebase --continue
+```
+
+Let's add our assignment files and `git add`:
+
+```shell
+author@shell:~/mock$ touch assignment/1.md`
+author@shell:~/mock$ git add assignment/1.md
+```
+
+Now we want to add this file as part of a new commit using `git commit`:
+
+> **note**
+>
+> You can just omit the `--message` switch to launch an editor for the commit message
+
+```shell
+author@shell:~/mock$ git commit --message="Your first assignment
+
+Let's see what we've learned so far. We've created a file called \`1.md\` in the \`assignment\` folder that you should use to submit your answer.
+
+Add three headings from level one to three, pick whatever heading contents as you want."
+[detached HEAD d720996] Your first assignment
+ Date: Tue Apr 21 19:08:09 2015 +0800
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 assignment/1.md
+```
+
+Now that we've added this assignment we want to continue with the rebase:
+
+```shell
+author@shell:~/mock$ git rebase --continue
+Stopped at 103eaeabcf01e59bc937eebe1180433360bb54d5... Phrase Emphasis
+You can amend the commit now, with
+
+	git commit --amend 
+
+Once you are satisfied with your changes, run
+
+	git rebase --continue
+```
+
+Let's add another assignment file and `git add`:
+
+```shell
+author@shell:~/mock$ echo "Here is a regular paragraph. Emphasize whatever words you want." > assignment/2.md
+author@shell:~/mock$ git add assignment/2.md
+```
+
+Let's commit our changes:
+
+```shell
+author@shell:~/mock$ git commit --message="Your second assignment
+> 
+> Time for another challenge! Find the file \`assignment/2.md\`. Modifiy it to have at least:
+> 
+> - One emhasized word
+> - One strongly emphasized word"
+[detached HEAD 60c7a4f] Your second assignment
+ 1 file changed, 1 insertion(+)
+ create mode 100644 assignment/2.md
+```
+
+Let's continue our `git rebase`:
+
+```shell
+author@shell:~/mock$ git rebase --continue 
+Successfully rebased and updated detached HEAD.
+```
+
+Once the rebase is completed your new lesson is ready to be publieshed! From here it's the same as when authoring a new lesson but with one important addition - adding `assignment` refs:
+
+> **note**
+>
+> Note that the new version is `0.1.0` since we are publishing a *modified* version of `0.0.1`
+
+- `git tag markdown@0.1.0`
+- `git update-ref refs/markdown@0.1.0/step/{n} {commit}`
+- `git update-ref refs/markdown@0.1.0/assignment/{n} {commit}`
+- `git push origin refs/tags/markdown@0.1.0 refs/markdown@0.1.0/*`
 
 ## Studying
 
@@ -317,7 +470,7 @@ From https://github.com/open-learning/mock
  * [new ref]         refs/markdown@0.1.0/step/7 -> refs/markdown@0.1.0/step/7
  * [new ref]         refs/markdown@0.1.0/step/8 -> refs/markdown@0.1.0/step/8
  * [new ref]         refs/markdown@0.1.0/step/9 -> refs/markdown@0.1.0/step/9
- ```
+```
 
 ### Stepping
 
