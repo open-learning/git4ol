@@ -16,9 +16,10 @@ The `open-learning` specification specifies conventions for manipulating git obj
 > - The format of instructions is not covered in this spec (but the [`mock`](https://github.com/open-learning/mock) repository uses markdown)
 
 - "course" ⇔ git repository
-- "lesson" ⇔ git tag
+- "lesson" ⇔ git orphaned branch
 - "step" ⇔ git commit
-- "instructions" ⇔ git commit message
+  - "materials" ⇔ git commit contents
+  - "instructions" ⇔ git commit message
 
 Learning objects are managed with git refs:
 
