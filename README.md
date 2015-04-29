@@ -621,7 +621,7 @@ In the case of remote assesed assignments we think of the assignment in two part
 - The "challenge" part of an assignment is a git commit containing instructions and learning materials
 - The "response" part of an assignment is a pull request containing all the commits to be reviewed
 
-### Submission
+### Preparation
 
 Before we submit this assignment we have to create a more permanent home fore it using `git checkout`:
 
@@ -635,7 +635,7 @@ M	assignment/1.md
 Switched to a new branch 'markdown@0.1.0/assignment/1#first-attempt'
 ```
 
-We want the last changes to be part of our assesment so let's add it to our commit using `git add`:
+We want the last changes to be part of our submission so let's add it to our commit using `git add`:
 
 ```shell
 student@shell:~/mock$ git add assignment/1.md 
@@ -665,6 +665,10 @@ Total 9 (delta 0), reused 0 (delta 0)
 To https://github.com/open-learning/mock.git
  * [new branch]      markdown@0.1.0/assignment/1#first-attempt -> markdown@0.1.0/assignment/1#first-attempt
 ```
+
+### Submission
+
+Assignment submissions are handled using git pull-requests from the student's assignment branch to the teacher's review branch.
 
 How pull-requests are managed will differ from teacher to teacher. In this example we're going to go old-school and use `git request-pull` to generate a pull-request that can later be sent to the teacher in whatever way they want it.
 
@@ -696,7 +700,7 @@ student (1):
 >
 > This part of the spec assumes the actor is a ***teacher***
 
-Before an assignment assesment can be made someone has to advertise that they are available to review a speciffic assignment. This is done by publishing branches that pull-requests can be submitted against.
+Before an assignment submission can be made someone has to advertise that they are available to review a speciffic assignment. This is done by publishing "review" branches that pull-requests can be submitted against.
 
 For example, if we wanted to advertise that we're able to review `refs/markdown@0.1.0/assignment/1` we create `refs/heads/markdown@0.1.0/assignment/1` from `refs/markdown@0.1.0/assignment/1`:
 
