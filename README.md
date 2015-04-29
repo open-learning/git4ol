@@ -23,7 +23,7 @@ The `open-learning` specification specifies conventions for manipulating git obj
 
 Learning objects are managed with git refs:
 
-- Lessons are located using refs of the format `refs/tags/{lesson}@{version}` where
+- Lessons are located using refs of the format `refs/lessons/{lesson}@{version}` where
   - `lesson` is the name of the lesson
   - `version` is a valid semver
 
@@ -74,7 +74,7 @@ Step title as a one line
 Instructions as multiple paragraphs
 ```
 
-When all of the steps are added we need to create a tag containing the lesson name and version from the `HEAD` of the branch:
+When all of the steps are added we need to create a new ref containing the lesson name and version pointing to the `HEAD` of the branch:
 
 > **note**
 >
@@ -87,7 +87,63 @@ When all of the steps are added we need to create a tag containing the lesson na
 >> 1. PATCH version when you make backwards-compatible bug fixes.
 
 ```shell
-author@shell:~/mock$ git tag markdown@0.0.0
+author@shell:~/mock$ git update-ref refs/lessons/markdown@0.0.0 HEAD
+```
+
+Now it's time to add step refs. Let's list the (imaginary) commits we just added using `git log`:
+
+```shell
+author@shell:~/mock$ git log --oneline --reverse
+e19c2e6 Our first markdown file
+9da9f3c Paragraphs, Headers, Blockquotes
+cf92883 Phrase Emphasis
+ae23fe0 Unordered  Lists
+c09b157 Ordered  Lists
+764dfbc Complex lists
+ffa19d5 Inline Links
+ea8ac14 Inline Links with a Title
+b330a00 Reference Links
+09b686c Reference Links with options
+79c24c8 Images
+2f264bc Inline Code
+2a4396c Block Code
+```
+
+To add corresponding step refs we use `git update-ref`:
+
+```shell
+author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/1 e19c2e6
+author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/2 9da9f3c
+author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/3 cf92883
+author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/4 ae23fe0
+author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/5 c09b157
+author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/6 764dfbc
+author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/7 ffa19d5
+author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/8 ea8ac14
+author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/9 b330a00
+author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/10 09b686c
+author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/11 79c24c8
+author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/12 2f264bc
+author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/13 2a4396c
+```
+
+After all the step refs are added you can confirm that it's all good using `git log` again:
+
+```shell
+author@shell:~/mock$ git log --oneline --reverse --decorate=full
+e19c2e6 (refs/markdown@0.0.0/step/1) Our first markdown file
+9da9f3c (refs/markdown@0.0.0/step/2) Paragraphs, Headers, Blockquotes
+cf92883 (refs/markdown@0.0.0/step/3) Phrase Emphasis
+ae23fe0 (refs/markdown@0.0.0/step/4) Unordered  Lists
+c09b157 (refs/markdown@0.0.0/step/5) Ordered  Lists
+764dfbc (refs/markdown@0.0.0/step/6) Complex lists
+ffa19d5 (refs/markdown@0.0.0/step/7) Inline Links
+ea8ac14 (refs/markdown@0.0.0/step/8) Inline Links with a Title
+b330a00 (refs/markdown@0.0.0/step/9) Reference Links
+09b686c (refs/markdown@0.0.0/step/10) Reference Links with options
+79c24c8 (refs/markdown@0.0.0/step/11) Images
+2f264bc (refs/markdown@0.0.0/step/12) Inline Code
+2a4396c (HEAD, refs/markdown@0.0.0/step/13, refs/lessons/markdown@0.0.0) Block Code
 ```
 
 After this it's safe to (force) remove our WIP branch (after switching another branch, in this case the `master` branch):
@@ -97,45 +153,19 @@ author@shell:~/mock$ git checkout master
 author@shell:~/mock$ git branch -D markdown
 ```
 
-Now it's time to add step refs. Let's list the (imaginary) commits we just added using `git log`:
-
-```shell
-author@shell:~/mock$ git log --oneline --reverse markdown@0.0.0
-e19c2e6 Our first markdown file
-9da9f3c Paragraphs, Headers, Blockquotes
-cf92883 Phrase Emphasis
-```
-
-To add corresponding step refs we use `git update-ref`:
-
-```shell
-author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/1 e19c2e6
-author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/2 9da9f3c
-author@shell:~/mock$ git update-ref refs/markdown@0.0.0/step/3 cf92883
-```
-
-After all the step refs are added you can confirm that it's all good using `git log` again:
-
-```shell
-author@shell:~/mock$ git log --oneline --reverse --decorate=full markdown@0.0.0
-e19c2e6 (refs/markdown@0.0.0/step/1) Our first markdown file
-9da9f3c (refs/markdown@0.0.0/step/2) Paragraphs, Headers, Blockquotes
-cf92883 (tag: refs/tags/markdown@0.0.0, refs/markdown@0.0.0/step/3) Phrase Emphasis
-```
-
 The last thing to do is to make all of this available to the world:
 
 ```shell
-author@shell:~/mock$ git push origin refs/tags/markdown@0.0.0 refs/markdown@0.0.0/*
+author@shell:~/mock$ git push origin refs/lessons/markdown@0.0.0 refs/markdown@0.0.0/*
 ```
 
 ### Fixing a lesson
 
-When fixing a lesson we start by checking out the `tag` of the lesson we're about to fix into a detached `HEAD`:
+When fixing a lesson we start by checking out the `ref` of the lesson we're about to fix into a detached `HEAD`:
 
 ```shell
-author@shell:~/mock$ git checkout --detach markdown@0.0.0 
-Note: checking out 'markdown@0.0.0'.
+author@shell:~/mock$ git checkout --detach lessons/markdown@0.0.0
+Note: checking out 'lessons/markdown@0.0.0'.
 
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
@@ -266,17 +296,17 @@ Once the rebase is completed your new lesson is ready to be publieshed! From her
 >
 > Note that the new version is `0.0.1` since we are publishing a *fix* version of `0.0.0`
 
-- `git tag markdown@0.0.1`
+- `git update-ref refs/lessons/markdown@0.0.1 HEAD`
 - `git update-ref refs/markdown@0.0.1/step/{n} {commit}`
-- `git push origin refs/tags/markdown@0.0.1 refs/markdown@0.0.1/*`
+- `git push origin refs/lessons/markdown@0.0.1 refs/markdown@0.0.1/*`
 
 ### Updating a lesson
 
-When updating a lesson we start by checking out the `tag` of the lesson we're about to update into a detached `HEAD`:
+When updating a lesson we start by checking out the `ref` of the lesson we're about to update into a detached `HEAD`:
 
 ```shell
-author@shell:~/mock$ git checkout --detach markdown@0.0.1 
-Note: checking out 'markdown@0.0.1'.
+author@shell:~/mock$ git checkout --detach lessons/markdown@0.0.1 
+Note: checking out 'lessons/markdown@0.0.1'.
 
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
@@ -418,10 +448,10 @@ Once the rebase is completed your new lesson is ready to be publieshed! From her
 >
 > Note that the new version is `0.1.0` since we are publishing a *modified* version of `0.0.1`
 
-- `git tag markdown@0.1.0`
+- `git update-ref refs/lessons/markdown@0.1.0 HEAD`
 - `git update-ref refs/markdown@0.1.0/step/{n} {commit}`
 - `git update-ref refs/markdown@0.1.0/assignment/{n} {commit}`
-- `git push origin refs/tags/markdown@0.1.0 refs/markdown@0.1.0/*`
+- `git push origin refs/lessons/markdown@0.1.0 refs/markdown@0.1.0/*`
 
 ## Studying
 
@@ -448,16 +478,17 @@ student@shell:~/$ cd mock/
 student@shell:~/mock$ 
 ```
 
-After this we can list the available lessons by using `git tag`:
+By default git won't fetch non-standard `refs` so we have to `git fetch` them ourselves:
 
-```shell
-student@shell:~/mock$ git tag
-markdown@0.0.0
-markdown@0.0.1
-markdown@0.1.0
+```
+student@shell:~/mock$ git fetch origin refs/lessons/*:refs/lessons/*
+From https://github.com/open-learning/mock
+ * [new ref]         refs/lessons/markdown@0.0.0 -> refs/lessons/markdown@0.0.0
+ * [new ref]         refs/lessons/markdown@0.0.1 -> refs/lessons/markdown@0.0.1
+ * [new ref]         refs/lessons/markdown@0.1.0 -> refs/lessons/markdown@0.1.0
 ```
 
-We want to learn some markdown and the latest version of the markdown lesson is `0.1.0` so we need to update our meta-information about the this lesson using `git fetch`:
+We want to learn some markdown and the latest version of the markdown lesson is `0.1.0` so we need to update our meta-information about the this lesson using `git fetch` again:
 
 ```shell
 student@shell:~/mock$ git fetch origin refs/markdown@0.1.0/*:refs/markdown@0.1.0/*
