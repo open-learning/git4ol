@@ -195,7 +195,7 @@ author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
 
 This let's us interactively choose what commits we need to edit. Change the word `pick` to `edit` on the commits that need editing and save:
 
-```
+```shell
 edit cf92883 Phrase Emphasis
 edit ae23fe0 Unordered  Lists
 edit c09b157 Ordered  Lists
@@ -328,7 +328,7 @@ author@shell:~/mock$ git rebase --interactive markdown@0.0.1/step/1
 
 This let's us interactively choose what commits we need to edit. We're going to add assignments as step 2 and 4, so let's edit the first two steps. Change the word `pick` to `edit` on the commits that need editing and save:
 
-```
+```shell
 edit 9da9f3c Paragraphs, Headers, Blockquotes
 edit 103eaea Phrase Emphasis
 pick 144a756 Unordered  Lists
@@ -480,7 +480,7 @@ student@shell:~/mock$
 
 By default git won't fetch non-standard `refs` so we have to `git fetch` them ourselves:
 
-```
+```shell
 student@shell:~/mock$ git fetch origin refs/lessons/*:refs/lessons/*
 From https://github.com/open-learning/mock
  * [new ref]         refs/lessons/markdown@0.0.0 -> refs/lessons/markdown@0.0.0
@@ -629,7 +629,46 @@ We want the last changes to be part of our assesment so let's add it to our comm
 student@shell:~/mock$ git add assignment/1.md 
 ```
 
-The assignment is now ready for "review". The review is initiated by senting a pull-request to whoever should review the assignment.
+The assignment is now ready for "review". The review is initiated by first making our changes available using `git push` and then sending a pull-request to whoever should review the assignment. Let's start by pushing our assignment branch:
+
+> **note**
+>
+> We've used the existing repository at `https://github.com/open-learning/mock.git` in this example, substitute with your own.
+
+```shell
+student@shell:~/mock$ git push origin markdown@0.1.0/assignment/1#first-attempt
+Counting objects: 12, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (9/9), 900 bytes | 0 bytes/s, done.
+Total 9 (delta 0), reused 0 (delta 0)
+To https://github.com/open-learning/mock.git
+ * [new branch]      markdown@0.1.0/assignment/1#first-attempt -> markdown@0.1.0/assignment/1#first-attempt
+```
+
+How pull-requests are managed will differ from teacher to teacher. In this example we're going to go old-school and use `git request-pull` to generate a pull-request that can later be sent to the teacher in whatever way they want it.
+
+```shell
+student@shell:~/mock$ git request-pull HEAD https://github.com/open-learning/mock.git markdown@0.1.0/assignment/1
+The following changes since commit 5947ce87b20c0af4a6e3f4cb6611e8a15bda2ae3:
+
+  Your first assignment (2015-04-20 11:19:58 +0800)
+
+are available in the git repository at:
+
+  https://github.com/open-learning/mock.git 
+
+for you to fetch changes up to 21e4911cc4599604fa8607c651a016f09faf6867:
+
+  Update 1.md (2015-04-21 12:05:35 +0800)
+
+----------------------------------------------------------------
+student (1):
+      Update 1.md
+
+ assignment/1.md | 3 +++
+ 1 file changed, 3 insertions(+)
+```
 
 ### Advertisement
 
