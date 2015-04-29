@@ -633,17 +633,15 @@ Now all we have to do is to commit our changes using `git commit`:
 
 ```shell
 student@shell:~/mock$ git commit --message="Update 1.md"
-[detached HEAD 21e4911] Update 1.md
- Date: Tue Apr 21 12:05:35 2015 +0800
- 1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 assignment/1.md
+[markdown@0.1.0/assignment/1#first-attempt 21e4911] Update 1.md
+ 1 file changed, 3 insertions(+)
 ```
 
-The assignment is now ready for "review". The review is initiated by first making our changes available using `git push` and then sending a pull-request to whoever should review the assignment. Let's start by pushing our assignment branch with `git push` :
+The assignment is now ready for "review" but before that can start we have to make our changes available to the world by pushing our assignment branch with `git push` :
 
 > **note**
 >
-> We've used the repository url `https://github.com/open-learning/mock.git` in this example, substitute with your own.
+> We've used the repository url `https://github.com/open-learning/mock.git` in these examples, substitute with your own.
 
 ```shell
 student@shell:~/mock$ git push origin markdown@0.1.0/assignment/1#first-attempt
