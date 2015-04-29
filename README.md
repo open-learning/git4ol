@@ -8,7 +8,7 @@ The `open-learning` specification specifies conventions for manipulating git obj
 
 ## Introduction
 
-The document is more or less stuctured ao to to guide the reader through the actions taken by the different actors from when an author creates his initial work to when a teacher certifies a student assignment. We've chosen this format to lower the barrier of entry to anyone who understand basic `git` commands.
+The document is more or less stuctured as to guide the reader through the actions taken by the different actors from when an author creates his initial work to when a teacher certifies a student assignment. We've chosen this format to lower the barrier of entry to anyone who understand basic `git` commands.
 
 ## Actors
 
