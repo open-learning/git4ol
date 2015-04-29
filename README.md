@@ -20,7 +20,7 @@ These are the basic actors and a quick summary of what their main functions are:
 
 ## Learning objects
 
-Learning obects can conceptually be mapped to `git` objects in the following:
+Learning obects can conceptually be mapped to `git` objects in the following way:
 
 > **note**
 >
