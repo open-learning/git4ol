@@ -2,8 +2,6 @@
 
 The `open-learning` specification specifies conventions for manipulating git objects for the purpose of open learning.
 
-This document is a work in progress so please exuse the mess.
-
 > **note**
 >
 > As we have not yet made our first publich draft available you can expect breaking changes all the time, don't be angry.
@@ -14,7 +12,7 @@ The document is more or less stuctured ao to to guide the reader through the act
 
 ## Actors
 
-These are the basic actors in the open-learning work-flow:
+These are the basic actors and a quick summary of what their main functions are:
 
 - `author`: Creates learning material
 - `student`: Studies learning material and submits assignments for revuew
@@ -22,7 +20,7 @@ These are the basic actors in the open-learning work-flow:
 
 ## Learning objects
 
-Basic learning obects are easily mapped to `git` objects as such:
+Learning obects can conceptually be mapped to `git` objects in the following:
 
 > **note**
 >
