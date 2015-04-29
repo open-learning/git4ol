@@ -14,7 +14,7 @@ The document is more or less stuctured as to guide the reader through the action
 
 These are the basic actors and a quick summary of what their main functions are:
 
-- `author`: Creates learning materials
+- `author`: Creates learning materials and instuctions
 - `student`: Studies learning materials and submits assignments for review
 - `teacher`: Reviews student assignments and certifies them if passed
 
