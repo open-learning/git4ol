@@ -2,26 +2,40 @@
 
 The `open-learning` specification specifies conventions for manipulating git objects for the purpose of open learning.
 
-## Roles
+This document is a work in progress so please exuse the mess.
 
-- Author
-- Student
-- Teacher
+> **note**
+>
+> As we have not yet made our first publich draft available you can expect breaking changes all the time, don't be angry.
+
+## Introduction
+
+The document is more or less stuctured ao to to guide the reader through the actions taken by the different actors from when an author creates his initial work to when a teacher certifies a student assignment. We've chosen this format to lower the barrier of entry to anyone who understand basic `git` commands.
+
+## Actors
+
+These are the basic actors in the open-learning work-flow:
+
+- `author`: Creates learning material
+- `student`: Studies learning material and submits assignments for revuew
+- `teacher`: Reviews student assignment submissions and certifies them if passed
 
 ## Learning objects
+
+Basic learning obects are easily mapped to `git` objects as such:
 
 > **note**
 >
 > - Steps can be of (multiple) arbitary type(s) ex: `assigmnet`
 > - The format of instructions is not covered in this spec (but the [`mock`](https://github.com/open-learning/mock) repository uses markdown)
 
-- "course" ⇔ git repository
-- "lesson" ⇔ git orphaned branch
-- "step" ⇔ git commit
-  - "materials" ⇔ git commit contents
-  - "instructions" ⇔ git commit message
+- "course" ⇔ `git` repository
+- "lesson" ⇔ `git` orphaned branch
+- "step" ⇔ `git` commit
+  - "materials" ⇔ `git` commit contents
+  - "instructions" ⇔ `git` commit message
 
-Learning objects are managed with git refs:
+Learning objects are managed with `git` refs:
 
 - Lessons are located using refs of the format `refs/lessons/{lesson}@{version}` where
   - `lesson` is the name of the lesson
@@ -39,11 +53,11 @@ Learning objects are managed with git refs:
 
 ## Authoring
 
-> **role: author**
+> **actor: author**
 >
 > This part of the spec assumes the actor is an ***author***
 
-Creating lessons is as basic as adding commits to a branch. It's mostly when we need to modify a lesson it gets a little bit more complicated.
+Creating a lesson is as basic as adding commits to a branch. It's mostly when we need to modify one that it can get a little bit more complicated.
 
 ### Creating a lesson
 
@@ -455,7 +469,7 @@ Once the rebase is completed your new lesson is ready to be publieshed! From her
 
 ## Studying
 
-> **role: student**
+> **actor: student**
 >
 > This part of the spec assumes the actor is a ***student***
 
@@ -680,7 +694,7 @@ student (1):
 
 ### Advertisement
 
-> **role: teacher**
+> **actor: teacher**
 >
 > This part of the spec assumes the actor is a ***teacher***
 
