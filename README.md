@@ -739,7 +739,7 @@ A "certificate" is `git` commit containing a [Mozilla open badge assertion](http
 
 For the purpose of this document we're going to generate our certificate using the [Mozilla badge lab](http://badgelab.herokuapp.com/) but in a production environment the acrediting organization should probably host an instance of the [Mozilla badge kit](https://github.com/mozilla/openbadges-badgekit).
 
-> ** note**
+> **note**
 >
 > This document won't cover the details of creating assertions. Actually, this whole section is sort of experimental as we're still researching this.
 >
