@@ -670,7 +670,7 @@ To https://github.com/open-learning/mock.git
 
 Assignment submissions are handled using git pull-requests from the student's assignment branch to the teacher's review branch.
 
-How pull-requests are managed will differ from teacher to teacher. In this example we're going to go old-school and use `git request-pull` to generate a pull-request that can later be sent to the teacher in whatever way they want it.
+How the pull-request workflow looks will differ from teacher to teacher. In this example we're simply going to go bare-bones-old-school and use `git request-pull` to generate a pull-request text that can be used as a starting point for whatever flavour of workflow.
 
 ```shell
 student@shell:~/mock$ git request-pull HEAD https://github.com/open-learning/mock.git markdown@0.1.0/assignment/1
@@ -723,6 +723,25 @@ To https://github.com/open-learning/mock.git
 
 ### Review
 
-## Certification
+> **note**
+>
+> The whole review workflow is based on the `git` pull-request model but adjusted to of whatever flavour and toolset the teacher may favour and as such is not defined in this specification.
 
-A "certificate" is git commit containing a [mozilla open badge assertion](https://github.com/mozilla/openbadges-specification/blob/master/Assertion/latest.md) with evidence pointing to the original "assignment" commit.
+There are a bunch of tools and workflows out there to choose from for doing reviews:
+
+- Plain old [email](http://git-scm.com/book/en/v2/Git-Commands-Email) (this is how `git` itself is maintained)
+- GitHub [pull-requests](https://help.github.com/articles/using-pull-requests/)
+- [Gerrit](http://code.google.com/p/gerrit/) is probably a bit more than you are looking for, but there's [a lot of organizations that rely on it](https://code.google.com/p/gerrit/wiki/ShowCases)
+
+### Certification
+
+A "certificate" is `git` commit containing a [Mozilla open badge assertion](https://github.com/mozilla/openbadges-specification/blob/master/Assertion/latest.md) with evidence pointing to the original "assignment" commit.
+
+For the purpose of this document we're going to generate our certificate using the [Mozilla badge lab](http://badgelab.herokuapp.com/) but in a production environment the acrediting organization should probably host an instance of the [Mozilla badge kit](https://github.com/mozilla/openbadges-badgekit).
+
+> ** note**
+>
+> This document won't cover the details of creating assertions. Actually, this whole section is sort of experimental as we're still researching this.
+>
+> Asume we've correctly generated our assertion JSON by now and are ready to use it.
+
