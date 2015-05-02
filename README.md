@@ -747,4 +747,30 @@ For the purpose of this document we've generated our certificate using the [Mozi
 >
 > This document won't cover the details of creating assertions. Asume we've correctly generated our assertion JSON by now and are ready to use it.
 
-Before we can issue a certificate we have to have a local copy of the student's branch available. We can do this either by cloning the students repository and checking
+Before we can issue a certificate we have to have a local copy of the student's branch available. Assuming we already have a local clone of the [mock](https://github.com/open-learning/mock/) repository all we have to do is to `git remote add` the student repository, `git fetch` their branches and `git checkout` the assignment branch:
+
+> **note**
+>
+> We've used the repository url `https://github.com/open-learning/mock.git` in these examples, substitute with your own.
+
+```shell
+teacher@shell:~/mock$ git remote add student https://github.com/open-learning/mock.git
+
+teacher@shell:~/mock$ git fetch student
+
+teacher@shell:~/mock$ git checkout markdown@0.1.0/assignment/1#first-attempt
+```
+
+Now that we have a working copy of the students assignment we want to copy the certificate file to to the branch, `git add` it and `git commit`:
+
+> **note**
+>
+> In this example we've already generated and stored our certificate at `~/certificate.json`.
+
+```shell
+teacher@shell:~/mock$ cp ~/certificate.json assignment/1.json
+
+teacher@shell:~/mock$ git add assignment/1.json
+
+teacher@shell:~/mock$ git commit -m "Added certification"
+```
