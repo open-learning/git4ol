@@ -733,15 +733,18 @@ There are a bunch of tools and workflows out there to choose from for doing revi
 - GitHub [pull-requests](https://help.github.com/articles/using-pull-requests/)
 - [Gerrit](http://code.google.com/p/gerrit/) is probably a bit more than you are looking for, but there's [a lot of organizations that rely on it](https://code.google.com/p/gerrit/wiki/ShowCases)
 
+Each workflow has their own advantages and disadvantages but in the end of the day we end up with a branch in the students repository with a reviewed solution to an assignment.
+
+Normally a reviewed pull-request results in the reviewer accepting the changes and merging them into the targeted branch, but in this case we're not looking to review and merge, but to review and certify.
+
 ### Certification
 
 A "certificate" is `git` commit containing a [Mozilla open badge assertion](https://github.com/mozilla/openbadges-specification/blob/master/Assertion/latest.md) with evidence pointing to the original "assignment" commit.
 
-For the purpose of this document we're going to generate our certificate using the [Mozilla badge lab](http://badgelab.herokuapp.com/) but in a production environment the acrediting organization should probably host an instance of the [Mozilla badge kit](https://github.com/mozilla/openbadges-badgekit).
+For the purpose of this document we've generated our certificate using the [Mozilla badge lab](http://badgelab.herokuapp.com/) but in a production environment the acrediting organization should probably host an instance of the [Mozilla badge kit](https://github.com/mozilla/openbadges-badgekit) and use that to issue certificates.
 
 > **note**
 >
 > This document won't cover the details of creating assertions. Actually, this whole section is sort of experimental as we're still researching this.
 >
 > Asume we've correctly generated our assertion JSON by now and are ready to use it.
-
