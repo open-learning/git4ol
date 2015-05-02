@@ -8,23 +8,23 @@ The `open-learning` specification specifies conventions for manipulating `git` o
 
 ## Introduction
 
-The document is more or less stuctured as to guide the reader through the actions taken by the different actors from when an author creates his initial work to when a teacher certifies a student assignment. We've chosen this format to lower the barrier of entry to anyone who understand basic `git` commands.
+The document is more or less structured as to guide the reader through the actions taken by the different actors from when an author creates his initial work to when a teacher certifies a student assignment. We've chosen this format to lower the barrier of entry to anyone who understand basic `git` commands.
 
 ## Actors
 
 These are the basic actors and a quick summary of what their main functions are:
 
-- `author`: Creates learning materials and instuctions
+- `author`: Creates learning materials and instructions
 - `student`: Studies learning materials and submits assignments for review
 - `teacher`: Reviews student assignments and certifies them if passed
 
 ## Learning objects
 
-Learning obects can conceptually be mapped to `git` objects in the following way:
+Learning objects can conceptually be mapped to `git` objects in the following way:
 
 > **note**
 >
-> - Steps can be of (multiple) arbitary type(s) ex: `assigmnet`
+> - Steps can be of (multiple) arbitrary type(s) ex: `assignment`
 > - The format of instructions is not covered in this spec (but the [`mock`](https://github.com/open-learning/mock) repository uses markdown)
 
 - "course" ⇔ `git` repository
@@ -59,7 +59,7 @@ Creating a lesson is as basic as adding commits to a branch. It's mostly when we
 
 ### Creating a lesson
 
-To create the initial version of a lesson we need to first create a new directory and initalize an empty respository:
+To create the initial version of a lesson we need to first create a new directory and initialize an empty repository:
 
 ```shell
 author@shell:~/$ mkdir mock
@@ -302,7 +302,7 @@ author@shell:~/mock$ git rebase --continue
 Successfully rebased and updated detached HEAD.
 ```
 
-Once the rebase is completed your new lesson is ready to be publieshed! From here it's the same as when authoring a new lesson:
+Once the rebase is completed your new lesson is ready to be published! From here it's the same as when authoring a new lesson:
 
 > **note**
 >
@@ -454,7 +454,7 @@ author@shell:~/mock$ git rebase --continue
 Successfully rebased and updated detached HEAD.
 ```
 
-Once the rebase is completed your new lesson is ready to be publieshed! From here it's the same as when authoring a new lesson but with one important addition - adding `assignment` refs:
+Once the rebase is completed your new lesson is ready to be published! From here it's the same as when authoring a new lesson but with one important addition - adding `assignment` refs:
 
 > **note**
 >
@@ -471,7 +471,7 @@ Once the rebase is completed your new lesson is ready to be publieshed! From her
 >
 > This part of the spec assumes the actor is a ***student***
 
-Depending on the lesson studying can be done either entierly by the student alone (in the case of self assesed or machine assesed assigments) or together with someone as in the case of teacher or peer assesed assignments.
+Depending on the lesson studying can be done either entirely by the student alone (in the case of self assessed or machine assessed assignments) or together with someone as in the case of teacher or peer assessed assignments.
 
 ### Initialization
 
@@ -729,9 +729,9 @@ To https://github.com/open-learning/mock.git
 
 There are a bunch of tools and workflows out there to choose from for doing reviews:
 
-- Plain old [email](http://git-scm.com/book/en/v2/Git-Commands-Email) (this is how `git` itself is maintained)
-- GitHub [pull-requests](https://help.github.com/articles/using-pull-requests/)
-- [Gerrit](http://code.google.com/p/gerrit/) is probably a bit more than you are looking for, but there's [a lot of organizations that rely on it](https://code.google.com/p/gerrit/wiki/ShowCases)
+- Plain old [email](http://git-scm.com/book/en/v2/Git-Commands-Email) is the most basic and only reqires access to a mail account (this is how `git` itself is maintained)
+- GitHub [pull-requests](https://help.github.com/articles/using-pull-requests/) are great for public submissions and reviews and is probably your best option to get started quickly
+- [Gerrit](http://code.google.com/p/gerrit/) is probably a bit more than you are looking for, but there's [a lot of organizations](https://code.google.com/p/gerrit/wiki/ShowCases) (like google) that use it on an enterprise level
 
 Each workflow has their own advantages and disadvantages but in the end of the day we end up with a branch in the students repository with a reviewed solution to an assignment.
 
@@ -745,6 +745,6 @@ For the purpose of this document we've generated our certificate using the [Mozi
 
 > **note**
 >
-> This document won't cover the details of creating assertions. Actually, this whole section is sort of experimental as we're still researching this.
->
-> Asume we've correctly generated our assertion JSON by now and are ready to use it.
+> This document won't cover the details of creating assertions. Asume we've correctly generated our assertion JSON by now and are ready to use it.
+
+Before we can issue a certificate we have to have a local copy of the student's branch available. We can do this either by cloning the students repository and checking
