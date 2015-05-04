@@ -8,15 +8,93 @@ The `open-learning` specification specifies conventions for manipulating `git` o
 
 ## Introduction
 
-The document is more or less structured as to guide the reader through the actions taken by the different actors from when an author creates his initial work to when a teacher certifies a student assignment. We've chosen this format to lower the barrier of entry to anyone who understand basic `git` commands.
+The document is written as a guide through the various actions taken by our actors from the beginning when an author creates his initial work to when a teacher certifies a submitted student assignment.
+
+We've chosen this format for two reasons:
+
+- To lower the technical barrier of entry to anyone who understand basic `git` commands
+- To provide a step-by-step guide that encompasses all of the core features of the spec  
+
+## Prerequisite
+
+Before continuing we should go over some basic `git` commands. First let's decide if we're starting from scratch or a clone.
+
+If you are starting from scratch you'll have to initialize a new repository using `git init`:
+
+```shell
+user@shell:~/$ git init mock
+Initialized empty Git repository in /home/user/mock/.git/
+user@shell:~/$ cd mock
+```
+
+If we're starting from an existing repository we need clone it using `git clone`:
+
+> **note**
+>
+> We've used the repository url `https://github.com/open-learning/mock.git` in these examples, substitute with your own.
+
+```shell
+user@shell:~/$ git clone https://github.com/open-learning/mock.git
+Cloning into 'mock'...
+remote: Counting objects: 132, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 132 (delta 0), reused 0 (delta 0), pack-reused 129
+Receiving objects: 100% (132/132), 14.31 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (48/48), done.
+Checking connectivity... done
+user@shell:~/$ cd mock/
+user@shell:~/mock$ 
+```
+
+By default git won't fetch non-standard `refs` so we have to `git fetch` them ourselves. First let's fetch the lesson refs:
+
+```shell
+user@shell:~/mock$ git fetch origin refs/lessons/*:refs/lessons/*
+From https://github.com/open-learning/mock
+ * [new ref]         refs/lessons/markdown@0.0.0 -> refs/lessons/markdown@0.0.0
+ * [new ref]         refs/lessons/markdown@0.0.1 -> refs/lessons/markdown@0.0.1
+ * [new ref]         refs/lessons/markdown@0.1.0 -> refs/lessons/markdown@0.1.0
+```
+
+After this individual lesson refs can be from `lesson@version/*` like so:
+
+```shell
+user@shell:~/mock$ git fetch origin refs/markdown@0.1.0/*:refs/markdown@0.1.0/*
+From https://github.com/open-learning/mock
+ * [new ref]         refs/markdown@0.1.0/assignment/1 -> refs/markdown@0.1.0/assignment/1
+ * [new ref]         refs/markdown@0.1.0/assignment/2 -> refs/markdown@0.1.0/assignment/2
+ * [new ref]         refs/markdown@0.1.0/step/1 -> refs/markdown@0.1.0/step/1
+ * [new ref]         refs/markdown@0.1.0/step/10 -> refs/markdown@0.1.0/step/10
+ * [new ref]         refs/markdown@0.1.0/step/11 -> refs/markdown@0.1.0/step/11
+ * [new ref]         refs/markdown@0.1.0/step/12 -> refs/markdown@0.1.0/step/12
+ * [new ref]         refs/markdown@0.1.0/step/13 -> refs/markdown@0.1.0/step/13
+ * [new ref]         refs/markdown@0.1.0/step/14 -> refs/markdown@0.1.0/step/14
+ * [new ref]         refs/markdown@0.1.0/step/15 -> refs/markdown@0.1.0/step/15
+ * [new ref]         refs/markdown@0.1.0/step/16 -> refs/markdown@0.1.0/step/16
+ * [new ref]         refs/markdown@0.1.0/step/2 -> refs/markdown@0.1.0/step/2
+ * [new ref]         refs/markdown@0.1.0/step/3 -> refs/markdown@0.1.0/step/3
+ * [new ref]         refs/markdown@0.1.0/step/4 -> refs/markdown@0.1.0/step/4
+ * [new ref]         refs/markdown@0.1.0/step/5 -> refs/markdown@0.1.0/step/5
+ * [new ref]         refs/markdown@0.1.0/step/6 -> refs/markdown@0.1.0/step/6
+ * [new ref]         refs/markdown@0.1.0/step/7 -> refs/markdown@0.1.0/step/7
+ * [new ref]         refs/markdown@0.1.0/step/8 -> refs/markdown@0.1.0/step/8
+ * [new ref]         refs/markdown@0.1.0/step/9 -> refs/markdown@0.1.0/step/9
+```
 
 ## Actors
 
-These are the basic actors and a quick summary of what their main functions are:
+These are the actors and a quick summary of what their main functions are:
 
 - `author`: Creates learning materials and instructions
 - `student`: Studies learning materials and submits assignments for review
 - `teacher`: Reviews student assignments and certifies them if passed
+
+> **note**
+>
+> Later in the document you'll be able to see what role a command is issued as by either tracking backwards and checking what the last **actor** note was or simply check the format of the prompt:
+> ```shell
+> **student**@shell:...
+>```
 
 ## Learning objects
 
@@ -472,58 +550,6 @@ Once the rebase is completed your new lesson is ready to be published! From here
 > This part of the spec assumes the actor is a ***student***
 
 Depending on the lesson studying can be done either entirely by the student alone (in the case of self assessed or machine assessed assignments) or together with someone as in the case of teacher or peer assessed assignments.
-
-### Initialization
-
-Before we can study we have to set up and initialize some infrastructure. Let's start by cloning the [`mock`](https://github.com/open-learning/mock/) repository using `git clone`:
-
-```shell
-student@shell:~/$ git clone https://github.com/open-learning/mock.git
-Cloning into 'mock'...
-remote: Counting objects: 132, done.
-remote: Compressing objects: 100% (2/2), done.
-remote: Total 132 (delta 0), reused 0 (delta 0), pack-reused 129
-Receiving objects: 100% (132/132), 14.31 KiB | 0 bytes/s, done.
-Resolving deltas: 100% (48/48), done.
-Checking connectivity... done
-student@shell:~/$ cd mock/
-student@shell:~/mock$ 
-```
-
-By default git won't fetch non-standard `refs` so we have to `git fetch` them ourselves:
-
-```shell
-student@shell:~/mock$ git fetch origin refs/lessons/*:refs/lessons/*
-From https://github.com/open-learning/mock
- * [new ref]         refs/lessons/markdown@0.0.0 -> refs/lessons/markdown@0.0.0
- * [new ref]         refs/lessons/markdown@0.0.1 -> refs/lessons/markdown@0.0.1
- * [new ref]         refs/lessons/markdown@0.1.0 -> refs/lessons/markdown@0.1.0
-```
-
-We want to learn some markdown and the latest version of the markdown lesson is `0.1.0` so we need to update our meta-information about the this lesson using `git fetch` again:
-
-```shell
-student@shell:~/mock$ git fetch origin refs/markdown@0.1.0/*:refs/markdown@0.1.0/*
-From https://github.com/open-learning/mock
- * [new ref]         refs/markdown@0.1.0/assignment/1 -> refs/markdown@0.1.0/assignment/1
- * [new ref]         refs/markdown@0.1.0/assignment/2 -> refs/markdown@0.1.0/assignment/2
- * [new ref]         refs/markdown@0.1.0/step/1 -> refs/markdown@0.1.0/step/1
- * [new ref]         refs/markdown@0.1.0/step/10 -> refs/markdown@0.1.0/step/10
- * [new ref]         refs/markdown@0.1.0/step/11 -> refs/markdown@0.1.0/step/11
- * [new ref]         refs/markdown@0.1.0/step/12 -> refs/markdown@0.1.0/step/12
- * [new ref]         refs/markdown@0.1.0/step/13 -> refs/markdown@0.1.0/step/13
- * [new ref]         refs/markdown@0.1.0/step/14 -> refs/markdown@0.1.0/step/14
- * [new ref]         refs/markdown@0.1.0/step/15 -> refs/markdown@0.1.0/step/15
- * [new ref]         refs/markdown@0.1.0/step/16 -> refs/markdown@0.1.0/step/16
- * [new ref]         refs/markdown@0.1.0/step/2 -> refs/markdown@0.1.0/step/2
- * [new ref]         refs/markdown@0.1.0/step/3 -> refs/markdown@0.1.0/step/3
- * [new ref]         refs/markdown@0.1.0/step/4 -> refs/markdown@0.1.0/step/4
- * [new ref]         refs/markdown@0.1.0/step/5 -> refs/markdown@0.1.0/step/5
- * [new ref]         refs/markdown@0.1.0/step/6 -> refs/markdown@0.1.0/step/6
- * [new ref]         refs/markdown@0.1.0/step/7 -> refs/markdown@0.1.0/step/7
- * [new ref]         refs/markdown@0.1.0/step/8 -> refs/markdown@0.1.0/step/8
- * [new ref]         refs/markdown@0.1.0/step/9 -> refs/markdown@0.1.0/step/9
-```
 
 ### Stepping
 
