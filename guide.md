@@ -1,6 +1,6 @@
-# Open Learning specification
+# Open Learning guide
 
-The `open-learning` specification specifies conventions for manipulating `git` objects for the purpose of open and distributed learning.
+> `git` for `open-learning` specifies conventions for manipulating `git` objects for the purpose of open and distributed learning.
 
 > **note**
 >
