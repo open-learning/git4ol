@@ -66,7 +66,6 @@ user@shell:~/mock$ git fetch origin refs/lessons/*:refs/lessons/*
 From https://github.com/open-learning/mock
  * [new ref]         refs/lessons/markdown@0.0.0 -> refs/lessons/markdown@0.0.0
  * [new ref]         refs/lessons/markdown@0.0.1 -> refs/lessons/markdown@0.0.1
- * [new ref]         refs/lessons/markdown@0.1.0 -> refs/lessons/markdown@0.1.0
 ```
 
 If you want to list lesson refs you can use `git for-each-ref` to do that:
@@ -75,55 +74,47 @@ If you want to list lesson refs you can use `git for-each-ref` to do that:
 user@shell:~/mock$ git for-each-ref refs/lessons/*
 2a4396cad8752cfb315ab1d0443e96f12f7306af commit	refs/lessons/markdown@0.0.0
 d6c00f1c5e9cc4ab08dd1b30b71e00d233418a5c commit	refs/lessons/markdown@0.0.1
-101396127f656f716e0053064f64eff7d2df1ab9 commit	refs/lessons/markdown@0.1.0
 ```
 
 Individual lesson refs can be fetched from `refs/lesson@version/*` like so:
 
 ```shell
-user@shell:~/mock$ git fetch origin refs/markdown@0.1.0/*:refs/markdown@0.1.0/*
+user@shell:~/mock$ git fetch origin refs/markdown@0.0.1/*:refs/markdown@0.0.1/*
 From https://github.com/open-learning/mock
- * [new ref]         refs/markdown@0.1.0/assignment/1 -> refs/markdown@0.1.0/assignment/1
- * [new ref]         refs/markdown@0.1.0/assignment/2 -> refs/markdown@0.1.0/assignment/2
- * [new ref]         refs/markdown@0.1.0/step/1 -> refs/markdown@0.1.0/step/1
- * [new ref]         refs/markdown@0.1.0/step/10 -> refs/markdown@0.1.0/step/10
- * [new ref]         refs/markdown@0.1.0/step/11 -> refs/markdown@0.1.0/step/11
- * [new ref]         refs/markdown@0.1.0/step/12 -> refs/markdown@0.1.0/step/12
- * [new ref]         refs/markdown@0.1.0/step/13 -> refs/markdown@0.1.0/step/13
- * [new ref]         refs/markdown@0.1.0/step/14 -> refs/markdown@0.1.0/step/14
- * [new ref]         refs/markdown@0.1.0/step/15 -> refs/markdown@0.1.0/step/15
- * [new ref]         refs/markdown@0.1.0/step/16 -> refs/markdown@0.1.0/step/16
- * [new ref]         refs/markdown@0.1.0/step/2 -> refs/markdown@0.1.0/step/2
- * [new ref]         refs/markdown@0.1.0/step/3 -> refs/markdown@0.1.0/step/3
- * [new ref]         refs/markdown@0.1.0/step/4 -> refs/markdown@0.1.0/step/4
- * [new ref]         refs/markdown@0.1.0/step/5 -> refs/markdown@0.1.0/step/5
- * [new ref]         refs/markdown@0.1.0/step/6 -> refs/markdown@0.1.0/step/6
- * [new ref]         refs/markdown@0.1.0/step/7 -> refs/markdown@0.1.0/step/7
- * [new ref]         refs/markdown@0.1.0/step/8 -> refs/markdown@0.1.0/step/8
- * [new ref]         refs/markdown@0.1.0/step/9 -> refs/markdown@0.1.0/step/9
+ * [new ref]         refs/markdown@0.0.1/assignment/1 -> refs/markdown@0.0.1/assignment/1
+ * [new ref]         refs/markdown@0.0.1/step/1 -> refs/markdown@0.0.1/step/1
+ * [new ref]         refs/markdown@0.0.1/step/10 -> refs/markdown@0.0.1/step/10
+ * [new ref]         refs/markdown@0.0.1/step/11 -> refs/markdown@0.0.1/step/11
+ * [new ref]         refs/markdown@0.0.1/step/12 -> refs/markdown@0.0.1/step/12
+ * [new ref]         refs/markdown@0.0.1/step/13 -> refs/markdown@0.0.1/step/13
+ * [new ref]         refs/markdown@0.0.1/step/2 -> refs/markdown@0.0.1/step/2
+ * [new ref]         refs/markdown@0.0.1/step/3 -> refs/markdown@0.0.1/step/3
+ * [new ref]         refs/markdown@0.0.1/step/4 -> refs/markdown@0.0.1/step/4
+ * [new ref]         refs/markdown@0.0.1/step/5 -> refs/markdown@0.0.1/step/5
+ * [new ref]         refs/markdown@0.0.1/step/6 -> refs/markdown@0.0.1/step/6
+ * [new ref]         refs/markdown@0.0.1/step/7 -> refs/markdown@0.0.1/step/7
+ * [new ref]         refs/markdown@0.0.1/step/8 -> refs/markdown@0.0.1/step/8
+ * [new ref]         refs/markdown@0.0.1/step/9 -> refs/markdown@0.0.1/step/9
 ```
 
 And can be listed like so:
 
 ```shell
-user@shell:~/mock$ git for-each-ref refs/markdown@0.1.0/**
-5947ce87b20c0af4a6e3f4cb6611e8a15bda2ae3 commit	refs/markdown@0.1.0/assignment/1
-12ef61efaa0a4dabb0698591e68bc9e65ef09162 commit	refs/markdown@0.1.0/assignment/2
-e19c2e60b471dc271c0092a1ab750a3daadb0585 commit	refs/markdown@0.1.0/step/1
-807c28b687c226d9b052f390741ae32a502fd19b commit	refs/markdown@0.1.0/step/10
-f3d15e397b138fe0d24d0cf61a7c86834f47b967 commit	refs/markdown@0.1.0/step/11
-3b545d0d21bffe4b22f9cfa5a804cedc39120285 commit	refs/markdown@0.1.0/step/12
-52fc27e319d2de8fba907a5749df3ded37e9e14c commit	refs/markdown@0.1.0/step/13
-e67f7ba37f390f5d88aab92f73a8f628156a6d64 commit	refs/markdown@0.1.0/step/14
-101396127f656f716e0053064f64eff7d2df1ab9 commit	refs/markdown@0.1.0/step/15
-9da9f3c15a7dc0413a74308e44823d5ce6772b18 commit	refs/markdown@0.1.0/step/2
-5947ce87b20c0af4a6e3f4cb6611e8a15bda2ae3 commit	refs/markdown@0.1.0/step/3
-2de7fbf85d98638a5140e9dbb4e69673da937e9c commit	refs/markdown@0.1.0/step/4
-12ef61efaa0a4dabb0698591e68bc9e65ef09162 commit	refs/markdown@0.1.0/step/5
-b0a0a64feb7b12ec88e7b1243f6829302d6472c6 commit	refs/markdown@0.1.0/step/6
-39cf2de0d0838a621425f2bc75fe8eb7160e6b9c commit	refs/markdown@0.1.0/step/7
-40ee4ea32c973b119c500329c51a5c874635f396 commit	refs/markdown@0.1.0/step/8
-3eb4acb36843535891e2e625fde258cc5331e2c1 commit	refs/markdown@0.1.0/step/9
+user@shell:~/mock$ git for-each-ref refs/markdown@0.0.1/**/*
+5ab1c7ef10bb12fb35671fe8fbacf95671759f3b commit	refs/markdown@0.0.1/assignment/1
+e19c2e60b471dc271c0092a1ab750a3daadb0585 commit	refs/markdown@0.0.1/step/1
+9bdab965b2f2676459245eab8d9caf51a534e250 commit	refs/markdown@0.0.1/step/10
+5249e88d7ca8d60fae8bce5d1ff5b79df3e486b3 commit	refs/markdown@0.0.1/step/11
+e57dec6a0827f9ec13c88f064c59c4b7528dc879 commit	refs/markdown@0.0.1/step/12
+d6c00f1c5e9cc4ab08dd1b30b71e00d233418a5c commit	refs/markdown@0.0.1/step/13
+9da9f3c15a7dc0413a74308e44823d5ce6772b18 commit	refs/markdown@0.0.1/step/2
+103eaeabcf01e59bc937eebe1180433360bb54d5 commit	refs/markdown@0.0.1/step/3
+144a7565cd2b0a4f992295659e77607a46a3ecb8 commit	refs/markdown@0.0.1/step/4
+5727a517cd85408c589e2953e5c00888775d973f commit	refs/markdown@0.0.1/step/5
+b37244c1cd11e62693d247ff09c66fe107829a20 commit	refs/markdown@0.0.1/step/6
+4e3bf8e84c4e9a2c492a9864badeb3561cce998e commit	refs/markdown@0.0.1/step/7
+5d5faf3f55269d1c1c6cae0303441cb15b78907f commit	refs/markdown@0.0.1/step/8
+977287260218c5cff6cebb8e3c5030c0e0a85a57 commit	refs/markdown@0.0.1/step/9
 ```
 
 ## Actors
@@ -148,12 +139,12 @@ Learning objects can conceptually be mapped to `git` objects in the following wa
 
 > **note**
 >
-> - Steps can be of (multiple) arbitrary type(s) ex: `assignment`
+> - `git` commits can be of arbitrary type ex: `step` or `assignment`
 > - The format of instructions is not covered in this spec (but the [`mock`](https://github.com/open-learning/mock) repository uses markdown)
 
 - "course" ⇔ `git` repository
 - "lesson" ⇔ `git` orphaned branch
-- "step" ⇔ `git` commit
+- "step" and "assignment" ⇔ `git` commit
   - "materials" ⇔ `git` commit contents
   - "instructions" ⇔ `git` commit message
 
@@ -295,9 +286,9 @@ The last thing to do is to make all of this available to the world:
 author@shell:~/mock$ git push origin refs/lessons/markdown@0.0.0 refs/markdown@0.0.0/*
 ```
 
-### Fixing a lesson
+### Updating a lesson
 
-When fixing a lesson we start by checking out the ref of the lesson we're about to fix into a detached `HEAD`:
+When updating a lesson we start by checking out the ref of the lesson we're about to update into a detached `HEAD`:
 
 ```shell
 author@shell:~/mock$ git checkout --detach lessons/markdown@0.0.0
@@ -430,19 +421,19 @@ Once the rebase is completed your new lesson is ready to be published! From here
 
 > **note**
 >
-> Note that the new version is `0.0.1` since we are publishing a *fix* version of `0.0.0`
+> Note that the new version is `0.0.1` since we are publishing an *updated* version of `0.0.0`
 
 - `git update-ref refs/lessons/markdown@0.0.1 HEAD`
 - `git update-ref refs/markdown@0.0.1/step/{n} {commit}`
 - `git push origin refs/lessons/markdown@0.0.1 refs/markdown@0.0.1/*`
 
-### Updating a lesson
+### Adding assignments
 
-When updating a lesson we start by checking out the ref of the lesson we're about to update into a detached `HEAD`:
+When adding assignments we start by checking out the ref of the step we're about to add an assignment for into a detached `HEAD`:
 
 ```shell
-author@shell:~/mock$ git checkout --detach lessons/markdown@0.0.1 
-Note: checking out 'lessons/markdown@0.0.1'.
+author@shell:~/mock$ git checkout --detach lessons/markdown@0.0.1/step/2 
+Note: checking out 'lessons/markdown@0.0.1/step/2'.
 
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
@@ -453,69 +444,14 @@ do so (now or later) by using -b with the checkout command again. Example:
 
   git checkout -b new_branch_name
 
-HEAD is now at d6c00f1... Block Code
+HEAD is now at 9da9f3c... Paragraphs, Headers, Blockquotes
 ```
 
-In the following commits we're going to add some assignment steps to the beginning of the lesson, so let's start an interactive `git rebase` from `refs/markdown@0.0.1/step/1`:
+Let's add an empty file where we're expecting our student to provide feedback and then `git add` it:
 
 ```shell
-author@shell:~/mock$ git rebase --interactive markdown@0.0.1/step/1
-```
-
-This let's us interactively choose what commits we need to edit. We're going to add assignments as step 2 and 4, so let's edit the first two steps. Change the word `pick` to `edit` on the commits that need editing and save:
-
-```shell
-edit 9da9f3c Paragraphs, Headers, Blockquotes
-edit 103eaea Phrase Emphasis
-pick 144a756 Unordered  Lists
-pick 5727a51 Ordered  Lists
-pick b37244c Complex lists
-pick 4e3bf8e Inline Links
-pick 5d5faf3 Inline Links with a Title
-pick 9772872 Reference Links
-pick 9bdab96 Reference Links with options
-pick 5249e88 Images
-pick e57dec6 Inline Code
-pick d6c00f1 Block Code
-
-# Rebase e19c2e6..d6c00f1 onto e19c2e6 (12 command(s))
-#
-# Commands:
-# p, pick = use commit
-# r, reword = use commit, but edit the commit message
-# e, edit = use commit, but stop for amending
-# s, squash = use commit, but meld into previous commit
-# f, fixup = like "squash", but discard this commit's log message
-# x, exec = run command (the rest of the line) using shell
-#
-# These lines can be re-ordered; they are executed from top to bottom.
-#
-# If you remove a line here THAT COMMIT WILL BE LOST.
-#
-# However, if you remove everything, the rebase will be aborted.
-#
-# Note that empty commits are commented out
-```
-
-This will drop us to back to the shell:
-
-```shell
-author@shell:~/mock$ git rebase --interactive markdown@0.0.1/step/1
-Stopped at 9da9f3c15a7dc0413a74308e44823d5ce6772b18... Paragraphs, Headers, Blockquotes
-You can amend the commit now, with
-
-        git commit --amend 
-
-Once you are satisfied with your changes, run
-
-        git rebase --continue
-```
-
-Let's add our assignment files and `git add`:
-
-```shell
-author@shell:~/mock$ touch assignment/1.md
-author@shell:~/mock$ git add assignment/1.md
+author@shell:~/mock$ touch assignment.md
+author@shell:~/mock$ git add assignment.md
 ```
 
 Now we want to add this file as part of a new commit using `git commit`:
@@ -527,67 +463,32 @@ Now we want to add this file as part of a new commit using `git commit`:
 ```shell
 author@shell:~/mock$ git commit --message="Your first assignment
 
-Let's see what we've learned so far. We've created a file called \`1.md\` in the \`assignment\` folder that you should use to submit your answer.
+Let's see what we've learned so far. We've created a file called \`assignment.md\` that you should use to submit your answer.
 
 Add three headings from level one to three, pick whatever heading contents as you want."
-[detached HEAD d720996] Your first assignment
- Date: Tue Apr 21 19:08:09 2015 +0800
+[detached HEAD 5ab1c7e] Your first assignment
  1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 assignment/1.md
+ create mode 100644 assignment.md
 ```
 
-Now that we've added this assignment we want to continue with the rebase:
+Now that we've added this assignment we need to add a ref to it using `git update-ref`:
 
 ```shell
-author@shell:~/mock$ git rebase --continue
-Stopped at 103eaeabcf01e59bc937eebe1180433360bb54d5... Phrase Emphasis
-You can amend the commit now, with
-
-	git commit --amend 
-
-Once you are satisfied with your changes, run
-
-	git rebase --continue
+author@shell:~/mock$ git update-ref refs/markdown@0.0.1/assignment/1 HEAD
 ```
 
-Let's add another assignment file and `git add`:
+The last thing to do is to make all of this available to the world using `git push`:
 
 ```shell
-author@shell:~/mock$ echo "Here is a regular paragraph. Emphasize whatever words you want." > assignment/2.md
-author@shell:~/mock$ git add assignment/2.md
+author@shell:~/mock$ git push origin refs/markdown@0.0.1/*
+Counting objects: 4, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 413 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 1 (delta 0)
+To https://github.com/open-learning/mock.git
+ * [new branch]      refs/markdown@0.0.1/assignment/1 -> refs/markdown@0.0.1/assignment/1
 ```
-
-Let's commit our changes:
-
-```shell
-author@shell:~/mock$ git commit --message="Your second assignment
-> 
-> Time for another challenge! Find the file \`assignment/2.md\`. Modifiy it to have at least:
-> 
-> - One emhasized word
-> - One strongly emphasized word"
-[detached HEAD 60c7a4f] Your second assignment
- 1 file changed, 1 insertion(+)
- create mode 100644 assignment/2.md
-```
-
-Let's continue our `git rebase`:
-
-```shell
-author@shell:~/mock$ git rebase --continue 
-Successfully rebased and updated detached HEAD.
-```
-
-Once the rebase is completed your new lesson is ready to be published! From here it's the same as when authoring a new lesson but with one important addition - adding `assignment` refs:
-
-> **note**
->
-> Note that the new version is `0.1.0` since we are publishing a *modified* version of `0.0.1`
-
-- `git update-ref refs/lessons/markdown@0.1.0 HEAD`
-- `git update-ref refs/markdown@0.1.0/step/{n} {commit}`
-- `git update-ref refs/markdown@0.1.0/assignment/{n} {commit}`
-- `git push origin refs/lessons/markdown@0.1.0 refs/markdown@0.1.0/*`
 
 ## Studying
 
@@ -599,11 +500,11 @@ Depending on the lesson studying can be done either entirely by the student alon
 
 ### Stepping
 
-We study by steping through each lesson step by step:
+We study by steping through each lesson step by step using `git checkout`:
 
 ```shell
-student@shell:~/mock$ git checkout --force --detach markdown@0.1.0/step/1
-Note: checking out 'markdown@0.1.0/step/1'.
+student@shell:~/mock$ git checkout markdown@0.0.1/step/1
+Note: checking out 'markdown@0.0.1/step/1'.
 
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
@@ -636,47 +537,47 @@ Date:   Thu Apr 16 18:46:21 2015 +0800
     Let's start by adding a `README.md` file with some mock content.
 ```
 
-Keep checking out each `markdown@0.1.0/step/{n}` to step through the lesson.
+Keep checking out each `markdown@0.0.1/step/{n}` to step through the lesson.
 
 ## Assignments
 
-Assignments are just commits that contain assignment material. The student can reach an assignment either by enumerating `refs/lesson@version/step/{n}` or by dirrectly checking out `refs/lesson@version/assignment/{n}`.
+Assignments are just commits that contain assignment material. The student can reach an assignment by enumerating `refs/lesson@version/assignment/{n}`.
 
 In this example we'll start an assignment by checking out the assignment ref to a detached `HEAD`:
 
 ```shell
-student@shell:~/mock$ git checkout --detach markdown@0.1.0/assignment/1
+student@shell:~/mock$ git checkout markdown@0.0.1/assignment/1
 Previous HEAD position was e19c2e6... Our first markdown file
-HEAD is now at 5947ce8... Your first assignment
+HEAD is now at 5ab1c7e... Your first assignment
 ```
 
 Let's look at the instuctions for this assignment using `git log`:
 
 ```shell
 student@shell:~/mock$ git log -1
-commit 5947ce87b20c0af4a6e3f4cb6611e8a15bda2ae3
+commit 5ab1c7ef10bb12fb35671fe8fbacf95671759f3b
 Author: Mikael Karon <mikael@karon.se>
-Date:   Mon Apr 20 11:08:29 2015 +0800
+Date:   Tue May 5 01:32:52 2015 +0800
 
     Your first assignment
     
-    Let's see what we've learned so far. We've created a file called `1.md` in the `assignment` folder that you should use to submit your answer.
+    Let's see what we've learned so far. We've created a file called `assignment.md` that you should use to submit your answer.
     
     Add three headings from level one to three, pick whatever heading contents as you want.
 ```
 
-Let's follow the instructions and add three lines of heading to `assignment/1.md`:
+Let's follow the instructions and add three lines of heading to `assignment.md`:
 
 ```shell
 student@shell:~/mock$ echo "#1
 ##2
-###3" > assignment/1.md 
+###3" > assignment.md
 ```
 
 To make sure our change was ok let's use `cat` to confirm our changes:
 
 ```shell
-student@shell:~/mock$ cat assignment/1.md 
+student@shell:~/mock$ cat assignment.md 
 #1
 ##2
 ###3
@@ -702,40 +603,40 @@ Before we submit this assignment we have to create a more permanent assignment b
 > Here `first-attempt` is the name of our attempt (since it's our first attempt)
 
 ```shell
-git checkout -b markdown@0.1.0/assignment/1#first-attempt
-M	assignment/1.md
-Switched to a new branch 'markdown@0.1.0/assignment/1#first-attempt'
+student@shell:~/mock$ git checkout -b markdown@0.0.1/assignment/1#first-attempt
+M	assignment.md
+Switched to a new branch 'markdown@0.0.1/assignment/1#first-attempt'
 ```
 
 We want the last changes to be part of our submission so let's add it to our commit using `git add`:
 
 ```shell
-student@shell:~/mock$ git add assignment/1.md 
+student@shell:~/mock$ git add assignment.md 
 ```
 
 Now all we have to do is to commit our changes using `git commit`:
 
 ```shell
-student@shell:~/mock$ git commit --message="Update 1.md"
-[markdown@0.1.0/assignment/1#first-attempt 21e4911] Update 1.md
+student@shell:~/mock$ git commit --message="Update assignment.md"
+[markdown@0.0.1/assignment/1#first-attempt 86ef6e8] Update assignment.md
  1 file changed, 3 insertions(+)
-```
+ ```
 
-The assignment is now ready for "review" but before that can start we have to make our changes available to the world by pushing our assignment branch with `git push` :
+The assignment is now ready for "review" but before that can start we have to make our changes available to the world by pushing our assignment branch with `git push`:
 
 > **note**
 >
 > We've used the repository url `https://github.com/open-learning/mock.git` in these examples, substitute with your own.
 
 ```shell
-student@shell:~/mock$ git push origin markdown@0.1.0/assignment/1#first-attempt
-Counting objects: 12, done.
+student@shell:~/mock$ git push origin markdown@0.0.1/assignment/1#first-attempt
+Counting objects: 5, done.
 Delta compression using up to 4 threads.
-Compressing objects: 100% (6/6), done.
-Writing objects: 100% (9/9), 900 bytes | 0 bytes/s, done.
-Total 9 (delta 0), reused 0 (delta 0)
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 306 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
 To https://github.com/open-learning/mock.git
- * [new branch]      markdown@0.1.0/assignment/1#first-attempt -> markdown@0.1.0/assignment/1#first-attempt
+ * [new branch]      markdown@0.0.1/assignment/1#first-attempt -> markdown@0.0.1/assignment/1#first-attempt
 ```
 
 ### Submission
@@ -745,24 +646,24 @@ Assignment submissions are handled using git pull-requests from the student's as
 How the pull-request workflow looks will differ from teacher to teacher. In this example we're simply going to go bare-bones-old-school and use `git request-pull` to generate a pull-request text that can be used as a starting point for whatever flavour of workflow.
 
 ```shell
-student@shell:~/mock$ git request-pull HEAD https://github.com/open-learning/mock.git markdown@0.1.0/assignment/1
-The following changes since commit 5947ce87b20c0af4a6e3f4cb6611e8a15bda2ae3:
+student@shell:~/mock$ git request-pull markdown@0.0.1/assignment/1 https://github.com/open-learning/mock.git
+The following changes since commit 5ab1c7ef10bb12fb35671fe8fbacf95671759f3b:
 
-  Your first assignment (2015-04-20 11:19:58 +0800)
+  Your first assignment (2015-05-05 01:32:52 +0800)
 
 are available in the git repository at:
 
-  https://github.com/open-learning/mock.git 
+  https://github.com/open-learning/mock.git markdown@0.0.1/assignment/1#first-attempt
 
-for you to fetch changes up to 21e4911cc4599604fa8607c651a016f09faf6867:
+for you to fetch changes up to 66f5075907ee1f2e19071bee5ff30dd19c900e1f:
 
-  Update 1.md (2015-04-21 12:05:35 +0800)
+  Update assignment.md (2015-05-05 01:57:00 +0800)
 
 ----------------------------------------------------------------
 student (1):
-      Update 1.md
+      Update assignment.md
 
- assignment/1.md | 3 +++
+ assignment.md | 3 +++
  1 file changed, 3 insertions(+)
 ```
 
@@ -774,23 +675,23 @@ student (1):
 
 Before an assignment submission can be made someone has to advertise that they are available to review a speciffic assignment. This is done by publishing "review" branches that pull-requests can be submitted against.
 
-For example, if we wanted to advertise that we're able to review `refs/markdown@0.1.0/assignment/1` we create `refs/heads/markdown@0.1.0/assignment/1` from `refs/markdown@0.1.0/assignment/1`:
+For example, if we wanted to advertise that we're able to review `refs/markdown@0.0.1/assignment/1` we create `refs/heads/markdown@0.0.1/assignment/1` from `refs/markdown@0.0.1/assignment/1`:
 
 ```shell
-teacher@shell:~/mock$ git update-ref refs/heads/markdown@0.1.0/assignment/1 refs/markdown@0.1.0/assignment/1
+teacher@shell:~/mock$ git update-ref refs/heads/markdown@0.0.1/assignment/1 refs/markdown@0.0.1/assignment/1
 ```
 
 After this we must publish our change to make it available to students using `git push`:
 
 > **note**
 >
-> The above command will push all the `heads` created for `markdown@0.1.0`
+> The above command will push all the `heads` created for `markdown@0.0.1`
 
 ```shell
-teacher@shell:~/mock$ git push origin refs/heads/markdown@0.1.0/assignment/*
+teacher@shell:~/mock$ git push origin refs/heads/markdown@0.0.1/assignment/*
 Total 0 (delta 0), reused 0 (delta 0)
 To https://github.com/open-learning/mock.git
- * [new branch]      markdown@0.1.0/assignment/1 -> markdown@0.1.0/assignment/1
+ * [new branch]      markdown@0.0.1/assignment/1 -> markdown@0.0.1/assignment/1
 ```
 
 ### Review
@@ -837,15 +738,15 @@ remote: Counting objects: 17, done.
 remote: Total 17 (delta 0), reused 0 (delta 0), pack-reused 17
 Unpacking objects: 100% (17/17), done.
 https://github.com/open-learning/mock
- * [new branch]      markdown@0.1.0/assignment/1#first-attempt -> student/markdown@0.1.0/assignment/1#first-attempt
+ * [new branch]      markdown@0.0.1/assignment/1#first-attempt -> student/markdown@0.0.1/assignment/1#first-attempt
  * [new branch]      master     -> student/master
 ```
 
 Lastly let's `git checkout` the student assignment branch:
 
 ```shell
-teacher@shell:~/mock$ git checkout student/markdown@0.1.0/assignment/1#first-attempt
-Note: checking out 'student/markdown@0.1.0/assignment/1#first-attempt'.
+teacher@shell:~/mock$ git checkout student/markdown@0.0.1/assignment/1#first-attempt
+Note: checking out 'student/markdown@0.0.1/assignment/1#first-attempt'.
 
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
@@ -854,9 +755,9 @@ state without impacting any branches by performing another checkout.
 If you want to create a new branch to retain commits you create, you may
 do so (now or later) by using -b with the checkout command again. Example:
 
-  git checkout -b <new-branch-name>
+  git checkout -b new_branch_name
 
-HEAD is now at 21e4911... Update 1.md
+HEAD is now at 66f5075... Update assignment.md
 ```
 
 Now that we have a working copy of the student assignment we want to copy the certificate, `git add` it and lastly `git commit` it:
@@ -866,12 +767,12 @@ Now that we have a working copy of the student assignment we want to copy the ce
 > In this example we've already generated and stored our certificate at `~/certificate.json`.
 
 ```shell
-teacher@shell:~/mock$ cp ~/certificate.json assignment/1.json
-teacher@shell:~/mock$ git add assignment/1.json
-teacher@shell:~/mock$ git commit -m "Create 1.json"
-[detached HEAD 8a77b74] Test
- 1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 assignment/1.json
+teacher@shell:~/mock$ cp ~/certificate.json certificate.json
+teacher@shell:~/mock$ git add certificate.json
+teacher@shell:~/mock$  git commit -m "Create certificate.json"
+[detached HEAD 1ea97fb] Create certificate.json
+ 1 file changed, 3 insertions(+)
+ create mode 100644 certificate.json
 ```
 
 Before we submit this certificate we have to create a more permanent certificate branch using `git checkout`:
@@ -881,46 +782,46 @@ Before we submit this certificate we have to create a more permanent certificate
 > Note that we've prefixed the branch name with `student/` in order to group submissions from the same user together.
 
 ```shell
-teacher@shell:~/mock$ git checkout -b student/markdown@0.1.0/assignment/1#first-attempt
-Switched to a new branch 'student/markdown@0.1.0/assignment/1#first-attempt'
+teacher@shell:~/mock$ git checkout -b student/markdown@0.0.1/assignment/1#first-attempt
+Switched to a new branch 'student/markdown@0.0.1/assignment/1#first-attempt'
 ```
 
 Now we need to make this available to the world using `git push`:
 
 ```shell
-teacher@shell:~/mock$ git push origin
-Counting objects: 19, done.
+teacher@shell:~/mock$ git push origin student/markdown@0.0.1/assignment/1#first-attempt
+Counting objects: 4, done.
 Delta compression using up to 4 threads.
-Compressing objects: 100% (11/11), done.
-Writing objects: 100% (19/19), 2.51 KiB | 0 bytes/s, done.
-Total 19 (delta 0), reused 10 (delta 0)
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 352 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
 To https://github.com/open-learning/mock.git
- * [new branch]      student/markdown@0.1.0/assignment/1#first-attempt -> student/markdown@0.1.0/assignment/1#first-attempt
+ * [new branch]      student/markdown@0.0.1/assignment/1#first-attempt -> student/markdown@0.0.1/assignment/1#first-attempt
 ```
 
-And lastly we wan't to generate a pull-request based on the commit `21e4911`:
+And lastly we wan't to generate a pull-request based on the ref `remotes/student/markdown@0.0.1/assignment/1#first-attempt`:
 
 ```shell
-teacher@shell:~/mock$ git request-pull 21e4911 https://github.com/open-learning/mock.git student/markdown@0.1.0/assignment/1#first-attempt
-The following changes since commit 21e4911cc4599604fa8607c651a016f09faf6867:
+teacher@shell:~/mock$ git request-pull remotes/student/markdown@0.0.1/assignment/1#first-attempt https://github.com/open-learning/mock.git
+The following changes since commit 66f5075907ee1f2e19071bee5ff30dd19c900e1f:
 
-  Update 1.md (2015-04-21 12:05:35 +0800)
+  Update assignment.md (2015-05-05 01:57:00 +0800)
 
 are available in the git repository at:
 
-  https://github.com/open-learning/mock.git student/markdown@0.1.0/assignment/1#first-attempt
+  https://github.com/open-learning/mock.git student/markdown@0.0.1/assignment/1#first-attempt
 
-for you to fetch changes up to 8a77b74a9369df45e9263dc22fbc6d13306af15e:
+for you to fetch changes up to 1ea97fba1be4027ee006be444aeb482f63075df6:
 
-  Create 1.json (2015-04-21 12:10:56 +0800)
+  Create certificate.json (2015-05-05 02:27:48 +0800)
 
 ----------------------------------------------------------------
 teacher (1):
-      Create 1.json
+      Create certificate.json
 
- assignment/1.json | 3 +++
+ certificate.json | 3 +++
  1 file changed, 3 insertions(+)
- create mode 100644 assignment/1.json
+ create mode 100644 certificate.json
 ```
 
 ### Commencement
@@ -932,8 +833,8 @@ teacher (1):
 Let's start by making sure we're on the correct assignment branch using `git checkout`:
 
 ```shell
-student@shell:~/mock$ git checkout markdown@0.1.0/assignment/1#first-attempt 
-Switched to branch 'markdown@0.1.0/assignment/1#first-attempt'
+student@shell:~/mock$ git checkout markdown@0.0.1/assignment/1#first-attempt 
+Switched to branch 'markdown@0.0.1/assignment/1#first-attempt'
 ```
 
 Before we can accept a certificate we have have to add have a `teacher` remote set up. Assuming we already have a local clone of the [mock](https://github.com/open-learning/mock/) repository all we have to do is to `git remote add` the teacher repository.
@@ -954,28 +855,26 @@ remote: Counting objects: 17, done.
 remote: Total 17 (delta 0), reused 0 (delta 0), pack-reused 17
 Unpacking objects: 100% (17/17), done.
 https://github.com/open-learning/mock
- * [new branch]      student/markdown@0.1.0/assignment/1#first-attempt -> teacher/student/markdown@0.1.0/assignment/1#first-attempt
+ * [new branch]      student/markdown@0.0.1/assignment/1#first-attempt -> teacher/student/markdown@0.0.1/assignment/1#first-attempt
  * [new branch]      master     -> teacher/master
 ```
 
 Now all we have to do is to `git merge` from the `teacher` remote:
 
 ```shell
-student@shell:~/mock$ git merge --no-ff teacher/student/markdown@0.1.0/assignment/1#first-attempt 
+student@shell:~/mock$ git merge --no-ff teacher/student/markdown@0.0.1/assignment/1#first-attempt 
 Merge made by the 'recursive' strategy.
- assignment/1.json | 3 +++
+ certificate.json | 3 +++
  1 file changed, 3 insertions(+)
 ```
 
 And finally let's make this available to the world using `git push`:
 
 ```shell
-student@shell:~/mock$ git push
-Counting objects: 5, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (4/4), done.
-Writing objects: 100% (5/5), 526 bytes | 0 bytes/s, done.
-Total 5 (delta 1), reused 0 (delta 0)
+student@shell:~/mock$ git push origin markdown@0.0.1/assignment/1#first-attempt
+Counting objects: 1, done.
+Writing objects: 100% (1/1), 274 bytes | 0 bytes/s, done.
+Total 1 (delta 0), reused 0 (delta 0)
 To https://github.com/open-learning/mock.git
-   21e4911..e24ebb4  markdown@0.1.0/assignment/1#first-attempt -> markdown@0.1.0/assignment/1#first-attempt
+   66f5075..29a67ab  markdown@0.0.1/assignment/1#first-attempt -> markdown@0.0.1/assignment/1#first-attempt
 ```
