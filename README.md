@@ -8,7 +8,7 @@ The `open-learning` specification specifies conventions for manipulating `git` o
 
 ## Introduction
 
-The document is written as a guide that takes the reader through the various actions taken by our actors from the beginning when an author creates his initial work to when a teacher certifies a submitted student assignment.
+The document is written as a guide that takes the reader through the various actions taken by our actors from the beginning when an author creates his initial work to when a student accepts a certificate for an assignment.
 
 We've chosen this format for two reasons:
 
@@ -695,7 +695,7 @@ In the case of remote assesed assignments we think of the assignment in two part
 
 ### Preparation
 
-Before we submit this assignment we have to create a more permanent home fore it using `git checkout`:
+Before we submit this assignment we have to create a more permanent assignment branch using `git checkout`:
 
 > **note**
 >
@@ -811,7 +811,7 @@ Normally a reviewed pull-request results in the reviewer accepting the changes a
 
 ### Certification
 
-A "certificate" is `git` commit containing a [Mozilla open badge assertion](https://github.com/mozilla/openbadges-specification/blob/master/Assertion/latest.md) with evidence pointing to the original "assignment" commit.
+A "certificate" is `git` commit containing a [Mozilla open badge assertion](https://github.com/mozilla/openbadges-specification/blob/master/Assertion/latest.md) with evidence pointing to the original "assignment" commit. Certificate submissions are handled using git pull-requests from the teachers's certificate branch to the students's assignment branch.
 
 For the purpose of this document we've generated our certificate using the [Mozilla badge lab](http://badgelab.herokuapp.com/) but in a production environment the acrediting organization should probably host an instance of the [Mozilla badge kit](https://github.com/mozilla/openbadges-badgekit) and use that to issue certificates.
 
@@ -819,7 +819,7 @@ For the purpose of this document we've generated our certificate using the [Mozi
 >
 > This document won't cover the details of creating assertions. Asume we've correctly generated our assertion JSON by now and are ready to use it.
 
-Before we can issue a certificate we have to have a local copy of the student's branch available. Assuming we already have a local clone of the [mock](https://github.com/open-learning/mock/) repository all we have to do is to `git remote add` the student repository.
+Before we can issue a certificate we have to have a local copy of the student's assignment branch. Assuming we already have a local clone of the [mock](https://github.com/open-learning/mock/) repository all we have to do is to `git remote add` the student repository and then `git checkout`:
 
 > **note**
 >
@@ -838,7 +838,6 @@ remote: Total 17 (delta 0), reused 0 (delta 0), pack-reused 17
 Unpacking objects: 100% (17/17), done.
 https://github.com/open-learning/mock
  * [new branch]      markdown@0.1.0/assignment/1#first-attempt -> student/markdown@0.1.0/assignment/1#first-attempt
- * [new branch]      markdown@0.1.0/assignment/2#another-attempt -> student/markdown@0.1.0/assignment/2#another-attempt
  * [new branch]      master     -> student/master
 ```
 
@@ -875,20 +874,34 @@ teacher@shell:~/mock$ git commit -m "Create 1.json"
  create mode 100644 assignment/1.json
 ```
 
-Now we need to make this available to the world using `git push`:
+Before we submit this certificate we have to create a more permanent certificate branch using `git checkout`:
 
 > **note**
 >
-> Note that we've prefixed the branch name with `student` in order to group submissions from the same user together.
+> Note that we've prefixed the branch name with `student/` in order to group submissions from the same user together.
 
 ```shell
-teacher@shell:~/mock$ git push origin HEAD:refs/heads/student/markdown@0.1.0/assignment/1#first-attempt
+teacher@shell:~/mock$ git checkout -b student/markdown@0.1.0/assignment/1#first-attempt
+Switched to a new branch 'student/markdown@0.1.0/assignment/1#first-attempt'
 ```
 
-And lastly we wan't to send a pull-request to the **student** based on the commit `21e4911`:
+Now we need to make this available to the world using `git push`:
 
 ```shell
-teacher@shell:~/mock$ git request-pull 21e4911 https://github.com/open-learning/mock.git markdown@0.1.0/assignment/1#first-attempt
+teacher@shell:~/mock$ git push origin
+Counting objects: 19, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (11/11), done.
+Writing objects: 100% (19/19), 2.51 KiB | 0 bytes/s, done.
+Total 19 (delta 0), reused 10 (delta 0)
+To https://github.com/open-learning/mock.git
+ * [new branch]      student/markdown@0.1.0/assignment/1#first-attempt -> student/markdown@0.1.0/assignment/1#first-attempt
+```
+
+And lastly we wan't to generate a pull-request based on the commit `21e4911`:
+
+```shell
+teacher@shell:~/mock$ git request-pull 21e4911 https://github.com/open-learning/mock.git student/markdown@0.1.0/assignment/1#first-attempt
 The following changes since commit 21e4911cc4599604fa8607c651a016f09faf6867:
 
   Update 1.md (2015-04-21 12:05:35 +0800)
@@ -908,4 +921,54 @@ teacher (1):
  assignment/1.json | 3 +++
  1 file changed, 3 insertions(+)
  create mode 100644 assignment/1.json
+```
+
+### Commencement
+
+> **actor: student**
+>
+> This part of the spec assumes the actor is a ***student***
+
+Before we can accept a certificate we have have to add have a `teacher` remote set up. Assuming we already have a local clone of the [mock](https://github.com/open-learning/mock/) repository all we have to do is to `git remote add` the teacher repository.
+
+> **note**
+>
+> We've used the repository url `https://github.com/open-learning/mock.git` in these examples, substitute with your own.
+
+```shell
+student@shell:~/mock$ git remote add teacher https://github.com/open-learning/mock.git
+```
+
+Once we have the remote, let's `git fetch` available branches from our `teacher` remote:
+
+```shell
+student@shell:~/mock$ git fetch teacher
+remote: Counting objects: 17, done.
+remote: Total 17 (delta 0), reused 0 (delta 0), pack-reused 17
+Unpacking objects: 100% (17/17), done.
+https://github.com/open-learning/mock
+ * [new branch]      student/markdown@0.1.0/assignment/1#first-attempt -> teacher/student/markdown@0.1.0/assignment/1#first-attempt
+ * [new branch]      master     -> teacher/master
+```
+
+Now all we have to do is to `git merge` from the `teacher` remote:
+
+```shell
+student@shell:~/mock$ git merge --no-ff teacher/student/markdown@0.1.0/assignment/1#first-attempt 
+Merge made by the 'recursive' strategy.
+ assignment/1.json | 3 +++
+ 1 file changed, 3 insertions(+)
+```
+
+And finally let's make this available to the world using `git push`:
+
+```shell
+student@shell:~/mock$ git push origin
+Counting objects: 5, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (5/5), 526 bytes | 0 bytes/s, done.
+Total 5 (delta 1), reused 0 (delta 0)
+To https://github.com/open-learning/mock.git
+   21e4911..e24ebb4  markdown@0.1.0/assignment/1#first-attempt -> markdown@0.1.0/assignment/1#first-attempt
 ```
