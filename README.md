@@ -869,8 +869,43 @@ Now that we have a working copy of the student assignment we want to copy the ce
 ```shell
 teacher@shell:~/mock$ cp ~/certificate.json assignment/1.json
 teacher@shell:~/mock$ git add assignment/1.json
-teacher@shell:~/mock$ git commit -m "Added certification"
+teacher@shell:~/mock$ git commit -m "Create 1.json"
 [detached HEAD 8a77b74] Test
  1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 assignment/1.json
+```
+
+Now we need to make this available to the world using `git push`:
+
+> **note**
+>
+> Note that we've prefixed the branch name with `student` in order to group submissions from the same user together.
+
+```shell
+teacher@shell:~/mock$ git push origin HEAD:refs/heads/student/markdown@0.1.0/assignment/1#first-attempt
+```
+
+And lastly we wan't to send a pull-request to the **student** based on the commit `21e4911`:
+
+```shell
+teacher@shell:~/mock$ git request-pull 21e4911 https://github.com/open-learning/mock.git markdown@0.1.0/assignment/1#first-attempt
+The following changes since commit 21e4911cc4599604fa8607c651a016f09faf6867:
+
+  Update 1.md (2015-04-21 12:05:35 +0800)
+
+are available in the git repository at:
+
+  https://github.com/open-learning/mock.git student/markdown@0.1.0/assignment/1#first-attempt
+
+for you to fetch changes up to 8a77b74a9369df45e9263dc22fbc6d13306af15e:
+
+  Create 1.json (2015-04-21 12:10:56 +0800)
+
+----------------------------------------------------------------
+teacher (1):
+      Create 1.json
+
+ assignment/1.json | 3 +++
+ 1 file changed, 3 insertions(+)
  create mode 100644 assignment/1.json
 ```
