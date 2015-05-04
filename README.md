@@ -819,7 +819,7 @@ For the purpose of this document we've generated our certificate using the [Mozi
 >
 > This document won't cover the details of creating assertions. Asume we've correctly generated our assertion JSON by now and are ready to use it.
 
-Before we can issue a certificate we have to have a local copy of the student's branch available. Assuming we already have a local clone of the [mock](https://github.com/open-learning/mock/) repository all we have to do is to `git remote add` the student repository, `git fetch` their branches and `git checkout` the assignment branch:
+Before we can issue a certificate we have to have a local copy of the student's branch available. Assuming we already have a local clone of the [mock](https://github.com/open-learning/mock/) repository all we have to do is to `git remote add` the student repository.
 
 > **note**
 >
@@ -827,13 +827,40 @@ Before we can issue a certificate we have to have a local copy of the student's 
 
 ```shell
 teacher@shell:~/mock$ git remote add student https://github.com/open-learning/mock.git
-
-teacher@shell:~/mock$ git fetch student
-
-teacher@shell:~/mock$ git checkout markdown@0.1.0/assignment/1#first-attempt
 ```
 
-Now that we have a working copy of the students assignment we want to copy the certificate file to to the branch, `git add` it and `git commit`:
+Once we have the remote, let's `git fetch` available branches from our `student` remote:
+
+```shell
+teacher@shell:~/mock$ git fetch student
+remote: Counting objects: 17, done.
+remote: Total 17 (delta 0), reused 0 (delta 0), pack-reused 17
+Unpacking objects: 100% (17/17), done.
+https://github.com/open-learning/mock
+ * [new branch]      markdown@0.1.0/assignment/1#first-attempt -> student/markdown@0.1.0/assignment/1#first-attempt
+ * [new branch]      markdown@0.1.0/assignment/2#another-attempt -> student/markdown@0.1.0/assignment/2#another-attempt
+ * [new branch]      master     -> student/master
+```
+
+Lastly let's `git checkout` the student assignment branch:
+
+```shell
+teacher@shell:~/mock$ git checkout student/markdown@0.1.0/assignment/1#first-attempt
+Note: checking out 'student/markdown@0.1.0/assignment/1#first-attempt'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <new-branch-name>
+
+HEAD is now at 21e4911... Update 1.md
+```
+
+Now that we have a working copy of the student assignment we want to copy the certificate, `git add` it and lastly `git commit` it:
 
 > **note**
 >
@@ -841,8 +868,9 @@ Now that we have a working copy of the students assignment we want to copy the c
 
 ```shell
 teacher@shell:~/mock$ cp ~/certificate.json assignment/1.json
-
 teacher@shell:~/mock$ git add assignment/1.json
-
 teacher@shell:~/mock$ git commit -m "Added certification"
+[detached HEAD 8a77b74] Test
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 assignment/1.json
 ```
