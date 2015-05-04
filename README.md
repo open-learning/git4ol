@@ -8,30 +8,41 @@ The `open-learning` specification specifies conventions for manipulating `git` o
 
 ## Introduction
 
-The document is written as a guide through the various actions taken by our actors from the beginning when an author creates his initial work to when a teacher certifies a submitted student assignment.
+The document is written as a guide that takes the reader through the various actions taken by our actors from the beginning when an author creates his initial work to when a teacher certifies a submitted student assignment.
 
 We've chosen this format for two reasons:
 
 - To lower the technical barrier of entry to anyone who understand basic `git` commands
-- To provide a step-by-step guide that encompasses all of the core features of the spec  
+- To provide a step-by-step guide that encompasses all of the core aspects of the specification  
 
-## Prerequisite
+## Prerequisites
 
-Before continuing we should go over some basic `git` commands. First let's decide if we're starting from scratch or a clone.
+Before continuing we should go over some basic `git` commands. First let's decide if we're starting from an empty repository or a clone.
 
-If you are starting from scratch you'll have to initialize a new repository using `git init`:
+> **note**
+>
+> We've used the repository url `https://github.com/open-learning/mock.git` in these examples, substitute with your own.
+
+### New repository
+
+If you are starting from an empty repository you'll first have to initialize the new repository using `git init`:
 
 ```shell
 user@shell:~/$ git init mock
 Initialized empty Git repository in /home/user/mock/.git/
 user@shell:~/$ cd mock
+user@shell:~/mock$ 
 ```
 
-If we're starting from an existing repository we need clone it using `git clone`:
+Once we have our initialized repository we should `git remote add` our `origin` repository url:
 
-> **note**
->
-> We've used the repository url `https://github.com/open-learning/mock.git` in these examples, substitute with your own.
+```shell
+user@shell:~/mock$ git remote add origin https://github.com/open-learning/mock.git
+```
+
+### Existing repository
+
+If we're starting from an existing repository we need clone it using `git clone`:
 
 ```shell
 user@shell:~/$ git clone https://github.com/open-learning/mock.git
@@ -46,7 +57,9 @@ user@shell:~/$ cd mock/
 user@shell:~/mock$ 
 ```
 
-By default git won't fetch non-standard `refs` so we have to `git fetch` them ourselves. First let's fetch the lesson refs:
+### `GIT` Refs
+
+By default `git` won't fetch non-standard refs so we have to `git fetch` them ourselves. First let's fetch the lesson refs:
 
 ```shell
 user@shell:~/mock$ git fetch origin refs/lessons/*:refs/lessons/*
@@ -56,7 +69,16 @@ From https://github.com/open-learning/mock
  * [new ref]         refs/lessons/markdown@0.1.0 -> refs/lessons/markdown@0.1.0
 ```
 
-After this individual lesson refs can be from `lesson@version/*` like so:
+If you want to list lesson refs you can use `git for-each-ref` to do that:
+
+```shell
+user@shell:~/mock$ git for-each-ref refs/lessons/*
+2a4396cad8752cfb315ab1d0443e96f12f7306af commit	refs/lessons/markdown@0.0.0
+d6c00f1c5e9cc4ab08dd1b30b71e00d233418a5c commit	refs/lessons/markdown@0.0.1
+101396127f656f716e0053064f64eff7d2df1ab9 commit	refs/lessons/markdown@0.1.0
+```
+
+Individual lesson refs can be fetched from `refs/lesson@version/*` like so:
 
 ```shell
 user@shell:~/mock$ git fetch origin refs/markdown@0.1.0/*:refs/markdown@0.1.0/*
@@ -79,6 +101,29 @@ From https://github.com/open-learning/mock
  * [new ref]         refs/markdown@0.1.0/step/7 -> refs/markdown@0.1.0/step/7
  * [new ref]         refs/markdown@0.1.0/step/8 -> refs/markdown@0.1.0/step/8
  * [new ref]         refs/markdown@0.1.0/step/9 -> refs/markdown@0.1.0/step/9
+```
+
+And can be listed like so:
+
+```shell
+user@shell:~/mock$ git for-each-ref refs/markdown@0.1.0/**
+5947ce87b20c0af4a6e3f4cb6611e8a15bda2ae3 commit	refs/markdown@0.1.0/assignment/1
+12ef61efaa0a4dabb0698591e68bc9e65ef09162 commit	refs/markdown@0.1.0/assignment/2
+e19c2e60b471dc271c0092a1ab750a3daadb0585 commit	refs/markdown@0.1.0/step/1
+807c28b687c226d9b052f390741ae32a502fd19b commit	refs/markdown@0.1.0/step/10
+f3d15e397b138fe0d24d0cf61a7c86834f47b967 commit	refs/markdown@0.1.0/step/11
+3b545d0d21bffe4b22f9cfa5a804cedc39120285 commit	refs/markdown@0.1.0/step/12
+52fc27e319d2de8fba907a5749df3ded37e9e14c commit	refs/markdown@0.1.0/step/13
+e67f7ba37f390f5d88aab92f73a8f628156a6d64 commit	refs/markdown@0.1.0/step/14
+101396127f656f716e0053064f64eff7d2df1ab9 commit	refs/markdown@0.1.0/step/15
+9da9f3c15a7dc0413a74308e44823d5ce6772b18 commit	refs/markdown@0.1.0/step/2
+5947ce87b20c0af4a6e3f4cb6611e8a15bda2ae3 commit	refs/markdown@0.1.0/step/3
+2de7fbf85d98638a5140e9dbb4e69673da937e9c commit	refs/markdown@0.1.0/step/4
+12ef61efaa0a4dabb0698591e68bc9e65ef09162 commit	refs/markdown@0.1.0/step/5
+b0a0a64feb7b12ec88e7b1243f6829302d6472c6 commit	refs/markdown@0.1.0/step/6
+39cf2de0d0838a621425f2bc75fe8eb7160e6b9c commit	refs/markdown@0.1.0/step/7
+40ee4ea32c973b119c500329c51a5c874635f396 commit	refs/markdown@0.1.0/step/8
+3eb4acb36843535891e2e625fde258cc5331e2c1 commit	refs/markdown@0.1.0/step/9
 ```
 
 ## Actors
@@ -251,7 +296,7 @@ author@shell:~/mock$ git push origin refs/lessons/markdown@0.0.0 refs/markdown@0
 
 ### Fixing a lesson
 
-When fixing a lesson we start by checking out the `ref` of the lesson we're about to fix into a detached `HEAD`:
+When fixing a lesson we start by checking out the ref of the lesson we're about to fix into a detached `HEAD`:
 
 ```shell
 author@shell:~/mock$ git checkout --detach lessons/markdown@0.0.0
@@ -277,7 +322,7 @@ author@shell:~/mock$ git rebase --interactive markdown@0.0.0/step/2
 
 > **note**
 >
-> This will only work if the `refs` for `markdown@0.0.0/*` are fetched first. You can do this using `git fetch`:
+> This will only work if the refs for `markdown@0.0.0/*` are fetched first. You can do this using `git fetch`:
 >
 > ```shell
 > author@shell:~/mock$ git fetch origin refs/markdown@0.0.0/*:refs/markdown@0.0.0/*
@@ -392,7 +437,7 @@ Once the rebase is completed your new lesson is ready to be published! From here
 
 ### Updating a lesson
 
-When updating a lesson we start by checking out the `ref` of the lesson we're about to update into a detached `HEAD`:
+When updating a lesson we start by checking out the ref of the lesson we're about to update into a detached `HEAD`:
 
 ```shell
 author@shell:~/mock$ git checkout --detach lessons/markdown@0.0.1 
@@ -596,7 +641,7 @@ Keep checking out each `markdown@0.1.0/step/{n}` to step through the lesson.
 
 Assignments are just commits that contain assignment material. The student can reach an assignment either by enumerating `refs/lesson@version/step/{n}` or by dirrectly checking out `refs/lesson@version/assignment/{n}`.
 
-In this example we'll start an assignment by checking out the assignment `ref` to a detached `HEAD`:
+In this example we'll start an assignment by checking out the assignment ref to a detached `HEAD`:
 
 ```shell
 student@shell:~/mock$ git checkout --detach markdown@0.1.0/assignment/1
