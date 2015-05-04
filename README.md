@@ -57,9 +57,9 @@ user@shell:~/$ cd mock/
 user@shell:~/mock$ 
 ```
 
-### `GIT` Refs
+### References
 
-By default `git` won't fetch non-standard refs so we have to `git fetch` them ourselves. First let's fetch the lesson refs:
+By default `git` won't fetch non-standard references (refs) so we have to `git fetch` them ourselves. First let's fetch the lesson refs:
 
 ```shell
 user@shell:~/mock$ git fetch origin refs/lessons/*:refs/lessons/*
