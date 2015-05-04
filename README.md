@@ -291,7 +291,7 @@ author@shell:~/git4ol$ git push origin refs/lessons/markdown@0.0.0 refs/markdown
 When updating a lesson we start by checking out the ref of the lesson we're about to update into a detached `HEAD`:
 
 ```shell
-author@shell:~/git4ol$ git checkout --detach lessons/markdown@0.0.0
+author@shell:~/git4ol$ git checkout lessons/markdown@0.0.0
 Note: checking out 'lessons/markdown@0.0.0'.
 
 You are in 'detached HEAD' state. You can look around, make experimental
@@ -311,14 +311,6 @@ In the following commits we're going to fix some formatting error(s) in `refs/ma
 ```shell
 author@shell:~/git4ol$ git rebase --interactive markdown@0.0.0/step/2
 ```
-
-> **note**
->
-> This will only work if the refs for `markdown@0.0.0/*` are fetched first. You can do this using `git fetch`:
->
-> ```shell
-> author@shell:~/git4ol$ git fetch origin refs/markdown@0.0.0/*:refs/markdown@0.0.0/*
->```
 
 This let's us interactively choose what commits we need to edit. Change the word `pick` to `edit` on the commits that need editing and save:
 
@@ -421,7 +413,7 @@ Once the rebase is completed your new lesson is ready to be published! From here
 
 > **note**
 >
-> Note that the new version is `0.0.1` since we are publishing an *updated* version of `0.0.0`
+> Note that the new version is `0.0.1` since we are publishing an *fix* version of `0.0.0`
 
 - `git update-ref refs/lessons/markdown@0.0.1 HEAD`
 - `git update-ref refs/markdown@0.0.1/step/{n} {commit}`
@@ -432,7 +424,7 @@ Once the rebase is completed your new lesson is ready to be published! From here
 When adding assignments we start by checking out the ref of the step we're about to add an assignment for into a detached `HEAD`:
 
 ```shell
-author@shell:~/git4ol$ git checkout --detach lessons/markdown@0.0.1/step/2 
+author@shell:~/git4ol$ git checkout lessons/markdown@0.0.1/step/2 
 Note: checking out 'lessons/markdown@0.0.1/step/2'.
 
 You are in 'detached HEAD' state. You can look around, make experimental
