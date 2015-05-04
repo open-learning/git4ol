@@ -799,7 +799,7 @@ To https://github.com/open-learning/git4ol.git
  * [new branch]      student/markdown@0.0.1/assignment/1#first-attempt -> student/markdown@0.0.1/assignment/1#first-attempt
 ```
 
-And lastly we wan't to generate a pull-request based on the ref `remotes/student/markdown@0.0.1/assignment/1#first-attempt`:
+And lastly we wan't to generate a pull-request using `git request-pull`:
 
 ```shell
 teacher@shell:~/git4ol$ git request-pull remotes/student/markdown@0.0.1/assignment/1#first-attempt https://github.com/open-learning/git4ol.git
