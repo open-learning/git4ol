@@ -1,4 +1,4 @@
-# Open Learning guide
+# `git` for Open Learning guide
 
 > `git4open-learning` specifies conventions for manipulating `git` objects for the purpose of open and distributed learning.
 
