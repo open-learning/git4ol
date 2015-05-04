@@ -23,7 +23,7 @@ Before continuing we should go over some basic `git` commands. First let's decid
 >
 > We've used the repository url `https://github.com/open-learning/mock.git` in these examples, substitute with your own.
 
-### New
+### Initialize
 
 If you are starting from an empty repository you'll first have to initialize the new repository using `git init`:
 
@@ -40,7 +40,7 @@ Once we have our initialized repository we should `git remote add` our `origin` 
 user@shell:~/mock$ git remote add origin https://github.com/open-learning/mock.git
 ```
 
-### Existing
+### Clone
 
 If we're starting from an existing repository we need clone it using `git clone`:
 
