@@ -137,8 +137,9 @@ These are the actors and a quick summary of what their main functions are:
 > **note**
 >
 > Later in the document you'll be able to see what role a command is issued as by either tracking backwards and checking what the last **actor** note was or simply check the format of the prompt:
+>
 > ```shell
-> **student**@shell:...
+> student@shell:...
 >```
 
 ## Learning objects
