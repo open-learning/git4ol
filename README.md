@@ -929,6 +929,13 @@ teacher (1):
 >
 > This part of the spec assumes the actor is a ***student***
 
+Let's start by making sure we're on the correct assignment branch using `git checkout`:
+
+```shell
+student@shell:~/mock$ git checkout markdown@0.1.0/assignment/1#first-attempt 
+Switched to branch 'markdown@0.1.0/assignment/1#first-attempt'
+```
+
 Before we can accept a certificate we have have to add have a `teacher` remote set up. Assuming we already have a local clone of the [mock](https://github.com/open-learning/mock/) repository all we have to do is to `git remote add` the teacher repository.
 
 > **note**
@@ -963,7 +970,7 @@ Merge made by the 'recursive' strategy.
 And finally let's make this available to the world using `git push`:
 
 ```shell
-student@shell:~/mock$ git push origin
+student@shell:~/mock$ git push
 Counting objects: 5, done.
 Delta compression using up to 4 threads.
 Compressing objects: 100% (4/4), done.
