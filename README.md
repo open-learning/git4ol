@@ -13,7 +13,7 @@ The document is written as a guide that takes the reader through the various act
 We've chosen this format for two reasons:
 
 - To lower the technical barrier of entry to anyone who understand basic `git` commands
-- To provide a step-by-step guide that encompasses all of the core aspects of the specification  
+- To provide a step-by-step guide that cover all of the core aspects of `git4ol`
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ Before continuing we should go over some basic `git` commands. First let's decid
 
 > **note**
 >
-> We've used the repository url `https://github.com/open-learning/git4ol.git` in these examples, substitute with your own.
+> We've used the repository url `https://github.com/open-learning/git4ol.git` throughout this document, substitute with your own.
 
 ### Initialize
 
@@ -59,7 +59,7 @@ user@shell:~/git4ol$
 
 ### References
 
-By default `git` won't fetch non-standard references (refs) so we have to `git fetch` them ourselves. First let's fetch the lesson refs:
+By default `git` only fetches `refs/heads/*` and `refs/tags/*` references (refs) so if we use other refs we have to `git fetch` them ourselves:
 
 ```shell
 user@shell:~/git4ol$ git fetch origin refs/lessons/*:refs/lessons/*
@@ -68,7 +68,7 @@ From https://github.com/open-learning/git4ol
  * [new ref]         refs/lessons/markdown@0.0.1 -> refs/lessons/markdown@0.0.1
 ```
 
-If you want to list lesson refs you can use `git for-each-ref` to do that:
+If you want to list the refs you just fetches you can use `git for-each-ref` to do that:
 
 ```shell
 user@shell:~/git4ol$ git for-each-ref refs/lessons/*
@@ -76,50 +76,9 @@ user@shell:~/git4ol$ git for-each-ref refs/lessons/*
 d6c00f1c5e9cc4ab08dd1b30b71e00d233418a5c commit	refs/lessons/markdown@0.0.1
 ```
 
-Individual lesson refs can be fetched from `refs/lesson@version/*` like so:
-
-```shell
-user@shell:~/git4ol$ git fetch origin refs/markdown@0.0.1/*:refs/markdown@0.0.1/*
-From https://github.com/open-learning/git4ol
- * [new ref]         refs/markdown@0.0.1/assignment/1 -> refs/markdown@0.0.1/assignment/1
- * [new ref]         refs/markdown@0.0.1/step/1 -> refs/markdown@0.0.1/step/1
- * [new ref]         refs/markdown@0.0.1/step/10 -> refs/markdown@0.0.1/step/10
- * [new ref]         refs/markdown@0.0.1/step/11 -> refs/markdown@0.0.1/step/11
- * [new ref]         refs/markdown@0.0.1/step/12 -> refs/markdown@0.0.1/step/12
- * [new ref]         refs/markdown@0.0.1/step/13 -> refs/markdown@0.0.1/step/13
- * [new ref]         refs/markdown@0.0.1/step/2 -> refs/markdown@0.0.1/step/2
- * [new ref]         refs/markdown@0.0.1/step/3 -> refs/markdown@0.0.1/step/3
- * [new ref]         refs/markdown@0.0.1/step/4 -> refs/markdown@0.0.1/step/4
- * [new ref]         refs/markdown@0.0.1/step/5 -> refs/markdown@0.0.1/step/5
- * [new ref]         refs/markdown@0.0.1/step/6 -> refs/markdown@0.0.1/step/6
- * [new ref]         refs/markdown@0.0.1/step/7 -> refs/markdown@0.0.1/step/7
- * [new ref]         refs/markdown@0.0.1/step/8 -> refs/markdown@0.0.1/step/8
- * [new ref]         refs/markdown@0.0.1/step/9 -> refs/markdown@0.0.1/step/9
-```
-
-And can be listed like so:
-
-```shell
-user@shell:~/git4ol$ git for-each-ref refs/markdown@0.0.1/**/*
-5ab1c7ef10bb12fb35671fe8fbacf95671759f3b commit	refs/markdown@0.0.1/assignment/1
-e19c2e60b471dc271c0092a1ab750a3daadb0585 commit	refs/markdown@0.0.1/step/1
-9bdab965b2f2676459245eab8d9caf51a534e250 commit	refs/markdown@0.0.1/step/10
-5249e88d7ca8d60fae8bce5d1ff5b79df3e486b3 commit	refs/markdown@0.0.1/step/11
-e57dec6a0827f9ec13c88f064c59c4b7528dc879 commit	refs/markdown@0.0.1/step/12
-d6c00f1c5e9cc4ab08dd1b30b71e00d233418a5c commit	refs/markdown@0.0.1/step/13
-9da9f3c15a7dc0413a74308e44823d5ce6772b18 commit	refs/markdown@0.0.1/step/2
-103eaeabcf01e59bc937eebe1180433360bb54d5 commit	refs/markdown@0.0.1/step/3
-144a7565cd2b0a4f992295659e77607a46a3ecb8 commit	refs/markdown@0.0.1/step/4
-5727a517cd85408c589e2953e5c00888775d973f commit	refs/markdown@0.0.1/step/5
-b37244c1cd11e62693d247ff09c66fe107829a20 commit	refs/markdown@0.0.1/step/6
-4e3bf8e84c4e9a2c492a9864badeb3561cce998e commit	refs/markdown@0.0.1/step/7
-5d5faf3f55269d1c1c6cae0303441cb15b78907f commit	refs/markdown@0.0.1/step/8
-977287260218c5cff6cebb8e3c5030c0e0a85a57 commit	refs/markdown@0.0.1/step/9
-```
-
 ## Actors
 
-These are the actors and a quick summary of what their main functions are:
+These are the main actors and a quick summary of what their functions are:
 
 - `author`: Creates learning materials and instructions
 - `student`: Studies learning materials and submits assignments for review
@@ -127,7 +86,7 @@ These are the actors and a quick summary of what their main functions are:
 
 > **note**
 >
-> Later in the document you'll be able to see what role a command is issued as by either tracking backwards and checking what the last **actor** note was or simply check the format of the prompt:
+> In this document you'll be able to see what role a command is issued as by simply checking the format of the prompt:
 >
 > ```shell
 > actor@shell:cwd$
@@ -139,8 +98,7 @@ Learning objects can conceptually be mapped to `git` objects in the following wa
 
 > **note**
 >
-> - `git` commits can be of arbitrary type ex: `step` or `assignment`
-> - The format of instructions is not covered in this spec (but the [`git4ol`](https://github.com/open-learning/git4ol) repository uses markdown)
+> The format of instructions is not covered in this spec (but the [`git4ol`](https://github.com/open-learning/git4ol) repository uses markdown)
 
 - "course" ⇔ `git` repository
 - "lesson" ⇔ `git` orphaned branch
@@ -273,14 +231,14 @@ b330a00 (refs/markdown@0.0.0/step/9) Reference Links
 2a4396c (HEAD, refs/markdown@0.0.0/step/13, refs/lessons/markdown@0.0.0) Block Code
 ```
 
-After this it's safe to (force) remove our WIP branch (after switching another branch, in this case the `master` branch):
+After this it's safe to (force) remove our WIP branch (after first switching to another branch, in this case the `master` branch) using `git branch`:
 
 ```shell
 author@shell:~/git4ol$ git checkout master
 author@shell:~/git4ol$ git branch -D markdown
 ```
 
-The last thing to do is to make all of this available to the world:
+The last thing to do is to make all of this available to the world using `git push`:
 
 ```shell
 author@shell:~/git4ol$ git push origin refs/lessons/markdown@0.0.0 refs/markdown@0.0.0/*
@@ -360,7 +318,7 @@ Once you are satisfied with your changes, run
         git rebase --continue
 ```
 
-We're going to update `README.md` and fix the indentation error in the end of the file, save it, `git add` the changes and then `git rebase --continue` and save:
+We're going to update `README.md` and fix the indentation error in the end of the file, save it, `git add` the changes and then `git rebase --continue`:
 
 ```shell
 author@shell:~/git4ol$ git add README.md
@@ -439,14 +397,14 @@ do so (now or later) by using -b with the checkout command again. Example:
 HEAD is now at 9da9f3c... Paragraphs, Headers, Blockquotes
 ```
 
-Let's add an empty file where we're expecting our student to provide feedback and then `git add` it:
+Let's add an empty file forr our student to provide feedback in and then `git add` it:
 
 ```shell
 author@shell:~/git4ol$ touch assignment.md
 author@shell:~/git4ol$ git add assignment.md
 ```
 
-Now we want to add this file as part of a new commit using `git commit`:
+Now we want to commit this using `git commit`:
 
 > **note**
 >
@@ -488,11 +446,11 @@ To https://github.com/open-learning/git4ol.git
 >
 > This part of the spec assumes the actor is a ***student***
 
-Depending on the lesson studying can be done either entirely by the student alone (in the case of self assessed or machine assessed assignments) or together with someone as in the case of teacher or peer assessed assignments.
+Depending on the lesson assignments studying can be done either entirely by the student alone (in the case of self assessed or machine assessed assignments) or together with someone else as in the case of teacher or peer assessed assignments.
 
-### Stepping
+### Navigation
 
-We study by steping through each lesson step by step using `git checkout`:
+We navigate a lesson using `git checkout`:
 
 ```shell
 student@shell:~/git4ol$ git checkout markdown@0.0.1/step/1
@@ -510,11 +468,7 @@ do so (now or later) by using -b with the checkout command again. Example:
 HEAD is now at e19c2e6... Our first markdown file
 ```
 
-To display the instructions for this step we use `git log`:
-
-> **note**
->
-> For the purpose of this spec we'll just go ahead and ignore the actual contents of this lesson
+To display the instructions we use `git log`:
 
 ```shell
 student@shell:~/git4ol$ git log -1
@@ -526,16 +480,12 @@ Date:   Thu Apr 16 18:46:21 2015 +0800
     
     [Markdown](http://daringfireball.net/projects/markdown/) is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text form
     
-    Let's start by adding a `README.md` file with some git4ol content.
+    Let's start by adding a `README.md` file with some mock content.
 ```
-
-Keep checking out each `markdown@0.0.1/step/{n}` to step through the lesson.
 
 ## Assignments
 
-Assignments are just commits that contain assignment material. The student can reach an assignment by enumerating `refs/lesson@version/assignment/{n}`.
-
-In this example we'll start an assignment by checking out the assignment ref to a detached `HEAD`:
+Assignments are just commits that contain assignment materials. In this example we'll start an assignment by checking out the assignment ref to a detached `HEAD`:
 
 ```shell
 student@shell:~/git4ol$ git checkout markdown@0.0.1/assignment/1
@@ -579,7 +529,7 @@ student@shell:~/git4ol$ cat assignment.md
 
 Assignments can either be localy or remotely assesed.
 
-In the case of local assesment the tests needed to validate an assignment (like unit tests) should be provided in the commit. Local assesment can then be done by simply running the tests in a test runner.
+In the case of local assesment the tests needed to validate an assignment (like unit tests) should be provided with the assignment. Local assesment can then be done by simply running the tests in a test runner.
 
 In the case of remote assesed assignments we think of the assignment in two parts:
 
@@ -600,7 +550,7 @@ M	assignment.md
 Switched to a new branch 'markdown@0.0.1/assignment/1#first-attempt'
 ```
 
-We want the last changes to be part of our submission so let's add it to our commit using `git add`:
+We want the last changes we made to `assignment.md` to be part of our submission so let's add it to our commit using `git add`:
 
 ```shell
 student@shell:~/git4ol$ git add assignment.md 
@@ -614,11 +564,7 @@ student@shell:~/git4ol$ git commit --message="Update assignment.md"
  1 file changed, 3 insertions(+)
  ```
 
-The assignment is now ready for "review" but before that can start we have to make our changes available to the world by pushing our assignment branch with `git push`:
-
-> **note**
->
-> We've used the repository url `https://github.com/open-learning/git4ol.git` in these examples, substitute with your own.
+The assignment is now ready for "review" but before that can start we have to make our changes available to the world by pushing our assignment branch using `git push`:
 
 ```shell
 student@shell:~/git4ol$ git push origin markdown@0.0.1/assignment/1#first-attempt
@@ -675,12 +621,8 @@ teacher@shell:~/git4ol$ git update-ref refs/heads/markdown@0.0.1/assignment/1 re
 
 After this we must publish our change to make it available to students using `git push`:
 
-> **note**
->
-> The above command will push all the `heads` created for `markdown@0.0.1`
-
 ```shell
-teacher@shell:~/git4ol$ git push origin refs/heads/markdown@0.0.1/assignment/*
+teacher@shell:~/git4ol$ git push origin refs/heads/markdown@0.0.1/assignment/1
 Total 0 (delta 0), reused 0 (delta 0)
 To https://github.com/open-learning/git4ol.git
  * [new branch]      markdown@0.0.1/assignment/1 -> markdown@0.0.1/assignment/1
@@ -704,19 +646,15 @@ Normally a reviewed pull-request results in the reviewer accepting the changes a
 
 ### Certification
 
-A "certificate" is `git` commit containing a [Mozilla open badge assertion](https://github.com/mozilla/openbadges-specification/blob/master/Assertion/latest.md) with evidence pointing to the original "assignment" commit. Certificate submissions are handled using git pull-requests from the teachers's certificate branch to the students's assignment branch.
+A "certificate" is a `json` file containing a [Mozilla open badge assertion](https://github.com/mozilla/openbadges-specification/blob/master/Assertion/latest.md) with evidence pointing to the original "assignment" commit. Certificate submissions are handled using git pull-requests from the teachers's certification branch to the students's assignment branch.
 
-For the purpose of this document we've generated our certificate using the [Mozilla badge lab](http://badgelab.herokuapp.com/) but in a production environment the acrediting organization should probably host an instance of the [Mozilla badge kit](https://github.com/mozilla/openbadges-badgekit) and use that to issue certificates.
-
-> **note**
->
-> This document won't cover the details of creating assertions. Asume we've correctly generated our assertion JSON by now and are ready to use it.
-
-Before we can issue a certificate we have to have a local copy of the student's assignment branch. Assuming we already have a local clone of the [git4ol](https://github.com/open-learning/git4ol/) repository all we have to do is to `git remote add` the student repository and then `git checkout`:
+For the purpose of this document we can generate our certificate using the [Mozilla badge lab](http://badgelab.herokuapp.com/) but in a production environment the acrediting organization should probably host an instance of the [Mozilla badge kit](https://github.com/mozilla/openbadges-badgekit) and use that to issue certificates.
 
 > **note**
 >
-> We've used the repository url `https://github.com/open-learning/git4ol.git` in these examples, substitute with your own.
+> This document won't cover the details of creating assertions. Asume we've correctly generated our assertion JSON by now and are ready to use it at `~certificate.json`.
+
+Before we can issue a certificate we have to have a local copy of the student's assignment branch. Assuming we already have a local clone of the [`git4ol`](https://github.com/open-learning/git4ol/) repository we start by `git remote add` the student repository:
 
 ```shell
 teacher@shell:~/git4ol$ git remote add student https://github.com/open-learning/git4ol.git
@@ -752,11 +690,7 @@ do so (now or later) by using -b with the checkout command again. Example:
 HEAD is now at 66f5075... Update assignment.md
 ```
 
-Now that we have a working copy of the student assignment we want to copy the certificate, `git add` it and lastly `git commit` it:
-
-> **note**
->
-> In this example we've already generated and stored our certificate at `~/certificate.json`.
+Now that we have a working copy of the student assignment we want to copy the certificate file, `git add` it and lastly `git commit` it:
 
 ```shell
 teacher@shell:~/git4ol$ cp ~/certificate.json certificate.json
@@ -767,11 +701,11 @@ teacher@shell:~/git4ol$  git commit -m "Create certificate.json"
  create mode 100644 certificate.json
 ```
 
-Before we submit this certificate we have to create a more permanent certificate branch using `git checkout`:
+Before we submit this certificate we have to create a more permanent certification branch using `git checkout`:
 
 > **note**
 >
-> Note that we've prefixed the branch name with `student/` in order to group submissions from the same user together.
+> Note that we've prefixed the branch name with `student/` in order to group submissions from the same student together.
 
 ```shell
 teacher@shell:~/git4ol$ git checkout -b student/markdown@0.0.1/assignment/1#first-attempt
@@ -791,7 +725,7 @@ To https://github.com/open-learning/git4ol.git
  * [new branch]      student/markdown@0.0.1/assignment/1#first-attempt -> student/markdown@0.0.1/assignment/1#first-attempt
 ```
 
-And lastly we wan't to generate a pull-request using `git request-pull`:
+And lastly we wan't to generate a pull-request to send our student using `git request-pull`:
 
 ```shell
 teacher@shell:~/git4ol$ git request-pull remotes/student/markdown@0.0.1/assignment/1#first-attempt https://github.com/open-learning/git4ol.git
@@ -822,24 +756,20 @@ teacher (1):
 >
 > This part of the spec assumes the actor is a ***student***
 
-Let's start by making sure we're on the correct assignment branch using `git checkout`:
+Start by making sure we're on the correct assignment branch using `git checkout`:
 
 ```shell
 student@shell:~/git4ol$ git checkout markdown@0.0.1/assignment/1#first-attempt 
 Switched to branch 'markdown@0.0.1/assignment/1#first-attempt'
 ```
 
-Before we can accept a certificate we have have to add have a `teacher` remote set up. Assuming we already have a local clone of the [git4ol](https://github.com/open-learning/git4ol/) repository all we have to do is to `git remote add` the teacher repository.
-
-> **note**
->
-> We've used the repository url `https://github.com/open-learning/git4ol.git` in these examples, substitute with your own.
+Before we can accept a certificate we have to add a `teacher` remote. Assuming we already have a local clone of the [`git4ol`](https://github.com/open-learning/git4ol/) repository we should `git remote add` the teacher repository:
 
 ```shell
 student@shell:~/git4ol$ git remote add teacher https://github.com/open-learning/git4ol.git
 ```
 
-Once we have the remote, let's `git fetch` available branches from our `teacher` remote:
+Once we have the `teacher` remote added, let's `git fetch` available branches from it:
 
 ```shell
 student@shell:~/git4ol$ git fetch teacher
@@ -851,7 +781,7 @@ https://github.com/open-learning/git4ol
  * [new branch]      master     -> teacher/master
 ```
 
-Now all we have to do is to `git merge` from the `teacher` remote:
+Now all we have to do is to `git merge` from the `teacher` remote in order to "accept" our certificate:
 
 ```shell
 student@shell:~/git4ol$ git merge --no-ff teacher/student/markdown@0.0.1/assignment/1#first-attempt 
