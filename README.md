@@ -635,7 +635,7 @@ To https://github.com/open-learning/git4ol.git
 
 > **note**
 >
-> The whole review workflow is based on the `git` pull-request model but adjusted to of whatever flavour and toolset the teacher may favour and as such is not defined in this specification.
+> The whole review workflow is based on the `git` pull-request model but adjusted to of whatever flavour and toolset the teacher may favour and as such is not defined in this document.
 
 There are a bunch of tools and workflows out there to choose from for doing reviews:
 
