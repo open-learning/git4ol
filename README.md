@@ -86,10 +86,13 @@ These are the main actors and a quick summary of what their functions are:
 
 > **note**
 >
-> In this document you'll be able to see what role a command is issued as by simply checking the format of the prompt:
+> In this document you'll be able to see what the active role is in two ways:
 >
-> ```shell
-> actor@shell:cwd$
+> - Actor changes are noteted like so: **actor: xxx**
+> - When a shell command is issued check the format of the prompt:
+>
+>```shell
+>actor@shell:cwd$
 >```
 
 ## Learning objects
