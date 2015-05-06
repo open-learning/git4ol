@@ -31,7 +31,11 @@ Learning objects can conceptually be mapped to `git` objects in the following wa
 
 Learning objects are managed with `git` refs:
 
-- Lessons are located using refs of the format `refs/lessons/{lesson}@{version}` where
+- Lesson starting points are located using refs of the format `refs/{lesson}@{version}/head` where
+  - `lesson` is the name of the lesson
+  - `version` is a valid semver
+
+- Lesson ending points are located using refs of the format `refs/{lesson}@{version}/tail` where
   - `lesson` is the name of the lesson
   - `version` is a valid semver
 
@@ -137,21 +141,18 @@ user@shell:~/git4ol$ git update-ref refs/test HEAD
 By default `git` only fetches `refs/heads/*` and `refs/tags/*` refs so if we use other refs we have to `git fetch` them ourselves:
 
 ```shell
-user@shell:~/git4ol$ git fetch origin refs/lessons/*:refs/lessons/*
-From https://github.com/open-learning/git4ol
- * [new ref]         refs/lessons/markdown@0.0.0 -> refs/lessons/markdown@0.0.0
- * [new ref]         refs/lessons/markdown@0.0.1 -> refs/lessons/markdown@0.0.1
+user@shell:~/git4ol$ git fetch origin refs/markdown@0.0.0/*:refs/markdown@0.0.0/*
 ```
 
 To see what refs exist for a commit we can use `git log`:
 
 > **note**
 >
-> In this example we've assumed you've already `git fetch`ed `refs/lessons/*` and `refs/markdown@0.0.0/*`
+> In this example we've assumed you've already `git fetch`ed `refs/markdown@0.0.0/*`
 
 ```shell
 user@shell:~/git4ol$ git log --oneline --reverse --decorate=full lessons/markdown@0.0.0
-e19c2e6 (refs/markdown@0.0.0/step/1) Our first markdown file
+e19c2e6 (refs/markdown@0.0.0/step/1, refs/markdown@0.0.0/head) Our first markdown file
 9da9f3c (refs/markdown@0.0.0/step/2) Paragraphs, Headers, Blockquotes
 cf92883 (refs/markdown@0.0.0/step/3) Phrase Emphasis
 ae23fe0 (refs/markdown@0.0.0/step/4) Unordered  Lists
@@ -163,7 +164,7 @@ b330a00 (refs/markdown@0.0.0/step/9) Reference Links
 09b686c (refs/markdown@0.0.0/step/10) Reference Links with options
 79c24c8 (refs/markdown@0.0.0/step/11) Images
 2f264bc (refs/markdown@0.0.0/step/12) Inline Code
-2a4396c (refs/markdown@0.0.0/step/13, refs/lessons/markdown@0.0.0) Block Code
+2a4396c (refs/markdown@0.0.0/step/13, refs/markdown@0.0.0/tail) Block Code
 ```
 
 ## Authoring
@@ -195,7 +196,7 @@ Second step is to create an orphaned WIP branch:
 author@shell:~/git4ol$ git checkout --orphan markdown
 ```
 
-Now it's time to add steps to our lesson. Incrementally add commits to this branch with the commit message following this format:
+Now it's time to add steps to our lesson. Each step is a `git` commit with the commit message following this format:
 
 ```
 Subject as a one line
@@ -203,7 +204,7 @@ Subject as a one line
 Instructions as multiple paragraphs
 ```
 
-When all of the steps are added we need to create a new ref containing the lesson name and version pointing to the `HEAD` of the branch:
+After the first step is added our branch is "born" and we can add a lesson `head` ref to the branch `HEAD` using `git update-ref`:
 
 > **note**
 >
@@ -216,7 +217,13 @@ When all of the steps are added we need to create a new ref containing the lesso
 >> 1. PATCH version when you make backwards-compatible bug fixes.
 
 ```shell
-author@shell:~/git4ol$ git update-ref refs/lessons/markdown@0.0.0 HEAD
+author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/head HEAD
+```
+
+Incrementally add commits to this branch and when all of the steps are added we need to create the lesson `tail` ref pointing to the `HEAD` of the branch:
+
+```shell
+author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/tail HEAD
 ```
 
 Now it's time to add step refs. Let's list the (imaginary) commits we just added using `git log`:
@@ -266,7 +273,7 @@ author@shell:~/git4ol$ git branch -D markdown
 The last thing to do is to make all of this available to the world using `git push`:
 
 ```shell
-author@shell:~/git4ol$ git push origin refs/lessons/markdown@0.0.0 refs/markdown@0.0.0/*
+author@shell:~/git4ol$ git push origin refs/markdown@0.0.0/*
 ```
 
 ### Updating a lesson
@@ -398,9 +405,9 @@ Once the rebase is completed your new lesson is ready to be published! From here
 >
 > Note that the new version is `0.0.1` since we are publishing an *fix* version of `0.0.0`
 
-- `git update-ref refs/lessons/markdown@0.0.1 HEAD`
+- `git update-ref refs/markdown@0.0.1/tail HEAD`
 - `git update-ref refs/markdown@0.0.1/step/{n} {commit}`
-- `git push origin refs/lessons/markdown@0.0.1 refs/markdown@0.0.1/*`
+- `git push origin refs/markdown@0.0.1/*`
 
 ### Adding assignments
 
