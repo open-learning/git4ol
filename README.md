@@ -1,6 +1,6 @@
 # `git` for Open Learning
 
-`git4ol` specifies conventions for manipulating `git` objects for the purpose of open and distributed learning.
+`git4ol` defines conventions for manipulating `git` objects for the purpose of open and distributed learning.
 
 > **note**
 >
@@ -21,7 +21,7 @@ Before continuing we should go over some basic `git` commands. First let's decid
 
 > **note**
 >
-> We've used the repository url `https://github.com/open-learning/git4ol.git` throughout this document, substitute with your own.
+> We've used the repository url `https://github.com/open-learning/git4ol.git` throughout this document, substitute with your own
 
 ### Initialize
 
@@ -59,21 +59,39 @@ user@shell:~/git4ol$
 
 ### References
 
-By default `git` only fetches `refs/heads/*` and `refs/tags/*` references (refs) so if we use other refs we have to `git fetch` them ourselves:
+A lot of things in `git` are already managed using `git` references (refs) including (but not limitied to) branches and tags.
+
+To list existing references use `git for-each-ref`:
+
+```shell
+user@shell:~/git4ol$ git for-each-ref
+d2637c23f0d52d580dd5d075de649772f1f1e4ed commit	refs/heads/gh-pages
+2042bd20e49548e677a3212a4ebe428168739643 commit	refs/heads/master
+2042bd20e49548e677a3212a4ebe428168739643 commit	refs/remotes/origin/HEAD
+2042bd20e49548e677a3212a4ebe428168739643 commit	refs/remotes/origin/master
+```
+
+You can limit the listing by providing a glob pattern:
+
+```shell
+user@shell:~/git4ol$ git for-each-ref refs/heads/*
+d2637c23f0d52d580dd5d075de649772f1f1e4ed commit	refs/heads/gh-pages
+2042bd20e49548e677a3212a4ebe428168739643 commit	refs/heads/master
+```
+
+You can add, modify and delete `git` refs using `git update-ref`. To add a ref called `test` pinting to the current `HEAD` just do this:
+
+```shell
+user@shell:~/git4ol$ git update-ref refs/test HEAD
+```
+
+By default `git` only fetches `refs/heads/*` and `refs/tags/*` refs so if we use other refs we have to `git fetch` them ourselves:
 
 ```shell
 user@shell:~/git4ol$ git fetch origin refs/lessons/*:refs/lessons/*
 From https://github.com/open-learning/git4ol
  * [new ref]         refs/lessons/markdown@0.0.0 -> refs/lessons/markdown@0.0.0
  * [new ref]         refs/lessons/markdown@0.0.1 -> refs/lessons/markdown@0.0.1
-```
-
-If you want to list the refs you just fetches you can use `git for-each-ref` to do that:
-
-```shell
-user@shell:~/git4ol$ git for-each-ref refs/lessons/*
-2a4396cad8752cfb315ab1d0443e96f12f7306af commit	refs/lessons/markdown@0.0.0
-d6c00f1c5e9cc4ab08dd1b30b71e00d233418a5c commit	refs/lessons/markdown@0.0.1
 ```
 
 ## Actors
