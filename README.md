@@ -18,7 +18,7 @@ Learning objects can conceptually be mapped to `git` objects in the following wa
 - "lesson" ⇔ `git` orphaned branch
 - "step" and "challenge" ⇔ `git` commit
   - "assets" ⇔ `git` commit contents
-  - "instructions" ⇔ `git` commit message
+  - "description" ⇔ `git` commit message
 
 Learning objects are managed with `git` refs:
 
@@ -35,10 +35,10 @@ Learning objects are managed with `git` refs:
   - `version` is a valid semver
   - `n` is a positive number indicating the step number
 
-- Assignments are located using refs of the format `refs/{lesson}@{version}/challenge/{assignment}` where
+- Challenges are located using refs of the format `refs/{lesson}@{version}/challenge/{challenge}` where
   - `lesson` is the name of the lesson
   - `version` is a valid semver
-  - `assignment` is the name of the assignment
+  - `challenge` is the name of the challenge
 
 ## Actors
 
