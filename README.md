@@ -14,7 +14,7 @@ Learning objects can conceptually be mapped to `git` objects in the following wa
 - "lesson" ⇔ `git` orphaned branch
 - "step" and "challenge" ⇔ `git` commit
 
-### Commit assets and description
+### Commits
 
 A git commit has two parts that can further be mapped:
 
@@ -33,7 +33,7 @@ Title as a one line
 Instructions as multiple paragraphs
 ```
 
-### Locating
+### Refs
 
 Learning objects are located using `git` refs:
 
