@@ -15,7 +15,56 @@ We've chosen this format for two reasons:
 - To lower the technical barrier of entry to anyone who understand basic `git` commands
 - To provide a step-by-step guide that cover all of the core aspects of `git4ol`
 
-## Prerequisites
+## Learning objects
+
+Learning objects can conceptually be mapped to `git` objects in the following way:
+
+> **note**
+>
+> The format of instructions is not covered in this spec (but the [`git4ol`](https://github.com/open-learning/git4ol) repository uses markdown)
+
+- "course" ⇔ `git` repository
+- "lesson" ⇔ `git` orphaned branch
+- "step" and "assignment" ⇔ `git` commit
+  - "materials" ⇔ `git` commit contents
+  - "instructions" ⇔ `git` commit message
+
+Learning objects are managed with `git` refs:
+
+- Lessons are located using refs of the format `refs/lessons/{lesson}@{version}` where
+  - `lesson` is the name of the lesson
+  - `version` is a valid semver
+
+- Steps are located using refs of the format `refs/{lesson}@{version}/step/{n}` where
+  - `lesson` is the name of the lesson
+  - `version` is a valid semver
+  - `n` is a positive number indicating the step number
+
+- Assignments are located using refs of the format `refs/{lesson}@{version}/assignment/{n}` where
+  - `lesson` is the name of the lesson
+  - `version` is a valid semver
+  - `n` is a positive number indicating the assignment number
+
+## Actors
+
+These are the main actors and a quick summary of what their functions are:
+
+- `author`: Creates learning materials and instructions
+- `student`: Studies learning materials and submits assignments for review
+- `teacher`: Reviews student assignments and certifies them if passed
+
+> **note**
+>
+> In this document you'll be able to see what the active role is in two ways:
+>
+> - Actor changes are noteted like so: **actor: xxx**
+> - When a shell command is issued check the format of the prompt:
+>
+>```shell
+>actor@shell:cwd$
+>```
+
+## Basics
 
 Before continuing we should go over some basic `git` commands. First let's decide if we're starting from an empty repository or a clone.
 
@@ -93,55 +142,6 @@ From https://github.com/open-learning/git4ol
  * [new ref]         refs/lessons/markdown@0.0.0 -> refs/lessons/markdown@0.0.0
  * [new ref]         refs/lessons/markdown@0.0.1 -> refs/lessons/markdown@0.0.1
 ```
-
-## Actors
-
-These are the main actors and a quick summary of what their functions are:
-
-- `author`: Creates learning materials and instructions
-- `student`: Studies learning materials and submits assignments for review
-- `teacher`: Reviews student assignments and certifies them if passed
-
-> **note**
->
-> In this document you'll be able to see what the active role is in two ways:
->
-> - Actor changes are noteted like so: **actor: xxx**
-> - When a shell command is issued check the format of the prompt:
->
->```shell
->actor@shell:cwd$
->```
-
-## Learning objects
-
-Learning objects can conceptually be mapped to `git` objects in the following way:
-
-> **note**
->
-> The format of instructions is not covered in this spec (but the [`git4ol`](https://github.com/open-learning/git4ol) repository uses markdown)
-
-- "course" ⇔ `git` repository
-- "lesson" ⇔ `git` orphaned branch
-- "step" and "assignment" ⇔ `git` commit
-  - "materials" ⇔ `git` commit contents
-  - "instructions" ⇔ `git` commit message
-
-Learning objects are managed with `git` refs:
-
-- Lessons are located using refs of the format `refs/lessons/{lesson}@{version}` where
-  - `lesson` is the name of the lesson
-  - `version` is a valid semver
-
-- Steps are located using refs of the format `refs/{lesson}@{version}/step/{n}` where
-  - `lesson` is the name of the lesson
-  - `version` is a valid semver
-  - `n` is a positive number indicating the step number
-
-- Assignments are located using refs of the format `refs/{lesson}@{version}/assignment/{n}` where
-  - `lesson` is the name of the lesson
-  - `version` is a valid semver
-  - `n` is a positive number indicating the assignment number
 
 ## Authoring
 
