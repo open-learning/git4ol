@@ -452,16 +452,13 @@ HEAD is now at e19c2e6... Our first markdown file
 To display the instructions we use `git log`:
 
 ```shell
-student@shell:~/git4ol$ git log -1
-commit e19c2e60b471dc271c0092a1ab750a3daadb0585
-Author: Mikael Karon <mikael@karon.se>
-Date:   Thu Apr 16 18:46:21 2015 +0800
+student@shell:~/git4ol$ git log --format=%B -1
+Our first markdown file
 
-    Our first markdown file
-    
-    [Markdown](http://daringfireball.net/projects/markdown/) is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text form
-    
-    Let's start by adding a `README.md` file with some mock content.
+[Markdown](http://daringfireball.net/projects/markdown/) is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text
+
+Let's start by adding a `README.md` file with some mock content.
+
 ```
 
 ## Assignments
@@ -487,15 +484,13 @@ HEAD is now at d3dcb47... Your first assignment
 Let's look at the instuctions for this assignment using `git log`:
 
 ```shell
-student@shell:~/git4ol$ commit d3dcb47d1127c96319a83e05e83ecfc606a6a465
-Author: Mikael Karon <mikael@karon.se>
-Date:   Thu May 7 01:00:01 2015 +0800
+student@shell:~/git4ol$ git log --format=%B -1
+Your first assignment
 
-    Your first assignment
-    
-    Let's see what we've learned so far. We've created a file called `assignment.md` that you should use to submit your answer.
-    
-    Add three headings from level one to three, pick whatever heading contents as you want.
+Let's see what we've learned so far. We've created a file called `assignment.md` that you should use to submit your answer.
+
+Add three headings from level one to three, pick whatever heading contents as you want.
+
 ```
 
 Let's follow the instructions and add three lines of heading to `assignment.md`:
