@@ -4,19 +4,23 @@ If you are publishing a website from a `git` repo and you have a `bash` shell ar
 
 > **note**
 >
-> All refs that will be added as `git submodule`s have to be reachable frome either refs `refs/tags/*` or `refs/heads/*`
+> - All refs that will be added as `git submodule`s have to be reachable frome either refs `refs/tags/*` or `refs/heads/*`
 
 Make sure to `git fetch` `refs/{lesson@version}/step/*` refs first
 
 > **note**
 >
-> In this example we're going to publish the lesson `markdown@0.0.0`
+> In this example we're going to publish the lesson `markdown@0.0.0` from `origin`
 
 ```shell
 user@shell:~/git4ol$ git fetch origin refs/markdown@0.0.0/step/*:refs/markdown@0.0.0/step/*
 ```
 
 Generate `git submodule`s from refs:
+
+> **note**
+>
+> In this example we're using the parent repository `./` to reuse our current `origin`. Replace with your own if this is not what you want
 
 ```shell
 user@shell:~/git4ol$ for ref in $(git for-each-ref --format="%(refname)" refs/markdown@0.0.0/step); do git submodule add --force ./ $ref; done
