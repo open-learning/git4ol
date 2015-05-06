@@ -149,7 +149,7 @@ author@shell:~/git4ol$ git checkout --orphan markdown
 Now it's time to add steps to our lesson. Each step is a `git` commit with the commit message following this format:
 
 ```
-Subject as a one line
+Title as a one line
 
 Instructions as multiple paragraphs
 ```
