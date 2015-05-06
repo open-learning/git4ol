@@ -6,9 +6,9 @@
 >
 > As we have not yet made our first publich draft available you can expect breaking changes all the time, don't be angry.
 
-## Terms
+## Blocks
 
-Learning terms can conceptually be mapped to `git` objects in the following way:
+Learning blocks can conceptually be mapped to `git` objects in the following way:
 
 - "course" ⇔ `git` repository
 - "lesson" ⇔ `git` orphaned branch
@@ -16,16 +16,16 @@ Learning terms can conceptually be mapped to `git` objects in the following way:
 
 ### Commits
 
-A git commit has two parts that can further be mapped:
+A `git` commit has two parts that can further be mapped into blocks:
 
-- "assets" ⇔ `git` commit contents
-- "body" ⇔ `git` commit message
+- "step assets" ⇔ `git` commit contents
+- "step body" ⇔ `git` commit message
 
 The formatting of the `git` commit message follows:
 
 > **note**
 >
-> The format of instructions is not covered in this guide (but the [`git4ol`](https://github.com/open-learning/git4ol) repository uses markdown)
+> The *instructions* format is not covered in this guide (but the [`git4ol`](https://github.com/open-learning/git4ol) repository uses markdown)
 
 ```
 Title as a one line
@@ -35,7 +35,7 @@ Instructions as multiple paragraphs
 
 ### Refs
 
-Learning objects are located using `git` refs:
+Learning blocks are located using `git` refs:
 
 - Lesson starting points are located using refs of the format `refs/{lesson}@{version}/head` where
   - `lesson` is the name of the lesson
