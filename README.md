@@ -26,7 +26,7 @@ Learning objects can conceptually be mapped to `git` objects in the following wa
 - "course" ⇔ `git` repository
 - "lesson" ⇔ `git` orphaned branch
 - "step" and "assignment" ⇔ `git` commit
-  - "materials" ⇔ `git` commit contents
+  - "assets" ⇔ `git` commit contents
   - "instructions" ⇔ `git` commit message
 
 Learning objects are managed with `git` refs:
@@ -198,7 +198,7 @@ author@shell:~/git4ol$ git checkout --orphan markdown
 Now it's time to add steps to our lesson. Incrementally add commits to this branch with the commit message following this format:
 
 ```
-Step title as a one line
+Subject as a one line
 
 Instructions as multiple paragraphs
 ```
