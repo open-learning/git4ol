@@ -94,14 +94,14 @@ By default `git` only fetches `refs/heads/*` and `refs/tags/*` refs so if we use
 user@shell:~/git4ol$ git fetch origin refs/markdown@0.0.0/*:refs/markdown@0.0.0/*
 ```
 
-To see what refs exist for a commit we can use `git log`:
+To see what refs exist for a range of commits we can use `git log`:
 
 > **note**
 >
 > In this example we've assumed you've already `git fetch`ed `refs/markdown@0.0.0/*`
 
 ```shell
-user@shell:~/git4ol$ git log --oneline --reverse --decorate=full lessons/markdown@0.0.0
+user@shell:~/git4ol$ git log --oneline --reverse --decorate=full refs/markdown@0.0.0/head refs/markdown@0.0.0/tail
 e19c2e6 (refs/markdown@0.0.0/step/1, refs/markdown@0.0.0/head) Our first markdown file
 9da9f3c (refs/markdown@0.0.0/step/2) Paragraphs, Headers, Blockquotes
 cf92883 (refs/markdown@0.0.0/step/3) Phrase Emphasis
