@@ -4,7 +4,7 @@ If you are publishing a website from a `git` repo and you have a `bash` shell ar
 
 > **note**
 >
-> - All refs that will be added as `git submodule`s have to be reachable frome either refs `refs/tags/*` or `refs/heads/*`
+> All refs that will be added as `git submodule`s have to be reachable frome either refs `refs/tags/*` or `refs/heads/*`
 
 Make sure to `git fetch` `refs/{lesson@version}/step/*` refs first
 
