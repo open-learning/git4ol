@@ -502,8 +502,8 @@ In the case of local assesment the tests needed to validate an assignment (like 
 
 In the case of remote assesed assignments we think of the assignment in two parts:
 
-- The "challenge" part of an assignment is a git commit containing instructions and learning materials
-- The "response" part of an assignment is a pull request containing all the feedback to be reviewed
+- The "challenge" part of an assignment is a git commit containing description and assets
+- The "response" part of an assignment is a pull request describing the commits to be reviewed
 
 ### Preparation
 
