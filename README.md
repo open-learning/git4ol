@@ -6,15 +6,6 @@
 >
 > As we have not yet made our first publich draft available you can expect breaking changes all the time, don't be angry.
 
-## Introduction
-
-The document is written as a guide that takes the reader through the various actions taken by our actors from the beginning when an author creates his initial work to when a student accepts a certificate for an assignment.
-
-We've chosen this format for two reasons:
-
-- To lower the technical barrier of entry to anyone who understand basic `git` commands
-- To provide a step-by-step guide that cover all of the core aspects of `git4ol`
-
 ## Learning objects
 
 Learning objects can conceptually be mapped to `git` objects in the following way:
