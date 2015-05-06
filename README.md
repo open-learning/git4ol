@@ -681,7 +681,7 @@ For the purpose of this document we can generate our certificate using the [Mozi
 
 > **note**
 >
-> This document won't cover the details of creating assertions. Asume we've correctly generated our assertion JSON by now and are ready to use it at `~certificate.json`.
+> This document won't cover the details of creating assertions. Asume we've correctly generated our assertion and stored the JSON at `~/certificate.json` by now and are ready to use it.
 
 Before we can issue a certificate we have to have a local copy of the student's assignment branch. Assuming we already have a local clone of the [`git4ol`](https://github.com/open-learning/git4ol/) repository we start by `git remote add` the student repository:
 
