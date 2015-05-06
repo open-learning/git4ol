@@ -223,16 +223,16 @@ author@shell:~/git4ol$ git branch -D markdown
 The last thing to do is to make all of this available to the world using `git push`:
 
 ```shell
-author@shell:~/git4ol$ git push origin refs/markdown@0.0.0/*
+author@shell:~/git4ol$ git push origin refs/markdown@0.0.0:refs/markdown@0.0.0/*
 ```
 
 ### Updating a lesson
 
-When updating a lesson we start by checking out the ref of the lesson we're about to update into a detached `HEAD`:
+When updating a lesson we start by checking out the ref of the lesson `tail` we're about to update into a detached `HEAD`:
 
 ```shell
-author@shell:~/git4ol$ git checkout lessons/markdown@0.0.0
-Note: checking out 'lessons/markdown@0.0.0'.
+author@shell:~/git4ol$ git checkout markdown@0.0.0/tail
+Note: checking out 'markdown@0.0.0/tail'.
 
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
@@ -262,20 +262,20 @@ edit 764dfbc Complex lists
 edit ffa19d5 Inline Links
 edit ea8ac14 Inline Links with a Title
 edit b330a00 Reference Links
-edit 09b686c Reference Links with options
+edit 09b686c Reference Links with options 
 edit 79c24c8 Images
 edit 2f264bc Inline Code
 edit 2a4396c Block Code
 
-# Rebase 9da9f3c..2a4396c onto 9da9f3c (11 command(s))
+# Rebase 9da9f3c..2a4396c onto 9da9f3c
 #
 # Commands:
-# p, pick = use commit
-# r, reword = use commit, but edit the commit message
-# e, edit = use commit, but stop for amending
-# s, squash = use commit, but meld into previous commit
-# f, fixup = like "squash", but discard this commit's log message
-# x, exec = run command (the rest of the line) using shell
+#  p, pick = use commit
+#  r, reword = use commit, but edit the commit message
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#  f, fixup = like "squash", but discard this commit's log message
+#  x, exec = run command (the rest of the line) using shell
 #
 # These lines can be re-ordered; they are executed from top to bottom.
 #
@@ -290,61 +290,52 @@ This will drop us to back to the shell:
 
 ```shell
 author@shell:~/git4ol$ git rebase --interactive markdown@0.0.0/step/2
-Stopped at cf92883cb505c35b0760956bf5bffc1f8879af60... Phrase Emphasis
+Stopped at cf92883... Phrase Emphasis
 You can amend the commit now, with
 
-        git commit --amend 
+	git commit --amend
 
 Once you are satisfied with your changes, run
 
-        git rebase --continue
+	git rebase --continue
+
 ```
 
 We're going to update `README.md` and fix the indentation error in the end of the file, save it, `git add` the changes and then `git rebase --continue`:
 
 ```shell
 author@shell:~/git4ol$ git add README.md
-author@shell:~/git4ol$ git rebase --continue 
-[detached HEAD a962c8a] Phrase Emphasis
- Date: Thu Apr 16 18:50:48 2015 +0800
+author@shell:~/git4ol$ git rebase --continue
+[detached HEAD 13a2154] Phrase Emphasis
  1 file changed, 6 insertions(+)
 error: could not apply ae23fe0... Unordered  Lists
 
 When you have resolved this problem, run "git rebase --continue".
 If you prefer to skip this patch, run "git rebase --skip" instead.
 To check out the original branch and stop rebasing, run "git rebase --abort".
-Could not apply ae23fe00f8e0645eda0c42f015d026b98b25b047... Unordered  Lists
+Could not apply ae23fe0... Unordered  Lists
 ```
 
-Since the changes we've done to `README.md` collide with later changes we'll have to solve the conflict. We're going to use [`git mergetool`](http://www.git-scm.com/docs/git-mergetool):
-
-> **note**
->
-> [`git mergetool`](http://www.git-scm.com/docs/git-mergetool) is not the only way conflicts can be solved, but it is usually the easiest one to use
+Since the changes we've done to `README.md` collide with later changes we'll have to solve the conflict, apply the needed changes (indentation), `git add` the change then continue the rebase using `git rebase --continue`:
 
 ```shell
-author@shell:~/git4ol$ git mergetool
-```
-
-Solve the conflict, apply the needed changes (indentation) then continue the rebase using `git rebase --continue`:
-
-```shell
-author@shell:~/git4ol$ git rebase --continue 
-[detached HEAD 44298db] Unordered  Lists
+author@shell:~/git4ol$ git add README.md 
+author@shell:~/git4ol$ git rebase --continue
+[detached HEAD 06691c1] Unordered  Lists
  1 file changed, 12 insertions(+)
 error: could not apply c09b157... Ordered  Lists
 
 When you have resolved this problem, run "git rebase --continue".
 If you prefer to skip this patch, run "git rebase --skip" instead.
 To check out the original branch and stop rebasing, run "git rebase --abort".
-Could not apply c09b157b990773d898e77d9f79b5ff84bd06cc43... Ordered  Lists
+Could not apply c09b157... Ordered  Lists
 ```
 
 Keep resolving conflicts and applying changes until the end of the rebase is reached.
 
 ```shell
-author@shell:~/git4ol$ git rebase --continue 
-[detached HEAD 41df2e7] Block Code
+author@shell:~/git4ol$ roses-air:git4ol rose$ git rebase --continue
+[detached HEAD b944a45] Block Code
  1 file changed, 7 insertions(+)
 Successfully rebased and updated detached HEAD.
 ```
@@ -357,19 +348,19 @@ Once the rebase is completed your new lesson is ready to be published! From here
 
 - `git update-ref refs/markdown@0.0.1/tail HEAD`
 - `git update-ref refs/markdown@0.0.1/step/{n} {commit}`
-- `git push origin refs/markdown@0.0.1/*`
+- `git push origin refs/markdown@0.0.1/*:refs/markdown@0.0.1/*`
 
-### Adding assignments
+### Challenges
 
-Assignments are typically (but not always) based on a lesson step. When adding assignments we start by checking out the ref of  the assignment base into a detached `HEAD`:
+Challenges are typically (but not always) based on a lesson step. When adding challenges we start by checking out the ref into a detached `HEAD`:
 
 > **note**
 >
-> In this example we're basing our assignment on the ref `lessons/markdown@0.0.1/step/2` but anything `git` commitish is valid
+> In this example we're basing our challenge on the ref `markdown@0.0.1/step/2` but anything `git` commitish is valid
 
 ```shell
-author@shell:~/git4ol$ git checkout lessons/markdown@0.0.1/step/2 
-Note: checking out 'lessons/markdown@0.0.1/step/2'.
+author@shell:~/git4ol$ git checkout markdown@0.0.1/step/2
+Note: checking out 'markdown@0.0.1/step/2'.
 
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
@@ -383,7 +374,7 @@ do so (now or later) by using -b with the checkout command again. Example:
 HEAD is now at 9da9f3c... Paragraphs, Headers, Blockquotes
 ```
 
-Let's add an empty file forr our student to provide feedback in and then `git add` it:
+Let's add an empty file for our student to provide feedback in and then `git add` it:
 
 ```shell
 author@shell:~/git4ol$ touch assignment.md
@@ -402,28 +393,32 @@ author@shell:~/git4ol$ git commit --message="Your first assignment
 Let's see what we've learned so far. We've created a file called \`assignment.md\` that you should use to submit your answer.
 
 Add three headings from level one to three, pick whatever heading contents as you want."
-[detached HEAD 5ab1c7e] Your first assignment
+[detached HEAD d3dcb47] Your first assignment
  1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 assignment.md
 ```
 
-Now that we've added this assignment we need to add a ref to it using `git update-ref`:
+Now that we've added this challenge we need to add a ref to it using `git update-ref`:
+
+> **note**
+>
+> In this example the name of the challenge is `first-assignment`
 
 ```shell
-author@shell:~/git4ol$ git update-ref refs/markdown@0.0.1/assignment/1 HEAD
+author@shell:~/git4ol$ git update-ref refs/markdown@0.0.1/challenge/first-assignment HEAD
 ```
 
 The last thing to do is to make all of this available to the world using `git push`:
 
 ```shell
-author@shell:~/git4ol$ git push origin refs/markdown@0.0.1/*
+author@shell:~/git4ol$ git push origin refs/markdown@0.0.1/*:refs/markdown@0.0.1/*
 Counting objects: 4, done.
 Delta compression using up to 4 threads.
 Compressing objects: 100% (2/2), done.
 Writing objects: 100% (3/3), 413 bytes | 0 bytes/s, done.
-Total 3 (delta 0), reused 1 (delta 0)
+Total 3 (delta 0), reused 0 (delta 0)
 To https://github.com/open-learning/git4ol.git
- * [new branch]      refs/markdown@0.0.1/assignment/1 -> refs/markdown@0.0.1/assignment/1
+ * [new branch]      refs/markdown@0.0.1/challenge/first-assignment -> refs/markdown@0.0.1/challenge/first-assignment
 ```
 
 ## Studying
@@ -471,21 +466,30 @@ Date:   Thu Apr 16 18:46:21 2015 +0800
 
 ## Assignments
 
-Assignments are just commits that contain assignment materials. In this example we'll start an assignment by checking out the assignment ref to a detached `HEAD`:
+Assignments are just challenges that contain assignment materials. In this example we'll start an assignment by checking out the challenge ref to a detached `HEAD`:
 
 ```shell
-student@shell:~/git4ol$ git checkout markdown@0.0.1/assignment/1
-Previous HEAD position was e19c2e6... Our first markdown file
-HEAD is now at 5ab1c7e... Your first assignment
+student@shell:~/git4ol$ git checkout markdown@0.0.1/challenge/first-assignment
+Note: checking out 'markdown@0.0.1/challenge/first-assignment'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b new_branch_name
+
+HEAD is now at d3dcb47... Your first assignment
 ```
 
 Let's look at the instuctions for this assignment using `git log`:
 
 ```shell
-student@shell:~/git4ol$ git log -1
-commit 5ab1c7ef10bb12fb35671fe8fbacf95671759f3b
+student@shell:~/git4ol$ commit d3dcb47d1127c96319a83e05e83ecfc606a6a465
 Author: Mikael Karon <mikael@karon.se>
-Date:   Tue May 5 01:32:52 2015 +0800
+Date:   Thu May 7 01:00:01 2015 +0800
 
     Your first assignment
     
@@ -502,15 +506,6 @@ student@shell:~/git4ol$ echo "#1
 ###3" > assignment.md
 ```
 
-To make sure our change was ok let's use `cat` to confirm our changes:
-
-```shell
-student@shell:~/git4ol$ cat assignment.md 
-#1
-##2
-###3
-```
-
 ## Assesment
 
 Assignments can either be localy or remotely assesed.
@@ -520,7 +515,7 @@ In the case of local assesment the tests needed to validate an assignment (like 
 In the case of remote assesed assignments we think of the assignment in two parts:
 
 - The "challenge" part of an assignment is a git commit containing instructions and learning materials
-- The "response" part of an assignment is a pull request containing all the commits to be reviewed
+- The "response" part of an assignment is a pull request containing all the feedback to be reviewed
 
 ### Preparation
 
@@ -531,9 +526,9 @@ Before we submit this assignment we have to create a more permanent assignment b
 > Here `first-attempt` is the name of our attempt (since it's our first attempt)
 
 ```shell
-student@shell:~/git4ol$ git checkout -b markdown@0.0.1/assignment/1#first-attempt
+student@shell:~/git4ol$ git checkout -b markdown@0.0.1/challenge/first-assignment#first-attempt
 M	assignment.md
-Switched to a new branch 'markdown@0.0.1/assignment/1#first-attempt'
+Switched to a new branch 'markdown@0.0.1/challenge/first-assignment#first-attempt'
 ```
 
 We want the last changes we made to `assignment.md` to be part of our submission so let's add it to our commit using `git add`:
@@ -546,21 +541,21 @@ Now all we have to do is to commit our changes using `git commit`:
 
 ```shell
 student@shell:~/git4ol$ git commit --message="Update assignment.md"
-[markdown@0.0.1/assignment/1#first-attempt 86ef6e8] Update assignment.md
+[markdown@0.0.1/challenge/first-assignment1#first-attempt cc92916] Update assignment.md
  1 file changed, 3 insertions(+)
  ```
 
 The assignment is now ready for "review" but before that can start we have to make our changes available to the world by pushing our assignment branch using `git push`:
 
 ```shell
-student@shell:~/git4ol$ git push origin markdown@0.0.1/assignment/1#first-attempt
+student@shell:~/git4ol$ git push origin refs/heads/markdown@0.0.1/challenge/first-assignment#first-attempt
 Counting objects: 5, done.
 Delta compression using up to 4 threads.
 Compressing objects: 100% (2/2), done.
-Writing objects: 100% (3/3), 306 bytes | 0 bytes/s, done.
+Writing objects: 100% (3/3), 294 bytes | 0 bytes/s, done.
 Total 3 (delta 0), reused 0 (delta 0)
 To https://github.com/open-learning/git4ol.git
- * [new branch]      markdown@0.0.1/assignment/1#first-attempt -> markdown@0.0.1/assignment/1#first-attempt
+ * [new branch]      markdown@0.0.1/challenge/first-assignment#first-attempt -> markdown@0.0.1/challenge/first-assignment#first-attempt
 ```
 
 ### Submission
@@ -570,18 +565,18 @@ Assignment submissions are handled using git pull-requests from the student's as
 How the pull-request workflow looks will differ from teacher to teacher. In this example we're simply going to go bare-bones-old-school and use `git request-pull` to generate a pull-request text that can be used as a starting point for whatever flavour of workflow.
 
 ```shell
-student@shell:~/git4ol$ git request-pull markdown@0.0.1/assignment/1 https://github.com/open-learning/git4ol.git
-The following changes since commit 5ab1c7ef10bb12fb35671fe8fbacf95671759f3b:
+student@shell:~/git4ol$ git request-pull markdown@0.0.1/challenge/first-assignment#first-attempt https://github.com/open-learning/git4ol.git
+The following changes since commit cc92916032dd43e9ab2831133a6c52de1e50bb13:
 
-  Your first assignment (2015-05-05 01:32:52 +0800)
+  Update assignment.md (2015-05-07 01:15:37 +0800)
 
 are available in the git repository at:
 
-  https://github.com/open-learning/git4ol.git markdown@0.0.1/assignment/1#first-attempt
+  https://github.com/open-learning/git4ol.git markdown@0.0.1/challenge/first-assignment#first-attempt
 
-for you to fetch changes up to 66f5075907ee1f2e19071bee5ff30dd19c900e1f:
+for you to fetch changes up to cc92916032dd43e9ab2831133a6c52de1e50bb13:
 
-  Update assignment.md (2015-05-05 01:57:00 +0800)
+  Update assignment.md (2015-05-07 01:15:37 +0800)
 
 ----------------------------------------------------------------
 student (1):
@@ -589,7 +584,7 @@ student (1):
 
  assignment.md | 3 +++
  1 file changed, 3 insertions(+)
-```
+ ```
 
 ### Advertisement
 
@@ -599,19 +594,19 @@ student (1):
 
 Before an assignment submission can be made someone has to advertise that they are available to review a speciffic assignment. This is done by publishing "review" branches that pull-requests can be submitted against.
 
-For example, if we wanted to advertise that we're able to review `refs/markdown@0.0.1/assignment/1` we create `refs/heads/markdown@0.0.1/assignment/1` from `refs/markdown@0.0.1/assignment/1`:
+For example, if we wanted to advertise that we're able to review `refs/markdown@0.0.1/challenge/first-assignment` we create `refs/heads/markdown@0.0.1/challenge/first-assignment` from `refs/markdown@0.0.1/challenge/first-assignment`:
 
 ```shell
-teacher@shell:~/git4ol$ git update-ref refs/heads/markdown@0.0.1/assignment/1 refs/markdown@0.0.1/assignment/1
+teacher@shell:~/git4ol$ git update-ref refs/heads/markdown@0.0.1/challenge/first-assignment refs/markdown@0.0.1/challenge/first-assignment
 ```
 
 After this we must publish our change to make it available to students using `git push`:
 
 ```shell
-teacher@shell:~/git4ol$ git push origin refs/heads/markdown@0.0.1/assignment/1
+teacher@shell:~/git4ol$  git push origin refs/heads/markdown@0.0.1/challenge/first-assignment
 Total 0 (delta 0), reused 0 (delta 0)
 To https://github.com/open-learning/git4ol.git
- * [new branch]      markdown@0.0.1/assignment/1 -> markdown@0.0.1/assignment/1
+ * [new branch]      markdown@0.0.1/challenge/first-assignment -> markdown@0.0.1/challenge/first-assignment
 ```
 
 ### Review
@@ -654,15 +649,15 @@ remote: Counting objects: 17, done.
 remote: Total 17 (delta 0), reused 0 (delta 0), pack-reused 17
 Unpacking objects: 100% (17/17), done.
 https://github.com/open-learning/git4ol
- * [new branch]      markdown@0.0.1/assignment/1#first-attempt -> student/markdown@0.0.1/assignment/1#first-attempt
+ * [new branch]      markdown@0.0.1/challenge/first-assignment#first-attempt -> student/markdown@0.0.1/challenge/first-assignment#first-attempt
  * [new branch]      master     -> student/master
 ```
 
 Lastly let's `git checkout` the student assignment branch:
 
 ```shell
-teacher@shell:~/git4ol$ git checkout student/markdown@0.0.1/assignment/1#first-attempt
-Note: checking out 'student/markdown@0.0.1/assignment/1#first-attempt'.
+teacher@shell:~/git4ol$ git checkout student/markdown@0.0.1/challenge/first-assignment#first-attempt
+Note: checking out 'student/markdown@0.0.1/challenge/first-assignment#first-attempt'.
 
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
@@ -673,7 +668,7 @@ do so (now or later) by using -b with the checkout command again. Example:
 
   git checkout -b new_branch_name
 
-HEAD is now at 66f5075... Update assignment.md
+HEAD is now at cc92916... Update assignment.md
 ```
 
 Now that we have a working copy of the student assignment we want to copy the certificate file, `git add` it and lastly `git commit` it:
@@ -681,9 +676,9 @@ Now that we have a working copy of the student assignment we want to copy the ce
 ```shell
 teacher@shell:~/git4ol$ cp ~/certificate.json certificate.json
 teacher@shell:~/git4ol$ git add certificate.json
-teacher@shell:~/git4ol$  git commit -m "Create certificate.json"
-[detached HEAD 1ea97fb] Create certificate.json
- 1 file changed, 3 insertions(+)
+teacher@shell:~/git4ol$ git commit -m "Create certificate.json"
+[detached HEAD 5adf1cb] Create certificate.json
+ 1 file changed, 4 insertions(+)
  create mode 100644 certificate.json
 ```
 
@@ -694,45 +689,45 @@ Before we submit this certificate we have to create a more permanent certificati
 > Note that we've prefixed the branch name with `student/` in order to group submissions from the same student together.
 
 ```shell
-teacher@shell:~/git4ol$ git checkout -b student/markdown@0.0.1/assignment/1#first-attempt
-Switched to a new branch 'student/markdown@0.0.1/assignment/1#first-attempt'
+teacher@shell:~/git4ol$ git checkout -b student/markdown@0.0.1/challenge/first-assignment#first-attempt
+Switched to a new branch 'student/markdown@0.0.1/challenge/first-assignment#first-attempt'
 ```
 
 Now we need to make this available to the world using `git push`:
 
 ```shell
-teacher@shell:~/git4ol$ git push origin student/markdown@0.0.1/assignment/1#first-attempt
+teacher@shell:~/git4ol$  git push origin refs/heads/student/markdown@0.0.1/challenge/first-assignment#first-attempt
 Counting objects: 4, done.
 Delta compression using up to 4 threads.
 Compressing objects: 100% (2/2), done.
-Writing objects: 100% (3/3), 352 bytes | 0 bytes/s, done.
+Writing objects: 100% (3/3), 353 bytes | 0 bytes/s, done.
 Total 3 (delta 0), reused 0 (delta 0)
 To https://github.com/open-learning/git4ol.git
- * [new branch]      student/markdown@0.0.1/assignment/1#first-attempt -> student/markdown@0.0.1/assignment/1#first-attempt
+ * [new branch]      student/markdown@0.0.1/challenge/first-assignment#first-attempt -> student/markdown@0.0.1/challenge/first-assignment#first-attempt
 ```
 
 And lastly we wan't to generate a pull-request to send our student using `git request-pull`:
 
 ```shell
-teacher@shell:~/git4ol$ git request-pull remotes/student/markdown@0.0.1/assignment/1#first-attempt https://github.com/open-learning/git4ol.git
-The following changes since commit 66f5075907ee1f2e19071bee5ff30dd19c900e1f:
+teacher@shell:~/git4ol$ git request-pull remotes/student/markdown@0.0.1/challenge/first-assignment#first-attempt https://github.com/open-learning/git4ol.git
+The following changes since commit cc92916032dd43e9ab2831133a6c52de1e50bb13:
 
-  Update assignment.md (2015-05-05 01:57:00 +0800)
+  Update assignment.md (2015-05-07 01:15:37 +0800)
 
 are available in the git repository at:
 
-  https://github.com/open-learning/git4ol.git student/markdown@0.0.1/assignment/1#first-attempt
+  https://github.com/open-learning/git4ol.git student/markdown@0.0.1/challenge/first-assignment#first-attempt
 
-for you to fetch changes up to 1ea97fba1be4027ee006be444aeb482f63075df6:
+for you to fetch changes up to 5adf1cba10b9ade4666ae448f4f8040e0a6826b7:
 
-  Create certificate.json (2015-05-05 02:27:48 +0800)
+  Create certificate.json (2015-05-07 01:33:56 +0800)
 
 ----------------------------------------------------------------
 teacher (1):
       Create certificate.json
 
- certificate.json | 3 +++
- 1 file changed, 3 insertions(+)
+ certificate.json | 4 ++++
+ 1 file changed, 4 insertions(+)
  create mode 100644 certificate.json
 ```
 
@@ -741,13 +736,6 @@ teacher (1):
 > **actor: student**
 >
 > This part of the guide assumes the actor is a ***student***
-
-Start by making sure we're on the correct assignment branch using `git checkout`:
-
-```shell
-student@shell:~/git4ol$ git checkout markdown@0.0.1/assignment/1#first-attempt 
-Switched to branch 'markdown@0.0.1/assignment/1#first-attempt'
-```
 
 Before we can accept a certificate we have to add a `teacher` remote. Assuming we already have a local clone of the [`git4ol`](https://github.com/open-learning/git4ol/) repository we should `git remote add` the teacher repository:
 
@@ -763,26 +751,34 @@ remote: Counting objects: 17, done.
 remote: Total 17 (delta 0), reused 0 (delta 0), pack-reused 17
 Unpacking objects: 100% (17/17), done.
 https://github.com/open-learning/git4ol
- * [new branch]      student/markdown@0.0.1/assignment/1#first-attempt -> teacher/student/markdown@0.0.1/assignment/1#first-attempt
+ * [new branch]      student/markdown@0.0.1/challenge/first-assignment#first-attempt -> teacher/student/markdown@0.0.1/challenge/first-assignment#first-attempt
  * [new branch]      master     -> teacher/master
+```
+
+Now we have to make sure we're on the correct assignment branch using `git checkout`:
+
+```shell
+student@shell:~/git4ol$ git checkout markdown@0.0.1/challenge/first-assignment#first-attempt
+Switched to branch 'markdown@0.0.1/challenge/first-assignment#first-attempt'
 ```
 
 Now all we have to do is to `git merge` from the `teacher` remote in order to "accept" our certificate:
 
 ```shell
-student@shell:~/git4ol$ git merge --no-ff teacher/student/markdown@0.0.1/assignment/1#first-attempt 
+student@shell:~/git4ol$ git merge --no-ff teacher/student/markdown@0.0.1/challenge/first-assignment#first-attempt
 Merge made by the 'recursive' strategy.
- certificate.json | 3 +++
- 1 file changed, 3 insertions(+)
+ certificate.json | 4 ++++
+ 1 file changed, 4 insertions(+)
+ create mode 100644 certificate.json
 ```
 
 And finally let's make this available to the world using `git push`:
 
 ```shell
-student@shell:~/git4ol$ git push origin markdown@0.0.1/assignment/1#first-attempt
+student@shell:~/git4ol$ git push origin refs/heads/markdown@0.0.1/challenge/first-assignment#first-attempt
 Counting objects: 1, done.
-Writing objects: 100% (1/1), 274 bytes | 0 bytes/s, done.
+Writing objects: 100% (1/1), 282 bytes | 0 bytes/s, done.
 Total 1 (delta 0), reused 0 (delta 0)
 To https://github.com/open-learning/git4ol.git
-   66f5075..29a67ab  markdown@0.0.1/assignment/1#first-attempt -> markdown@0.0.1/assignment/1#first-attempt
+   cc92916..52f7dd1  markdown@0.0.1/challenge/first-assignment#first-attempt -> markdown@0.0.1/challenge/first-assignment#first-attempt
 ```
