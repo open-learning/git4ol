@@ -48,17 +48,6 @@ These are the main actors and a quick summary of what their functions are:
 - `student`: Studies learning materials and submits assignments for review
 - `teacher`: Reviews student assignments and certifies them if passed
 
-> **note**
->
-> In this document you'll be able to see what the active role is in two ways:
->
-> - Actor changes are noteted like so: **actor: xxx**
-> - When a shell command is issued check the format of the prompt:
->
->```shell
->actor@shell:cwd$
->```
-
 ## Further reading
 
 From here you can continue reading the [guide](guide.md) or if you already have `git4ol` lessons you want to [publishing](publishing.md) we have some documentation for that to.
