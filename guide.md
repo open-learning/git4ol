@@ -541,10 +541,10 @@ Assignment submissions are handled using git pull-requests from the student's as
 How the pull-request workflow looks will differ from teacher to teacher. In this example we're simply going to go bare-bones-old-school and use `git request-pull` to generate a pull-request text that can be used as a starting point for whatever flavour of workflow.
 
 ```shell
-student@shell:~/git4ol$ git request-pull markdown@0.0.1/challenge/first-assignment#first-attempt https://github.com/open-learning/git4ol.git
-The following changes since commit cc92916032dd43e9ab2831133a6c52de1e50bb13:
+student@shell:~/git4ol$ git request-pull markdown@0.0.1/challenge/first-assignment https://github.com/open-learning/git4ol.git
+The following changes since commit d3dcb47d1127c96319a83e05e83ecfc606a6a465:
 
-  Update assignment.md (2015-05-07 01:15:37 +0800)
+  Your first assignment (2015-05-07 01:00:01 +0800)
 
 are available in the git repository at:
 
