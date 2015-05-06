@@ -21,7 +21,7 @@ Learning objects can conceptually be mapped to `git` objects in the following wa
 
 > **note**
 >
-> The format of instructions is not covered in this spec (but the [`git4ol`](https://github.com/open-learning/git4ol) repository uses markdown)
+> The format of instructions is not covered in this guide (but the [`git4ol`](https://github.com/open-learning/git4ol) repository uses markdown)
 
 - "course" ⇔ `git` repository
 - "lesson" ⇔ `git` orphaned branch
@@ -170,7 +170,7 @@ b330a00 (refs/markdown@0.0.0/step/9) Reference Links
 
 > **actor: author**
 >
-> This part of the spec assumes the actor is an ***author***
+> This part of the guide assumes the actor is an ***author***
 
 Creating a lesson is as basic as adding commits to a branch. It's mostly when we need to modify one that it can get a little bit more complicated.
 
@@ -473,7 +473,7 @@ To https://github.com/open-learning/git4ol.git
 
 > **actor: student**
 >
-> This part of the spec assumes the actor is a ***student***
+> This part of the guide assumes the actor is a ***student***
 
 Depending on the lesson assignments studying can be done either entirely by the student alone (in the case of self assessed or machine assessed assignments) or together with someone else as in the case of teacher or peer assessed assignments.
 
@@ -638,7 +638,7 @@ student (1):
 
 > **actor: teacher**
 >
-> This part of the spec assumes the actor is a ***teacher***
+> This part of the guide assumes the actor is a ***teacher***
 
 Before an assignment submission can be made someone has to advertise that they are available to review a speciffic assignment. This is done by publishing "review" branches that pull-requests can be submitted against.
 
@@ -783,7 +783,7 @@ teacher (1):
 
 > **actor: student**
 >
-> This part of the spec assumes the actor is a ***student***
+> This part of the guide assumes the actor is a ***student***
 
 Start by making sure we're on the correct assignment branch using `git checkout`:
 
