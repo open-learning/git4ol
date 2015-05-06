@@ -143,6 +143,29 @@ From https://github.com/open-learning/git4ol
  * [new ref]         refs/lessons/markdown@0.0.1 -> refs/lessons/markdown@0.0.1
 ```
 
+To see what refs exist for a commit we can use `git log`:
+
+> **note**
+>
+> In this example we've assumed you've already `git fetch`ed `refs/lessons/*` and `refs/markdown@0.0.0/*`
+
+```shell
+user@shell:~/git4ol$ git log --oneline --reverse --decorate=full lessons/markdown@0.0.0
+e19c2e6 (refs/markdown@0.0.0/step/1) Our first markdown file
+9da9f3c (refs/markdown@0.0.0/step/2) Paragraphs, Headers, Blockquotes
+cf92883 (refs/markdown@0.0.0/step/3) Phrase Emphasis
+ae23fe0 (refs/markdown@0.0.0/step/4) Unordered  Lists
+c09b157 (refs/markdown@0.0.0/step/5) Ordered  Lists
+764dfbc (refs/markdown@0.0.0/step/6) Complex lists
+ffa19d5 (refs/markdown@0.0.0/step/7) Inline Links
+ea8ac14 (refs/markdown@0.0.0/step/8) Inline Links with a Title
+b330a00 (refs/markdown@0.0.0/step/9) Reference Links
+09b686c (refs/markdown@0.0.0/step/10) Reference Links with options
+79c24c8 (refs/markdown@0.0.0/step/11) Images
+2f264bc (refs/markdown@0.0.0/step/12) Inline Code
+2a4396c (refs/markdown@0.0.0/step/13, refs/lessons/markdown@0.0.0) Block Code
+```
+
 ## Authoring
 
 > **actor: author**
