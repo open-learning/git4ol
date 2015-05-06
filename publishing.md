@@ -28,18 +28,14 @@ user@shell:~/git4ol$ for ref in $(git for-each-ref --format="%(refname)" refs/ma
 
 Checkout correct ref for each `git submodule`:
 
-> **note**
->
-> This will try to `git checkout` *all* `git submodule`s
-
 ```shell
-user@shell:~/git4ol$ git submodule foreach 'git fetch origin $name && git checkout FETCH_HEAD'
+user@shell:~/git4ol$ git submodule foreach 'if [[ "$name" == refs/markdown@0.0.0/* ]]; then git fetch origin $name && git checkout FETCH_HEAD; fi'
 ```
 
 Generate `txt` file with the commit message for each `git submodule`:
 
 ```shell
-user@shell:~/git4ol$ git submodule foreach 'git log -1 --format=%B > $toplevel/$path.txt'
+user@shell:~/git4ol$ git submodule foreach 'if [[ "$name" == refs/markdown@0.0.0/* ]]; then git log -1 --format=%B > $toplevel/$path.txt; fi'
 ```
 
 Now all that is left is to `git add` and `git commit` our changes before finally doing a `git push` - but you can do that on your own. 
