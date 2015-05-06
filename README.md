@@ -256,26 +256,7 @@ author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/12 2f264bc
 author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/13 2a4396c
 ```
 
-After all the step refs are added you can confirm that it's all good using `git log` again:
-
-```shell
-author@shell:~/git4ol$ git log --oneline --reverse --decorate=full
-e19c2e6 (refs/markdown@0.0.0/step/1) Our first markdown file
-9da9f3c (refs/markdown@0.0.0/step/2) Paragraphs, Headers, Blockquotes
-cf92883 (refs/markdown@0.0.0/step/3) Phrase Emphasis
-ae23fe0 (refs/markdown@0.0.0/step/4) Unordered  Lists
-c09b157 (refs/markdown@0.0.0/step/5) Ordered  Lists
-764dfbc (refs/markdown@0.0.0/step/6) Complex lists
-ffa19d5 (refs/markdown@0.0.0/step/7) Inline Links
-ea8ac14 (refs/markdown@0.0.0/step/8) Inline Links with a Title
-b330a00 (refs/markdown@0.0.0/step/9) Reference Links
-09b686c (refs/markdown@0.0.0/step/10) Reference Links with options
-79c24c8 (refs/markdown@0.0.0/step/11) Images
-2f264bc (refs/markdown@0.0.0/step/12) Inline Code
-2a4396c (HEAD, refs/markdown@0.0.0/step/13, refs/lessons/markdown@0.0.0) Block Code
-```
-
-After this it's safe to (force) remove our WIP branch (after first switching to another branch, in this case the `master` branch) using `git branch`:
+It's now safe to (force) remove our WIP branch (after first switching to another branch, in this case the `master` branch) using `git branch`:
 
 ```shell
 author@shell:~/git4ol$ git checkout master
