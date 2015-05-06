@@ -50,4 +50,4 @@ These are the main actors and a quick summary of what their functions are:
 
 ## Further reading
 
-From here you can continue reading the [guide](guide.md) or if you already have `git4ol` lessons you want to learn how to [publish](publishing.md) them just go ahead.
+From here you can continue reading the [guide](guide.md) or if you already have `git4ol` lessons you want to learn how to [publish](publishing.md) then just go ahead.
