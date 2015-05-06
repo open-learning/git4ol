@@ -8,14 +8,18 @@ If you are publishing a website from a `git` repo and you have a `bash` shell ar
 
 Make sure to `git fetch` `refs/{lesson@version}/step/*` refs first
 
+> **note**
+>
+> In this example we're going to publish the lesson `markdown@0.0.0`
+
 ```shell
-git fetch origin refs/markdown@0.0.0/step/*:refs/markdown@0.0.0/step/*
+user@shell:~/git4ol$ git fetch origin refs/markdown@0.0.0/step/*:refs/markdown@0.0.0/step/*
 ```
 
 Generate `git submodule`s from refs:
 
 ```shell
-for ref in $(git for-each-ref --format="%(refname)" refs/markdown@0.0.0/step); do git submodule add --force ./ $ref; done
+user@shell:~/git4ol$ for ref in $(git for-each-ref --format="%(refname)" refs/markdown@0.0.0/step); do git submodule add --force ./ $ref; done
 ```
 
 Checkout correct ref for each `git submodule`:
@@ -25,11 +29,11 @@ Checkout correct ref for each `git submodule`:
 > This will try to `git checkout1 *all* `git submodule`s
 
 ```shell
-git submodule foreach 'git fetch origin $name && git checkout FETCH_HEAD'
+user@shell:~/git4ol$ git submodule foreach 'git fetch origin $name && git checkout FETCH_HEAD'
 ```
 
 Generate `txt` file with the commit message for each `git submodule`:
 
 ```shell
-git submodule foreach 'git log -1 --format="%B" > $toplevel/$path.txt'
+user@shell:~/git4ol$ git submodule foreach 'git log -1 --format="%B" > $toplevel/$path.txt'
 ```
