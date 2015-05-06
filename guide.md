@@ -1,4 +1,4 @@
-# `git4op` guide
+# `git4ol` guide
 
 The document is written as a guide that takes the reader through the various actions taken by our actors from the beginning when an author creates his initial work to when a student accepts a certificate for an assignment.
 
