@@ -10,17 +10,32 @@
 
 Learning objects can conceptually be mapped to `git` objects in the following way:
 
+- "course" ⇔ `git` repository
+- "lesson" ⇔ `git` orphaned branch
+- "step" and "challenge" ⇔ `git` commit
+
+### Commit assets and description
+
+A git commit has two parts that can further be mapped:
+
+- "assets" ⇔ `git` commit contents
+- "body" ⇔ `git` commit message
+
+The formatting of the `git` commit message follows:
+
 > **note**
 >
 > The format of instructions is not covered in this guide (but the [`git4ol`](https://github.com/open-learning/git4ol) repository uses markdown)
 
-- "course" ⇔ `git` repository
-- "lesson" ⇔ `git` orphaned branch
-- "step" and "challenge" ⇔ `git` commit
-  - "assets" ⇔ `git` commit contents
-  - "description" ⇔ `git` commit message
+```
+Title as a one line
 
-Learning objects are managed with `git` refs:
+Instructions as multiple paragraphs
+```
+
+### Locating
+
+Learning objects are located using `git` refs:
 
 - Lesson starting points are located using refs of the format `refs/{lesson}@{version}/head` where
   - `lesson` is the name of the lesson
