@@ -382,7 +382,11 @@ Once the rebase is completed your new lesson is ready to be published! From here
 
 ### Adding assignments
 
-When adding assignments we start by checking out the ref of the step we're about to add an assignment for into a detached `HEAD`:
+Assignments are typically (but not always) based on a lesson step. When adding assignments we start by checking out the ref of  the assignment base into a detached `HEAD`:
+
+> **note**
+>
+> In this example we're basing our assignment on the ref `lessons/markdown@0.0.1/step/2` but anything `git` commitish is valid
 
 ```shell
 author@shell:~/git4ol$ git checkout lessons/markdown@0.0.1/step/2 
