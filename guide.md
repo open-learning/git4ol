@@ -146,14 +146,6 @@ Second step is to create an orphaned WIP branch:
 author@shell:~/git4ol$ git checkout --orphan markdown
 ```
 
-Now it's time to add steps to our lesson. Each step is a `git` commit with the commit message following this format:
-
-```
-Title as a one line
-
-Instructions as multiple paragraphs
-```
-
 After the first step is added our branch is "born" and we can add a lesson `head` ref to the branch `HEAD` using `git update-ref`:
 
 > **note**
