@@ -7,6 +7,17 @@ We've chosen this format for two reasons:
 - To lower the technical barrier of entry to anyone who understand basic `git` commands
 - To provide a step-by-step guide that cover all of the core aspects of `git4ol`
 
+> **note**
+>
+> In this document you'll be able to see what the active role is in two ways:
+>
+> - Actor changes are noteted like so: **actor: xxx**
+> - When a shell command is issued check the format of the prompt:
+>
+>```shell
+>actor@shell:cwd$
+>```
+
 ## Basics
 
 Before continuing we should go over some basic `git` commands. First let's decide if we're starting from an empty repository or a clone.
