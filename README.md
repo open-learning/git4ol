@@ -6,9 +6,9 @@
 >
 > As we have not yet made our first publich draft available you can expect breaking changes all the time, don't be angry.
 
-## Objects
+## Terms
 
-Learning objects can conceptually be mapped to `git` objects in the following way:
+Learning terms can conceptually be mapped to `git` objects in the following way:
 
 - "course" ⇔ `git` repository
 - "lesson" ⇔ `git` orphaned branch
