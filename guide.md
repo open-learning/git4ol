@@ -410,9 +410,9 @@ To https://github.com/open-learning/git4ol.git
 
 Depending on the lesson assignments studying can be done either entirely by the student alone (in the case of self assessed or machine assessed assignments) or together with someone else as in the case of teacher or peer assessed assignments.
 
-### Navigation
+### Stepping
 
-We navigate a lesson using `git checkout`:
+We navigate a lesson steps using `git checkout`:
 
 ```shell
 student@shell:~/git4ol$ git checkout markdown@0.0.1/step/1
