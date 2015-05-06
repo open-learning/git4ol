@@ -6,7 +6,7 @@
 >
 > As we have not yet made our first publich draft available you can expect breaking changes all the time, don't be angry.
 
-## Learning objects
+## Objects
 
 Learning objects can conceptually be mapped to `git` objects in the following way:
 
