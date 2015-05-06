@@ -213,13 +213,6 @@ author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/12 2f264bc
 author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/13 2a4396c
 ```
 
-It's now safe to (force) remove our WIP branch (after first switching to another branch, in this case the `master` branch) using `git branch`:
-
-```shell
-author@shell:~/git4ol$ git checkout master
-author@shell:~/git4ol$ git branch -D markdown
-```
-
 The last thing to do is to make all of this available to the world using `git push`:
 
 ```shell
