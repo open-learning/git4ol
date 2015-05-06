@@ -368,10 +368,6 @@ author@shell:~/git4ol$ git add assignment.md
 
 Now we want to commit this using `git commit`:
 
-> **note**
->
-> You can just omit the `--message` switch to launch an editor for the commit message
-
 ```shell
 author@shell:~/git4ol$ git commit --message="Your first assignment
 
