@@ -1,4 +1,4 @@
-## Quick publishing
+## `gitt4ol` publishing
 
 If you are publishing a website from a `git` repo and you have a `bash` shell around there are some tricks you can use to publish `git4ol` lessons.
 
