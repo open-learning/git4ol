@@ -30,7 +30,7 @@ The formatting of the body follows:
 ```
 Title as a one line
 
-Instructions as multiple paragraphs
+Instructions as multiple lines
 ```
 
 ### References
