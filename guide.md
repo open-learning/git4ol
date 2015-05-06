@@ -62,7 +62,7 @@ user@shell:~/git4ol$
 
 ### References
 
-A lot of things in `git` are already managed using `git` references (refs) including (but not limitied to) branches and tags.
+A lot of things in `git` are already managed using `git` references (refs) including (but not limitied to) branches, tags and remotes.
 
 To list existing references use `git for-each-ref`:
 
@@ -74,7 +74,7 @@ d2637c23f0d52d580dd5d075de649772f1f1e4ed commit	refs/heads/gh-pages
 2042bd20e49548e677a3212a4ebe428168739643 commit	refs/remotes/origin/master
 ```
 
-You can limit the listing by providing a glob pattern:
+You can limit the listing by providing a pattern:
 
 ```shell
 user@shell:~/git4ol$ git for-each-ref refs/heads/*
@@ -82,7 +82,7 @@ d2637c23f0d52d580dd5d075de649772f1f1e4ed commit	refs/heads/gh-pages
 2042bd20e49548e677a3212a4ebe428168739643 commit	refs/heads/master
 ```
 
-You can add, modify and delete `git` refs using `git update-ref`. To add a ref called `test` pinting to the current `HEAD` just do this:
+You can add, modify and delete `git` refs using `git update-ref`. To add a ref called `test` pointing to the current `HEAD` just do this:
 
 ```shell
 user@shell:~/git4ol$ git update-ref refs/test HEAD
