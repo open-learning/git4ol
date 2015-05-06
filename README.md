@@ -33,9 +33,9 @@ Title as a one line
 Instructions as multiple paragraphs
 ```
 
-### Refs
+### References
 
-Learning blocks are located using `git` refs:
+Learning blocks are located using `git` references (refs):
 
 - Lesson starting points are located using refs of the format `refs/{lesson}@{version}/head` where
   - `lesson` is the name of the lesson
