@@ -26,7 +26,7 @@ Checkout correct ref for each `git submodule`:
 
 > **note**
 >
-> This will try to `git checkout1 *all* `git submodule`s
+> This will try to `git checkout` *all* `git submodule`s
 
 ```shell
 user@shell:~/git4ol$ git submodule foreach 'git fetch origin $name && git checkout FETCH_HEAD'
