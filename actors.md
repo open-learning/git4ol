@@ -1,4 +1,4 @@
-# Actors
+# `git4ol` Actors
 
 These are the main `git4ol` actors and their main functions:
 
