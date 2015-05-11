@@ -8,9 +8,9 @@ Learning blocks can conceptually be mapped to `git` objects in the following way
   - `git` commit message ⇔ `activity` title and instructions
   - `git` commit contents ⇔ `activity` assets
 
-## References
+## Activities
 
-Blocks that map to `git` commits are located using `git` references (refs):
+`activity` blocks are referenced using `git` references (refs):
 
 - Lesson starting points are located using refs of the format `refs/{lesson}@{version}/head` where
   - `lesson` is the name of the lesson
@@ -30,7 +30,7 @@ Blocks that map to `git` commits are located using `git` references (refs):
   - `version` is a valid semver
   - `challenge` is the name of the challenge
 
-## Message
+## `git` commit message format
 
 The common `git` commit message usually looks like so:
 
@@ -46,7 +46,7 @@ A `git4ol` message extends this with [YAML](http://yaml.org/) [Front Matter](htt
 Title in one line
 
 ---
-about: "front=matter block following empty line"
+about: "front matter block following empty line"
 ---
 
 # Details in [markdown](http://daringfireball.net/projects/markdown/) (optionally) following empty line
