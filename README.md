@@ -18,16 +18,8 @@ Learning blocks can conceptually be mapped to `git` objects in the following way
 
 A `git` commit has two parts that can further be mapped into blocks:
 
-- `git` commit contents ⇔ `assets`
 - `git` commit message ⇔ `body` 
-
-Where `body` follows the following format:
-
-```
-Title as a one line
-
-Instructions as multiple lines
-```
+- `git` commit contents ⇔ `assets`
 
 ### References
 
