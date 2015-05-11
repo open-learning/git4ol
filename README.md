@@ -25,7 +25,7 @@ Where `body` follows the following format::
 
 > **note**
 >
-> The *instructions* format is not covered in this guide (but the [`git4ol`](https://github.com/open-learning/git4ol) repository uses markdown)
+> The *instructions* format is not covered in this guide (but the [`git4ol`](//github.com/open-learning/git4ol) repository uses markdown)
 
 ```
 Title as a one line
