@@ -15,10 +15,11 @@ Further text as multiple lines
 We extend this format to:
 
 ```
-Title as one line
+Title as one line of plain text
 
 ---
 propery: value
 ---
-# Markdown
+
+Further text as multiple lines of markdown
 ```
