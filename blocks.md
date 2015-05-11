@@ -1,4 +1,4 @@
-# Blocks
+# `git4ol` Blocks
 
 Learning blocks can conceptually be mapped to `git` objects in the following way:
 
