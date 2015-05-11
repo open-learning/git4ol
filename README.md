@@ -4,7 +4,7 @@
 
 > **note**
 >
-> As we have not yet made our first publich draft available you can expect breaking changes all the time, don't be angry.
+> As we have not yet made our first public draft available you can expect breaking changes all the time, don't be angry.
 
 To get to know `git4ol` better we've preppared some reading materials for you:
 
