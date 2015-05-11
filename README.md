@@ -4,8 +4,6 @@
 
 ---
 
-> **note**
->
 > As we have not yet made our first public draft available you can expect breaking changes all the time, don't be angry.
 
 ---
