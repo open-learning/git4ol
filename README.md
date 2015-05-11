@@ -13,7 +13,7 @@ Learning blocks can conceptually be mapped to `git` objects in the following way
 - `git` repository ⇔ `course`
 - `git` orphaned branch ⇔ `lesson`
 - `git` commit ⇔ `activity`
-  - `git` commit message ⇔ `activity` subject and instructions
+  - `git` commit message ⇔ `activity` title and instructions
   - `git` commit contents ⇔ `activity` assets
 
 ### References
