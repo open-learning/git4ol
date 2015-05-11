@@ -4,7 +4,7 @@
 
 > **note**
 >
-> This document is under heavy development as we're currently working on [open learning `read`](//github.com/open-learning/read) and that has impact on what you read here
+> This document is under heavy development as we're currently working on [open learning `read`](//github.com/open-learning/read) and that has impact on what you see here
 
 ---
 
