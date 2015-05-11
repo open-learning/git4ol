@@ -1,4 +1,8 @@
-## `git4ol` publishing
+## `git4ol` Publishing
+
+> **note**
+>
+> This document is under heavy development as we're currently working on [open learning `read`](//github.com/open-learning/read) and that has impact on what you read here
 
 If you are publishing a website from a `git` repo and you have a `bash` shell around there are some tricks you can use to publish `git4ol` lessons.
 
