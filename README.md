@@ -21,11 +21,7 @@ A `git` commit has two parts that can further be mapped into blocks:
 - `git` commit contents ⇔ `assets`
 - `git` commit message ⇔ `body` 
 
-Where `body` follows the following format::
-
-> **note**
->
-> The *instructions* format is not covered in this guide (but the [`git4ol`](//github.com/open-learning/git4ol) repository uses markdown)
+Where `body` follows the following format:
 
 ```
 Title as a one line
@@ -65,4 +61,8 @@ These are the main actors and a quick summary of what their functions are:
 
 ## Further reading
 
-From here you can continue reading the [guide](guide.md) or if you already have `git4ol` lessons you want to learn how to [publish](publishing.md) then just go ahead.
+People wanted get a deeper understading of `git4ol` also read:
+
+- The [`git4ol` guide](guide.md) takes the reader from authoring to certification
+- The [`git4ol` instructions](instructions.md) page teaches the reader how to format your commit messages
+- The [`git4ol` publishing](publishing.md) page teaches the reader how to publish `git4ol` lessons
