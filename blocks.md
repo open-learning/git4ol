@@ -8,9 +8,9 @@ Learning blocks can conceptually be mapped to `git` objects in the following way
   - `git` commit message ⇔ `activity` title and instructions
   - `git` commit contents ⇔ `activity` assets
 
-## Activities
+## References
 
-`activity` blocks are referenced using `git` references (refs):
+`git4ol` objects are available as `git` references (refs):
 
 - Lesson starting points are located using refs of the format `refs/{lesson}@{version}/head` where
   - `lesson` is the name of the lesson
