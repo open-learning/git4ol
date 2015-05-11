@@ -30,7 +30,7 @@ Learning blocks can conceptually be mapped to `git` objects in the following way
   - `version` is a valid semver
   - `challenge` is the name of the challenge
 
-## `activity` blocks from `git`commits
+## `activity` blocks
 
 `activity` blocks are the basic building blocks of `git4ol` where we use the `git` commit tree and files to serve the `acticvity` assets and parse the `git` commit message to read the activity title and instructions.
 
