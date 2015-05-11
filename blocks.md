@@ -6,7 +6,7 @@ Learning blocks can conceptually be mapped to `git` objects in the following way
 - `git` orphaned branch ⇔ `lesson`
 - `git` commit ⇔ `activity`
   - `git` commit message ⇔ `activity` title and instructions
-  - `git` commit contents ⇔ `activity` assets
+  - `git` commit tree and files ⇔ `activity` assets
 
 ## References
 
@@ -30,7 +30,35 @@ Learning blocks can conceptually be mapped to `git` objects in the following way
   - `version` is a valid semver
   - `challenge` is the name of the challenge
 
-## `git` commit message format
+## `activity` blocks `git` commit objects
+
+`activity` blocks are the basic building blocks of `git4ol` where we use the `git` commit tree and files to serve the `acticvity` assets and parse the `git` commit message to read the activity title and instructions.
+
+### Message
+
+A `git` commit message is composed of two parts and can be viewed individually using `git log`:
+
+To see the `git` commit message subject:
+
+```shell
+user@shell:~/git4ol$ git log -1 --format=%s markdown@0.0.0/step/1
+Our first markdown file
+```
+
+To see the `git` commit message body:
+
+```shell
+user@shell:~/git4ol$ git log -1 --format=%b markdown@0.0.0/step/1
+---
+type: ide
+files:
+  - README.md
+---
+
+[Markdown](http://daringfireball.net/projects/markdown/) is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).
+
+Let's start by adding a `README.md` file with some mock content.
+```
 
 The common `git` commit message usually looks like so:
 
