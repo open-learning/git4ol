@@ -24,10 +24,10 @@ Generate `git subtree`s from refs:
 user@shell:~/git4ol$ for ref in $(git for-each-ref --format="%(refname)" refs/markdown@0.0.0); do git subtree add --prefix $ref ./ $ref; done
 ```
 
-Generate `.md` file with the commit message from refs:
+Generate `.txt` file with the commit message from refs:
 
 ```shell
-user@shell:~/git4ol$ for ref in $(git for-each-ref --format="%(refname)" refs/markdown@0.0.0); do git log -1 --format="---%nsubject: %s%nsha: %H%n%b" $ref -- > $ref.md; done
+user@shell:~/git4ol$ for ref in $(git for-each-ref --format="%(refname)" refs/markdown@0.0.0); do git log -1 --format="---%nsubject: %s%nsha: %H%n%b" $ref -- > $ref.txt; done
 ```
 
 Now all that is left is to `git add` and `git commit` our changes before finally doing a `git push` - but you can do that on your own. 
