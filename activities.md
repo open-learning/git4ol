@@ -4,9 +4,19 @@ At it's core a learning experience can be thought of as a guided set of activiti
 
 In `git4ol` we translate that experience to `git` commits and refs and the same way that `git` commits are the main building blocks of a `git` repository activities are the main building blocks of a `git4ol` lesson.
 
-## Source
+## Assets
 
-### Tree
+Activity assets are located in directories according to this naming scheme:
+
+- Step assets are located in directories of the format `refs/{lesson}@{version}/step/{n}` where
+  - `lesson` is the name of the lesson
+  - `version` is a valid semver
+  - `n` is a positive number indicating the step number
+
+- Challenge assets are located in directories of the format `refs/{lesson}@{version}/challenge/{challenge}` where
+  - `lesson` is the name of the lesson
+  - `version` is a valid semver
+  - `challenge` is the name of the challenge
 
 ### Markdown
 
