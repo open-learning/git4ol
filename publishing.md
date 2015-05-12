@@ -24,7 +24,7 @@ Generate `git subtree`s from refs:
 > In this example we're using the current repository `./` to reuse our current `origin`.
 
 ```shell
-user@shell:~/git4ol$ for ref in $(git for-each-ref --format="%(refname)" refs/markdown@0.0.0); do git subtree add --prefix $ref ./ $ref; done
+user@shell:~/git4ol$ for ref in $(git for-each-ref --format="%(refname)" refs/markdown@0.0.1); do git subtree add --message "published $ref" --prefix=$ref $ref; done
 ```
 
 ## Instructions
