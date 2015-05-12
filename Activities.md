@@ -1,20 +1,34 @@
-# `git4ol` Blocks
+# `git4ol` Activities
 
-Learning blocks can conceptually be mapped to `git` objects in the following way:
+At it's core a learning experience can be thought of as a guided set of activities a student takes to eventually get certified on a defined topic.
 
-- `git` repository ⇔ `course`
-- `git` orphaned branch ⇔ `lesson`
-- `git` commit ⇔ `activity`
-  - `git` commit message ⇔ `activity` title and instructions
-  - `git` commit tree and files ⇔ `activity` assets
+In `git4ol` we translate that experience to `git` commits and refs and the same way that `git` commits are the main building blocks of a `git` repository activities are the main building blocks of a `git4ol` lesson.
 
-## `activity` blocks
+## Source
 
-`activity` blocks are the basic building blocks of `git4ol` where we use the `git` commit tree and files to serve the `acticvity` assets and parse the `git` commit message to read the activity title and instructions.
+### Tree
+
+### Markdown
+
+***Describe the `.md` format***
+
+### JSON
+
+***Describe the `.json` format***
+
+## Packaged
+
+A packaged `git4ol` repository itself really just a regular `git` repository with commits and refs following the `git4ol` conventions. We conceptually map learning objects to to `git` objects in the following way:
+
+- `git` repository ⇔ course
+- `git` orphaned branch ⇔ lesson
+- `git` commit ⇔ activity
+  - `git` commit tree and blobs ⇔ activity assets
+  - `git` commit message ⇔ activity title and instructions
 
 ### References
 
-`git4ol` `activity` blocks are available as `git` references (refs):
+We locate activities using `git` references (refs) according to this naming scheme:
 
 - Steps are located using refs of the format `refs/{lesson}@{version}/step/{n}` where
   - `lesson` is the name of the lesson
@@ -26,9 +40,13 @@ Learning blocks can conceptually be mapped to `git` objects in the following way
   - `version` is a valid semver
   - `challenge` is the name of the challenge
 
-### Message
+### Activity assets, title and instructions
 
-A `git` commit message is composed of two parts, subject and body. The common `git` commit message usually combines them like so:
+Activity assets are simply a snapshot of the tree at the `git` commit the activity refs.
+
+The activity title and instructions are serialized in the `git` commit message. Your average `git` commit message is composed of two parts - subject and body.
+
+The recomended format for a `git` commit message is:
 
 ```
 Subject in one line
