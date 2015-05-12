@@ -2,7 +2,7 @@
 
 > ***This document is under heavy development as we're currently working on [open learning `read`](//github.com/open-learning/read) and that has impact on what you see here***
 
-If you are publishing a website from a `git` repo and you have a `bash` shell around there are some tricks you can use to publish `git4ol` lessons.
+This document outlines how to publish `git4ol` lesson `activity` blocks.
 
 ## Fetch
 
@@ -33,6 +33,11 @@ Generate `.md` file with the commit message from refs:
 
 ```shell
 user@shell:~/git4ol$ for ref in $(git for-each-ref --format="%(refname)" refs/markdown@0.0.0); do git log -1 --format="---%nid: %H%ntitle: %s%n%b" $ref -- > $ref.md; done
+```
+## JSON
+
+```shell
+m2j --width 0 --content refs/markdown\@0.0.0/*/*.md > refs/markdown\@0.0.0/activities.json
 ```
 
 ## GitHub pages
