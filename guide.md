@@ -99,19 +99,20 @@ To see what refs exist for a range of commits we can use `git log`:
 > In this example we've assumed you've already `git fetch`ed `refs/markdown@0.0.0/*`
 
 ```shell
-user@shell:~/git4ol$ git log --oneline --reverse --decorate=full a30b4fd (refs/markdown@0.0.0/step/1, refs/markdown@0.0.0/head) Our first markdown file
-7f4cd2a (refs/markdown@0.0.0/step/2) Paragraphs, Headers, Blockquotes
-bae11ea (refs/markdown@0.0.0/step/3) Phrase Emphasis
-634a8b7 (refs/markdown@0.0.0/step/4) Unordered  Lists
-3717271 (refs/markdown@0.0.0/step/5) Ordered  Lists
-72fdb0c (refs/markdown@0.0.0/step/6) Complex lists
-8abd7eb (refs/markdown@0.0.0/step/7) Inline Links
-e8563d8 (refs/markdown@0.0.0/step/8) Inline Links with a Title
-93e43b0 (refs/markdown@0.0.0/step/9) Reference Links
-b277cc1 (refs/markdown@0.0.0/step/10) Reference Links with options
-3dd28dd (refs/markdown@0.0.0/step/11) Images
-9b44838 (refs/markdown@0.0.0/step/12) Inline Code
-b64a4a9 (HEAD, refs/markdown@0.0.0/tail, refs/markdown@0.0.0/step/13, refs/heads/markdown@0.0.0) Block Code
+user@shell:~/git4ol$ git log --oneline --reverse --decorate=full
+1158e62 (refs/markdown@0.0.0/step/1) Our first markdown file
+edef49d (refs/markdown@0.0.0/step/2) Paragraphs, Headers, Blockquotes
+4241e04 (refs/markdown@0.0.0/step/3) Phrase Emphasis
+c20460b (refs/markdown@0.0.0/step/4) Unordered  Lists
+35c27fe (refs/markdown@0.0.0/step/5) Ordered  Lists
+af66145 (refs/markdown@0.0.0/step/6) Complex lists
+2a263e9 (refs/markdown@0.0.0/step/7) Inline Links
+fd92020 (refs/markdown@0.0.0/step/8) Inline Links with a Title
+74d3f68 (refs/markdown@0.0.0/step/9) Reference Links
+67c62fd (refs/markdown@0.0.0/step/10) Reference Links with options
+29c53d7 (refs/markdown@0.0.0/step/11) Images
+1f1e90d (refs/markdown@0.0.0/step/12) Inline Code
+aa15a6f (refs/markdown@0.0.0/step/13) Block Code
 ```
 
 ## Authoring
@@ -143,7 +144,26 @@ Second step is to create an orphaned WIP branch:
 author@shell:~/git4ol$ git checkout --orphan markdown
 ```
 
-After the first step is added our branch is "born" and we can add a lesson `head` ref to the branch `HEAD` using `git update-ref`:
+Incrementally add commits to this branch and when all of the steps are added we need to add step refs. Let's first list the (imaginary) commits we just added using `git log`:
+
+```shell
+author@shell:~/git4ol$ git log --oneline --reverse
+1158e62 Our first markdown file
+edef49d Paragraphs, Headers, Blockquotes
+4241e04 Phrase Emphasis
+c20460b Unordered  Lists
+35c27fe Ordered  Lists
+af66145 Complex lists
+2a263e9 Inline Links
+fd92020 Inline Links with a Title
+74d3f68 Reference Links
+67c62fd Reference Links with options
+29c53d7 Images
+1f1e90d Inline Code
+aa15a6f Block Code
+```
+
+To add corresponding step refs we use `git update-ref`:
 
 > **note**
 >
@@ -156,50 +176,19 @@ After the first step is added our branch is "born" and we can add a lesson `head
 >> 1. PATCH version when you make backwards-compatible bug fixes.
 
 ```shell
-author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/head HEAD
-```
-
-Incrementally add commits to this branch and when all of the steps are added we need to create the lesson `tail` ref pointing to the `HEAD` of the branch:
-
-```shell
-author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/tail HEAD
-```
-
-Now it's time to add step refs. Let's list the (imaginary) commits we just added using `git log`:
-
-```shell
-author@shell:~/git4ol$ git log --oneline --reverse
-a30b4fd Our first markdown file
-7f4cd2a Paragraphs, Headers, Blockquotes
-bae11ea Phrase Emphasis
-634a8b7 Unordered  Lists
-3717271 Ordered  Lists
-72fdb0c Complex lists
-8abd7eb Inline Links
-e8563d8 Inline Links with a Title
-93e43b0 Reference Links
-b277cc1 Reference Links with options
-3dd28dd Images
-9b44838 Inline Code
-b64a4a9 Block Code
-```
-
-To add corresponding step refs we use `git update-ref`:
-
-```shell
-author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/1 a30b4fd
-author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/2 7f4cd2a
-author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/3 bae11ea
-author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/4 634a8b7
-author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/5 3717271
-author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/6 72fdb0c
-author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/7 8abd7eb
-author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/8 e8563d8
-author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/9 93e43b0
-author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/10 b277cc1
-author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/11 3dd28dd
-author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/12 9b44838
-author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/13 b64a4a9
+author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/1 1158e62
+author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/2 edef49d
+author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/3 4241e04
+author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/4 c20460b
+author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/5 35c27fe
+author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/6 af66145
+author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/7 2a263e9
+author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/8 fd92020
+author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/9 74d3f68
+author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/10 67c62fd
+author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/11 29c53d7
+author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/12 1f1e90d
+author@shell:~/git4ol$ git update-ref refs/markdown@0.0.0/step/13 aa15a6f
 ```
 
 The last thing to do is to make all of this available to the world using `git push`:
@@ -210,11 +199,15 @@ author@shell:~/git4ol$ git push origin refs/markdown@0.0.0:refs/markdown@0.0.0/*
 
 ### Updating a lesson
 
-When updating a lesson we start by checking out the ref of the lesson `tail` we're about to update into a detached `HEAD`:
+When updating a lesson we start by checking out the ref of the last step we'll modify of the lesson we're about to update into a detached `HEAD`:
+
+> **note**
+>
+> In this example we'll modify lesson steps all the way up to `step/13`
 
 ```shell
-author@shell:~/git4ol$ git checkout markdown@0.0.0/tail
-Note: checking out 'markdown@0.0.0/tail'.
+author@shell:~/git4ol$ git checkout markdown@0.0.0/step/13
+Note: checking out 'markdown@0.0.0/step/13'.
 
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
@@ -225,31 +218,32 @@ do so (now or later) by using -b with the checkout command again. Example:
 
   git checkout -b new_branch_name
 
-HEAD is now at 6fd0d04... Block Code
+HEAD is now at aa15a6f... Block Code
 ```
 
-In the following commits we're going to fix some formatting error(s) in `refs/markdown@0.0.0/step/3` and in the steps onwards, so let's start an interactive `git rebase` from `refs/markdown@0.0.0/step/2`:
+In the following commits we're going to fix some formatting error(s) in `markdown@0.0.0/step/3` and in the steps onwards, so let's start an interactive `git rebase` from the preceding step `markdown@0.0.0/step/3~1`:
 
 ```shell
-author@shell:~/git4ol$ git rebase --interactive markdown@0.0.0/step/2
+author@shell:~/git4ol$ git rebase --interactive markdown@0.0.0/step/3~1
 ```
 
 This let's us interactively choose what commits we need to edit. Change the word `pick` to `edit` on the commits that need editing and save:
 
 ```shell
-edit 8e69cca Phrase Emphasis
-edit d9b5c5b Unordered  Lists
-edit fa3155f Ordered  Lists
-edit 2071bc4 Complex lists
-edit 2c983d7 Inline Links
-edit 7edd8b5 Inline Links with a Title
-edit ed68aff Reference Links
-edit dd1ab64 Reference Links with options
-edit ac1a701 Images
-edit e60dd6c Inline Code
-edit 6fd0d04 Block Code
 
-# Rebase 6fd0d04 onto a27a2aa
+edit 4241e04 Phrase Emphasis
+edit c20460b Unordered  Lists
+edit 35c27fe Ordered  Lists
+edit af66145 Complex lists
+edit 2a263e9 Inline Links
+edit fd92020 Inline Links with a Title
+edit 74d3f68 Reference Links
+edit 67c62fd Reference Links with options
+edit 29c53d7 Images
+edit 1f1e90d Inline Code
+edit aa15a6f Block Code
+
+# Rebase edef49d..aa15a6f onto edef49d
 #
 # Commands:
 #  p, pick = use commit
@@ -271,8 +265,8 @@ edit 6fd0d04 Block Code
 This will drop us to back to the shell:
 
 ```shell
-author@shell:~/git4ol$ git rebase --interactive markdown@0.0.0/step/2
-Stopped at 8e69cca... Phrase Emphasis
+author@shell:~/git4ol$ git rebase --interactive markdown@0.0.0/step/3~1
+Stopped at 4241e04... Phrase Emphasis
 You can amend the commit now, with
 
 	git commit --amend
@@ -288,14 +282,14 @@ We're going to update `README.md` and fix the indentation error in the end of th
 ```shell
 author@shell:~/git4ol$ git add README.md
 author@shell:~/git4ol$ git rebase --continue
-[detached HEAD 7b158de] Phrase Emphasis
+[detached HEAD e5851e7] Phrase Emphasis
  1 file changed, 6 insertions(+)
-error: could not apply d9b5c5b... Unordered  Lists
+error: could not apply c20460b... Unordered  Lists
 
 When you have resolved this problem, run "git rebase --continue".
 If you prefer to skip this patch, run "git rebase --skip" instead.
 To check out the original branch and stop rebasing, run "git rebase --abort".
-Could not apply d9b5c5b... Unordered  Lists
+Could not apply c20460b... Unordered  Lists
 ```
 
 Since the changes we've done to `README.md` collide with later changes we'll have to solve the conflict, apply the needed changes (indentation), `git add` the change then continue the rebase using `git rebase --continue`:
@@ -303,21 +297,21 @@ Since the changes we've done to `README.md` collide with later changes we'll hav
 ```shell
 author@shell:~/git4ol$ git add README.md 
 author@shell:~/git4ol$ git rebase --continue
-[detached HEAD 638cd0d] Unordered  Lists
+[detached HEAD 867e400] Unordered  Lists
  1 file changed, 12 insertions(+)
-error: could not apply fa3155f... Ordered  Lists
+error: could not apply 35c27fe... Ordered  Lists
 
 When you have resolved this problem, run "git rebase --continue".
 If you prefer to skip this patch, run "git rebase --skip" instead.
 To check out the original branch and stop rebasing, run "git rebase --abort".
-Could not apply fa3155f... Ordered  Lists
+Could not apply 35c27fe... Ordered  Lists
 ```
 
 Keep resolving conflicts and applying changes until the end of the rebase is reached.
 
 ```shell
 author@shell:~/git4ol$ git rebase --continue
-[detached HEAD 0189a29] Block Code
+[detached HEAD a20f371] Block Code
  1 file changed, 7 insertions(+)
 Successfully rebased and updated detached HEAD.
 ```
@@ -328,17 +322,16 @@ Once the rebase is completed your new lesson is ready to be published! From here
 >
 > Note that the new version is `0.0.1` since we are publishing an *fix* version of `0.0.0`
 
-- `git update-ref refs/markdown@0.0.1/tail HEAD`
 - `git update-ref refs/markdown@0.0.1/step/{n} {commit}`
 - `git push origin refs/markdown@0.0.1/*:refs/markdown@0.0.1/*`
 
 ### Challenges
 
-Challenges are typically (but not always) based on a lesson step. When adding challenges we start by checking out the ref into a detached `HEAD`:
+Challenges are typically (but not always) based on a lesson step. When adding challenges we start by checking out the challenge ref into a detached `HEAD`:
 
 > **note**
 >
-> In this example we're basing our challenge on the ref `markdown@0.0.1/step/2` but anything `git` commitish is valid
+> In this example we're basing our challenge on the ref `markdown@0.0.1/step/2` but anything `git` commit-ish is valid
 
 ```shell
 author@shell:~/git4ol$ git checkout markdown@0.0.1/step/2
@@ -353,7 +346,7 @@ do so (now or later) by using -b with the checkout command again. Example:
 
   git checkout -b new_branch_name
 
-HEAD is now at 3e83029... Paragraphs, Headers, Blockquotes
+HEAD is now at 870c12a... Paragraphs, Headers, Blockquotes
 ```
 
 Let's add an empty file for our student to provide feedback in and then `git add` it:
@@ -368,7 +361,6 @@ Now we want to commit this using `git commit`:
 ```shell
 author@shell:~/git4ol$ git commit --message="Your first assignment
 
----
 type: ide
 files:
   - README.md
@@ -377,7 +369,7 @@ files:
 Let's see what we've learned so far. We've created a file called \`assignment.md\` that you should use to submit your answer.
 
 Add three headings from level one to three, pick whatever heading contents as you want."
-[detached HEAD f3f46a0] Your first assignment
+[detached HEAD 32f165d] Your first assignment
  1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 assignment.md
  ```
@@ -430,16 +422,15 @@ do so (now or later) by using -b with the checkout command again. Example:
 
   git checkout -b new_branch_name
 
-HEAD is now at b051241... Our first markdown file
+HEAD is now at db6f200... Our first markdown file
 ```
 
 To display the instructions we use `git log`:
 
 ```shell
-student@shell:~/git4ol$ git log --format=%B -1
+student@shell:~/git4ol$ git log -1 --format=%B
 Our first markdown file
 
----
 type: ide
 files:
   - README.md
@@ -448,7 +439,6 @@ files:
 [Markdown](http://daringfireball.net/projects/markdown/) is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text
 
 Let's start by adding a `README.md` file with some mock content.
-
 ```
 
 ## Assignments
@@ -468,16 +458,15 @@ do so (now or later) by using -b with the checkout command again. Example:
 
   git checkout -b new_branch_name
 
-HEAD is now at f3f46a0... Your first assignment
+HEAD is now at 32f165d... Your first assignment
 ```
 
 Let's look at the instructions for this assignment using `git log`:
 
 ```shell
-student@shell:~/git4ol$ git log --format=%B -1
+student@shell:~/git4ol$ git log -1 --format=%B
 Your first assignment
 
----
 type: ide
 files:
   - README.md
@@ -486,7 +475,6 @@ files:
 Let's see what we've learned so far. We've created a file called `assignment.md` that you should use to submit your answer.
 
 Add three headings from level one to three, pick whatever heading contents as you want.
-
 ```
 
 Let's follow the instructions and add three lines of heading to `assignment.md`:
@@ -557,7 +545,7 @@ How the pull-request workflow looks will differ from teacher to teacher. In this
 
 ```shell
 student@shell:~/git4ol$ git request-pull markdown@0.0.1/challenge/first-assignment https://github.com/open-learning/git4ol.git
-The following changes since commit db94488dcfd00f28aaa6c424f907215a86a7883f:
+The following changes since commit 32f165df11dee9305c75d82f11ddda71940df154:
 
   Your first assignment (2015-05-07 01:00:01 +0800)
 
