@@ -32,12 +32,12 @@ user@shell:~/git4ol$ for ref in $(git for-each-ref --format="%(refname)" refs/ma
 Generate `.md` file with the commit message from refs:
 
 ```shell
-user@shell:~/git4ol$ for ref in $(git for-each-ref --format="%(refname)" refs/markdown@0.0.0); do git log -1 --format="---%nid: %H%ntitle: %s%n%b" $ref -- > $ref.md; done
+user@shell:~/git4ol$ for ref in $(git for-each-ref --format="%(refname)" refs/markdown@0.0.0); do git log -1 --format="---%nid: %H%n%ntitle: %s%nnotes:%N%n%b" $ref -- > $ref.md; done
 ```
 ## JSON
 
 ```shell
-m2j --width 0 --content refs/markdown\@0.0.0/*/*.md > refs/markdown\@0.0.0/activities.json
+user@shell:~/git4ol$ m2j --width 0 --content refs/markdown\@0.0.0/*/*.md > refs/markdown\@0.0.0/activities.json
 ```
 
 ## GitHub pages
