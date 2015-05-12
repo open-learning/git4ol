@@ -1,0 +1,156 @@
+{
+  "1": {
+    "id": "db6f200246e168f6b75570685b07de9341d2d809",
+    "title": "Our first markdown file",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\n[Markdown](http://daringfireball.net/projects/markdown/) is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).\n\nLet's start by adding a `README.md` file with some mock content.\n\n",
+    "basename": "1"
+  },
+  "2": {
+    "id": "870c12a654831ee2d5a3356a07b143b04a64bce0",
+    "title": "Paragraphs, Headers, Blockquotes",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nA paragraph is simply one or more consecutive lines of text, separated\nby one or more blank lines. (A blank line is any line that looks like\na blank line -- a line containing nothing but spaces or tabs is\nconsidered blank.) Normal paragraphs should not be indented with\nspaces or tabs.\n\nMarkdown offers two styles of headers: *Setext* and *atx*.\nSetext-style headers for `<h1>` and `<h2>` are created by\n\"underlining\" with equal signs (`=`) and hyphens (`-`), respectively.\nTo create an atx-style header, you put 1-6 hash marks (`#`) at the\nbeginning of the line -- the number of hashes equals the resulting\nHTML header level.\n\nBlockquotes are indicated using email-style '`>`' angle brackets.\n\n",
+    "basename": "2"
+  },
+  "3": {
+    "id": "e5851e724bf342da6abaf422dc56425190162073",
+    "title": "Phrase Emphasis",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nMarkdown uses asterisks and underscores to indicate spans of emphasis.\n\n",
+    "basename": "3"
+  },
+  "4": {
+    "id": "9df5b34bc935d2f2b3877ee5a84da959552e0e4b",
+    "title": "Unordered  Lists",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nUnordered (bulleted) lists use asterisks, pluses, and hyphens (`*`,\n`+`, and `-`) as list markers. These three markers are\ninterchangable; all three examples produce the same output\n\n",
+    "basename": "4"
+  },
+  "5": {
+    "id": "04ac8db625e1ca620b859d788cc45e2fe15341bd",
+    "title": "Ordered  Lists",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nOrdered (numbered) lists use regular numbers, followed by periods, as\nlist markers.\n\n",
+    "basename": "5"
+  },
+  "6": {
+    "id": "be00539b9aeb09a1ca702d29c8004ab2d653ba25",
+    "title": "Complex lists",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nIf you put blank lines between items, you'll get `<p>` tags for the\nlist item text. You can create multi-paragraph list items by indenting\nthe paragraphs by 4 spaces or 1 tab.\n\n",
+    "basename": "6"
+  },
+  "7": {
+    "id": "65b10ada15535c9c65e669f79c1c939d60662ed2",
+    "title": "Inline Links",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nMarkdown supports two styles for creating links: *inline* and\n*reference*. With both styles, you use square brackets to delimit the\ntext you want to turn into a link.\n\nInline-style links use parentheses immediately after the link text.\n\n",
+    "basename": "7"
+  },
+  "8": {
+    "id": "eb330e2975b459fa623d30aef7aa3306a2122216",
+    "title": "Inline Links with a Title",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nOptionally, you may include a title attribute in the parentheses.\n\n",
+    "basename": "8"
+  },
+  "9": {
+    "id": "f4b5cc6b773faff5b3a0802fb6af5d1ef28b3a11",
+    "title": "Reference Links",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nReference-style links allow you to refer to your links by names, which\nyou define elsewhere in your document.\n\n",
+    "basename": "9"
+  },
+  "10": {
+    "id": "404522947b8df7a56013f7a8a688f6def7bc8b3d",
+    "title": "Reference Links with options",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nThe title attribute is optional. Link names may contain letters,\nnumbers and spaces, but are *not* case sensitive:\n\n",
+    "basename": "10"
+  },
+  "11": {
+    "id": "2371688e8ac2d7ce0cfb8168b3a4eedccadf9b12",
+    "title": "Images",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nImage syntax is very much like link syntax.\n\n",
+    "basename": "11"
+  },
+  "12": {
+    "id": "ca0359cf10e00dfd74556c77b1d485f42c5df597",
+    "title": "Inline Code",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nIn a regular paragraph, you can create code span by wrapping text in\nbacktick quotes. Any ampersands (`&`) and angle brackets (`<` or\n`>`) will automatically be translated into HTML entities. This makes\nit easy to use Markdown to write about HTML example code.\n\n",
+    "basename": "12"
+  },
+  "13": {
+    "id": "a20f37111990747f482a6426b6bade05df33a1b0",
+    "title": "Block Code",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nTo specify an entire block of pre-formatted code, indent every line of\nthe block by 4 spaces or 1 tab. Just like with code spans, `&`, `<`,\nand `>` characters will be escaped automatically.\n\n",
+    "basename": "13"
+  },
+  "first-assignment": {
+    "id": "32f165df11dee9305c75d82f11ddda71940df154",
+    "title": "Your first assignment",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nLet's see what we've learned so far. We've created a file called `assignment.md` that you should use to submit your answer.\n\nAdd three headings from level one to three, pick whatever heading contents as you want.\n\n",
+    "basename": "first-assignment"
+  }
+}

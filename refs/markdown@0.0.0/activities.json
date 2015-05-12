@@ -1,0 +1,145 @@
+{
+  "1": {
+    "id": "1158e62f02de11ddb51609a9efc8bebe655e1017",
+    "title": "Our first markdown file",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\n[Markdown](http://daringfireball.net/projects/markdown/) is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).\n\nLet's start by adding a `README.md` file with some mock content.\n\n",
+    "basename": "1"
+  },
+  "2": {
+    "id": "edef49d50e4bfe97ee4fb52376fc35a67960fee5",
+    "title": "Paragraphs, Headers, Blockquotes",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nA paragraph is simply one or more consecutive lines of text, separated\nby one or more blank lines. (A blank line is any line that looks like\na blank line -- a line containing nothing but spaces or tabs is\nconsidered blank.) Normal paragraphs should not be indented with\nspaces or tabs.\n\nMarkdown offers two styles of headers: *Setext* and *atx*.\nSetext-style headers for `<h1>` and `<h2>` are created by\n\"underlining\" with equal signs (`=`) and hyphens (`-`), respectively.\nTo create an atx-style header, you put 1-6 hash marks (`#`) at the\nbeginning of the line -- the number of hashes equals the resulting\nHTML header level.\n\nBlockquotes are indicated using email-style '`>`' angle brackets.\n\n",
+    "basename": "2"
+  },
+  "3": {
+    "id": "4241e04242aaeac9689071c7505a9211c4fcb6e6",
+    "title": "Phrase Emphasis",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nMarkdown uses asterisks and underscores to indicate spans of emphasis.\n\n",
+    "basename": "3"
+  },
+  "4": {
+    "id": "c20460b7a015cdf21c656a19a7e090c370d21a0e",
+    "title": "Unordered  Lists",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nUnordered (bulleted) lists use asterisks, pluses, and hyphens (`*`,\n`+`, and `-`) as list markers. These three markers are\ninterchangable; all three examples produce the same output\n\n",
+    "basename": "4"
+  },
+  "5": {
+    "id": "35c27fe85e0f6c46042a3dda8e24dd5ff464d581",
+    "title": "Ordered  Lists",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nOrdered (numbered) lists use regular numbers, followed by periods, as\nlist markers.\n\n",
+    "basename": "5"
+  },
+  "6": {
+    "id": "af66145891a11c30533b02a417b43d74f497ddd6",
+    "title": "Complex lists",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nIf you put blank lines between items, you'll get `<p>` tags for the\nlist item text. You can create multi-paragraph list items by indenting\nthe paragraphs by 4 spaces or 1 tab.\n\n",
+    "basename": "6"
+  },
+  "7": {
+    "id": "2a263e9be842b176682248b69b06df5d8723e498",
+    "title": "Inline Links",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nMarkdown supports two styles for creating links: *inline* and\n*reference*. With both styles, you use square brackets to delimit the\ntext you want to turn into a link.\n\nInline-style links use parentheses immediately after the link text.\n\n",
+    "basename": "7"
+  },
+  "8": {
+    "id": "fd92020164fbb6273991c2a4433b3e45a958ac4a",
+    "title": "Inline Links with a Title",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nOptionally, you may include a title attribute in the parentheses.\n\n",
+    "basename": "8"
+  },
+  "9": {
+    "id": "74d3f68a3912401a8271391dd62c37f9121545f8",
+    "title": "Reference Links",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nReference-style links allow you to refer to your links by names, which\nyou define elsewhere in your document.\n\n",
+    "basename": "9"
+  },
+  "10": {
+    "id": "67c62fdc0b59504353fe5c6ad131dcb86caab691",
+    "title": "Reference Links with options",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nThe title attribute is optional. Link names may contain letters,\nnumbers and spaces, but are *not* case sensitive:\n\n",
+    "basename": "10"
+  },
+  "11": {
+    "id": "29c53d77e9b32a45e85af376f3a5d344fa011384",
+    "title": "Images",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nImage syntax is very much like link syntax.\n\n",
+    "basename": "11"
+  },
+  "12": {
+    "id": "1f1e90ddccb7e300949a3332cd8cbee2413de92f",
+    "title": "Inline Code",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nIn a regular paragraph, you can create code span by wrapping text in\nbacktick quotes. Any ampersands (`&`) and angle brackets (`<` or\n`>`) will automatically be translated into HTML entities. This makes\nit easy to use Markdown to write about HTML example code.\n\n",
+    "basename": "12"
+  },
+  "13": {
+    "id": "aa15a6f2a908c7e275cd351b5c92d89820242127",
+    "title": "Block Code",
+    "notes": null,
+    "type": "ide",
+    "files": [
+      "README.md"
+    ],
+    "content": "\n\nTo specify an entire block of pre-formatted code, indent every line of\nthe block by 4 spaces or 1 tab. Just like with code spans, `&`, `<`,\nand `>` characters will be escaped automatically.\n\n",
+    "basename": "13"
+  }
+}
