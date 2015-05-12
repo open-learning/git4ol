@@ -115,6 +115,22 @@ fd92020 (refs/markdown@0.0.0/step/8) Inline Links with a Title
 aa15a6f (refs/markdown@0.0.0/step/13) Block Code
 ```
 
+To see the instructions for a ref we can use `git log` again:
+
+```shell
+user@shell:~/git4ol$ git log -1 --format=%B markdown@0.0.0/step/1
+Our first markdown file
+
+type: ide
+files:
+  - README.md
+---
+
+[Markdown](http://daringfireball.net/projects/markdown/) is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format
+
+Let's start by adding a `README.md` file with some mock content.
+```
+
 ## Authoring
 
 > **actor: author**
