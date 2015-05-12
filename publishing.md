@@ -36,6 +36,12 @@ user@shell:~/git4ol$ for ref in $(git for-each-ref --format="%(refname)" refs/ma
 ```
 ## JSON
 
+Using [`markdown-to-json`](//github.com/scottstanfield/markdown-to-json) you can now generate `activities.json`:
+
+> **note**
+>
+> You have to `npm install` yourself, make sure to get a version that supports the `--content` parameter
+
 ```shell
 user@shell:~/git4ol$ m2j --width 0 --content refs/markdown\@0.0.0/*/*.md > refs/markdown\@0.0.0/activities.json
 ```
