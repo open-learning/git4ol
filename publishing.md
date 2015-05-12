@@ -1,8 +1,10 @@
-## `git4ol` Publishing
+# `git4ol` Publishing
 
 > ***This document is under heavy development as we're currently working on [open learning `read`](//github.com/open-learning/read) and that has impact on what you see here***
 
 If you are publishing a website from a `git` repo and you have a `bash` shell around there are some tricks you can use to publish `git4ol` lessons.
+
+## Fetch
 
 Make sure to `git fetch` refs first:
 
@@ -13,6 +15,7 @@ Make sure to `git fetch` refs first:
 ```shell
 user@shell:~/git4ol$ git fetch origin refs/markdown@0.0.0/*:refs/markdown@0.0.0/*
 ```
+## Assets
 
 Generate `git subtree`s from refs:
 
@@ -24,10 +27,22 @@ Generate `git subtree`s from refs:
 user@shell:~/git4ol$ for ref in $(git for-each-ref --format="%(refname)" refs/markdown@0.0.0); do git subtree add --prefix $ref ./ $ref; done
 ```
 
-Generate `.txt` file with the commit message from refs:
+## Instructions
+
+Generate `.md` file with the commit message from refs:
 
 ```shell
-user@shell:~/git4ol$ for ref in $(git for-each-ref --format="%(refname)" refs/markdown@0.0.0); do git log -1 --format="---%nsubject: %s%nsha: %H%n%b" $ref -- > $ref.txt; done
+user@shell:~/git4ol$ for ref in $(git for-each-ref --format="%(refname)" refs/markdown@0.0.0); do git log -1 --format="---%nid: %H%n%ntitle: %s%b" $ref -- > $ref.md; done
 ```
+
+## GitHub pages
+
+If you intend to host your lesson using [GitHub pages](https://pages.github.com/) you should turn off [Jekyll](http://jekyllrb.com/) by [adding a `.nojekyll` file](https://help.github.com/articles/using-jekyll-with-pages/#turning-jekyll-off) to the root of your `gh-pages` branch.
+
+> **note**
+>
+> If you need Jekyll for this site there may be ways to optionally turn this of per path, but I don't know how. Please PR if you do.
+
+## Publish
 
 Now all that is left is to `git add` and `git commit` our changes before finally doing a `git push` - but you can do that on your own. 
