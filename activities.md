@@ -18,10 +18,20 @@ Activity assets are located in directories according to this naming scheme:
   - `version` is a valid semver
   - `challenge` is the name of the challenge
 
-### Markdown
+## Title and instructions
 
-***Describe the `.md` format***
+Activity title and instructions serialized with a combination of [front matter](http://jekyllrb.com/docs/frontmatter/) and [Markdown](http://daringfireball.net/projects/markdown/) (so basically [Jekyll](http://jekyllrb.com/)).
 
-### JSON
+```
+---
+title: Our first markdown file
+sha: 1158e62f02de11ddb51609a9efc8bebe655e1017
+type: ide
+files:
+  - README.md
+---
 
-***Describe the `.json` format***
+[Markdown](http://daringfireball.net/projects/markdown/) is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format
+
+Let's start by adding a `README.md` file with some mock content.
+```
