@@ -87,9 +87,9 @@ Let's start by adding a `README.md` file with some mock content.
 To format the `git` message like [front matter](http://jekyllrb.com/docs/frontmatter/) we can actually get away with only using `git log`:
 
 ```shell
-git log -1 --format="---%nsubject: %s%nsha: %H%n%b" markdown@0.0.0/step/1
+git log -1 --format="---%ntitle: %s%nsha: %H%n%b" markdown@0.0.0/step/1
 ---
-subject: Our first markdown file
+title: Our first markdown file
 sha: 1158e62f02de11ddb51609a9efc8bebe655e1017
 type: ide
 files:
