@@ -39,6 +39,6 @@ Let's start by adding a `README.md` file with some mock content.
 
 Some of the [front matter](http://jekyllrb.com/docs/frontmatter/) properties are reserved for `git4ol`:
 
-  - `id` <sha1> (internal) : The activity ID based on the `git` commit
-  - `title` <string> (required) : The activity title
-  - `notes` <[markdown](http://daringfireball.net/projects/markdown/)> (optional) : The activity notes
+  - `id` - `sha1` (internal) : The activity ID based on the `git` commit
+  - `title` - `string` (required) : The activity title
+  - `notes` - [`markdown`](http://daringfireball.net/projects/markdown/) (optional) : The activity notes
