@@ -1,4 +1,4 @@
-# `git4ol` Packaging
+# `git4ol` Extracting
 
 A packaged `git4ol` repository itself really just a regular `git` repository with commits and refs following the `git4ol` conventions. We conceptually map learning objects to to `git` objects in the following way:
 
