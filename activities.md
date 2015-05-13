@@ -20,10 +20,11 @@ Activity assets are located in directories according to this naming scheme:
 
 ## Title and instructions
 
-Activity title and instructions serialized with a combination of [front matter](http://jekyllrb.com/docs/frontmatter/) and [Markdown](http://daringfireball.net/projects/markdown/) (so basically [Jekyll](http://jekyllrb.com/)).
+Activity title and instructions serialized in the same way as [Jekyll](http://jekyllrb.com/) content.
 
 ```
 ---
+id:
 title: Our first markdown file
 notes:
 type: ide
@@ -35,3 +36,9 @@ files:
 
 Let's start by adding a `README.md` file with some mock content.
 ```
+
+Some of the [front matter](http://jekyllrb.com/docs/frontmatter/) properties are reserved for `git4ol`:
+
+  - `id` <sha1> (internal) : The activity ID based on the `git` commit
+  - `title` <string> (required) : The activity title
+  - `notes` <[markdown](http://daringfireball.net/projects/markdown/)> (optional) : The activity notes
