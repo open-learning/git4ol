@@ -9,5 +9,5 @@ To get to know `git4ol` better we've preppared some reading materials for you:
 - The [guide](guide.md) takes you from authoring to certification
 - The [actors](actors.md) page describes who the main `git4ol` actors are
 - The [activities](activities.md) page describes what `git4ol` activities are used to build `git4ol` lessons
-- The [packaging](packaging.md) page describes how to package [`git4ol` activities](activities.md) into a `git4ol` repository
-- The [publishing](publishing.md) page describes how to publish [`git4ol` activities](activities.md)
+- The [extracting](extracting.md) page describes how to extract [`git4ol` activities](activities.md) from a `git4ol` repository
+- The [publishing](publishing.md) page describes how to publish [`git4ol` activities](activities.md) from a `git4ol` repository
