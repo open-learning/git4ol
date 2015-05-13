@@ -25,7 +25,7 @@ Activity title and instructions serialized with a combination of [front matter](
 ```
 ---
 title: Our first markdown file
-sha: 1158e62f02de11ddb51609a9efc8bebe655e1017
+notes:
 type: ide
 files:
   - README.md
