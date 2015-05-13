@@ -84,7 +84,7 @@ files:
 Let's start by adding a `README.md` file with some mock content.
 ```
 
-To format the `git` message like [Jekyll content](http://jekyllrb.com/) we can actually get away with only using `git log`:
+To format the `git` message like [Jekyll](http://jekyllrb.com/) content we can actually get away with only using `git log`:
 
 ```shell
 git log -1 --format="---%nid: %H%n%ntitle: %s%nnotes:%N%n%b" markdown@0.0.0/step/1
