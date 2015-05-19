@@ -1,6 +1,6 @@
 # `git4ol` Publishing
 
-> ***This document is under heavy development as we're currently working on [open learning `read`](//github.com/open-learning/read) and that has impact on what you see here***
+> ***This document is under heavy development as we're currently working on [open-learning `tutor`](//github.com/open-learning/tutor) and that has impact on what you see here***
 
 This document outlines how to publish `git4ol` lesson `activity` blocks.
 
